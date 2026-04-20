@@ -64,6 +64,7 @@ const DARK = {
 const ThemeCtx = createContext(LIGHT);
 const useT = () => useContext(ThemeCtx);
 
+// ── Data ───────────────────────────────────────────────────────────────────
 const GAMES = [
   { id:"wm",  label:"Word Maker", pm:"Didara Pernebayeva", colorKey:"wm",
     sprintLabel:"1.47.0 – Beginner's Bonus", buildLive:"1.46.0 @ 10% Android",
@@ -80,13 +81,16 @@ const INITIATIVES = [
   { id:"darya-bot",      label:"Darya Review Bot",            owner:"Darya Ashurkevich",    colorKey:"wm",     type:"AI",      status:"Live — since Mar 11",
     summary:"Automated Monday store review report on #ch-wordmaker-main. Parses reviews, categorises issues, auto-tags owners.",
     note:"Case study for AI impact tracking." },
+  { id:"slack-resource-bot", label:"Slack Resource Allocation Bot", owner:"Dheeraj Rai",   colorKey:"accent", type:"AI",      status:"Planned — Q2",
+    summary:"Daily Slack agent posting who is working where each morning. Reads the rotation schedule + any overrides and posts a digest to #ch-chardonnay. Will eventually be live-updated when blockers cause mid-week jumps.",
+    note:"Requires: rotation schedule locked in Confluence, Slack webhook, Claude API integration. This is the next AI build after Command Centre." },
   { id:"alt-tester",    label:"ALT Tester Automation",       owner:"Kris Pillai",          colorKey:"sol",    type:"AI",      status:"In progress",
     summary:"Automated test suite for Solitaire using ALT Tester. Framework scoped by Kris. Needs dev to integrate into build pipeline.",
     note:"Dev time not allocated — raise with Carlos." },
   { id:"remote-cfg-ai", label:"Remote Config AI Tool",        owner:"Giulia Galvani",       colorStatic:"#C27A3A", type:"AI", status:"In progress",
     summary:"AI-assisted remote config management using Cursor + Claude for MetaPlay. Targets faster, lower-error config changes.",
     note:"Early stage — no output metrics yet." },
-  { id:"command-centre", label:"Command Centre",              owner:"Dheeraj Rai",          colorKey:"accent", type:"AI",      status:"Live — v1.5",
+  { id:"command-centre", label:"Command Centre",              owner:"Dheeraj Rai",          colorKey:"accent", type:"AI",      status:"Live — v1.6",
     summary:"This dashboard. Aggregates Jira, Slack, Confluence, analytics. Week 3: live Jira. Week 4: Slack resource agent.",
     note:"Solitaire retention data needs Appodeal analytics connection." },
   { id:"jira-overhaul",  label:"Jira Standards Overhaul",     owner:"Dheeraj Rai",          colorKey:"sol",    type:"Process", status:"Week 3 — planned",
@@ -101,23 +105,33 @@ const INITIATIVES = [
 ];
 
 const TEAM = [
-  { initials:"DR", name:"Dheeraj Rai",         role:"Sr. Project Manager", game:"All",        gameId:"all"    },
-  { initials:"JP", name:"Jordi Pulles",         role:"CPO",                 game:"All",        gameId:"all"    },
-  { initials:"CP", name:"Carlos Person",        role:"Head of Dev",         game:"All",        gameId:"all"    },
-  { initials:"DP", name:"Didara Pernebayeva",   role:"Product Manager",     game:"Word Maker", gameId:"wm",    remote:true },
-  { initials:"SR", name:"Srikanth Reddy",       role:"Product Manager",     game:"Solitaire",  gameId:"sol"    },
-  { initials:"GG", name:"Giulia Galvani",       role:"PM / SPM",            game:"MetaPlay",   gameId:"init"   },
-  { initials:"TP", name:"Toni Puig",            role:"Lead Dev",            game:"Word Maker", gameId:"wm"     },
-  { initials:"VR", name:"Víctor Romero",        role:"Developer",           game:"Word Maker", gameId:"wm"     },
-  { initials:"JS", name:"Juan Sabater",         role:"Dev / TA",            game:"Word Maker", gameId:"wm"     },
-  { initials:"YS", name:"Yevhenii Siechko",     role:"Tech Lead",           game:"Solitaire",  gameId:"sol"    },
-  { initials:"AM", name:"Angel Miladinov",      role:"Developer",           game:"Solitaire",  gameId:"sol"    },
-  { initials:"MK", name:"Murat Kacmaz",         role:"Developer",           game:"Solitaire",  gameId:"sol"    },
-  { initials:"HN", name:"Henrique Nakajima",    role:"Artist",              game:"Solitaire",  gameId:"sol"    },
-  { initials:"GM", name:"Guillem Montserrat",   role:"Artist",              game:"Solitaire",  gameId:"sol"    },
-  { initials:"JZ", name:"Juan Zambrana",        role:"Technical Artist",    game:"WM + Sol",   gameId:"shared", badge:"shared"     },
-  { initials:"KP", name:"Kris Pillai",          role:"QA Lead",             game:"All",        gameId:"shared", badge:"bottleneck" },
-  { initials:"AN", name:"Andreu Margarit",      role:"QA",                  game:"WM + Sol",   gameId:"shared" },
+  { initials:"DR", name:"Dheeraj Rai",         role:"Sr. Project Manager", game:"All",        gameId:"all",    focus:"Division-wide" },
+  { initials:"JP", name:"Jordi Pulles",         role:"CPO",                 game:"All",        gameId:"all",    focus:"Division-wide" },
+  { initials:"CP", name:"Carlos Person",        role:"Head of Dev",         game:"All",        gameId:"all",    focus:"Division-wide" },
+  { initials:"DP", name:"Didara Pernebayeva",   role:"Product Manager",     game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time", remote:true },
+  { initials:"SR", name:"Srikanth Reddy",       role:"Product Manager",     game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"GG", name:"Giulia Galvani",       role:"PM / SPM",            game:"MetaPlay",   gameId:"init",   focus:"MetaPlay initiative" },
+  { initials:"TP", name:"Toni Puig",            role:"Lead Dev",            game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
+  { initials:"VR", name:"Víctor Romero",        role:"Developer",           game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
+  { initials:"JS", name:"Juan Sabater",         role:"Dev / TA",            game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
+  { initials:"YS", name:"Yevhenii Siechko",     role:"Tech Lead",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"AM", name:"Angel Miladinov",      role:"Developer",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"MK", name:"Murat Kacmaz",         role:"Developer",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"HN", name:"Henrique Nakajima",    role:"Artist",              game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"GM", name:"Guillem Montserrat",   role:"Artist",              game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
+  { initials:"JZ", name:"Juan Zambrana",        role:"Technical Artist",    game:"WM + Sol",   gameId:"shared", badge:"shared",     focus:"This week: Word Maker", rotation:true },
+  { initials:"KP", name:"Kris Pillai",          role:"QA Lead",             game:"WM + Sol",   gameId:"shared", badge:"bottleneck", focus:"This week: Word Maker", rotation:true },
+  { initials:"AN", name:"Andreu Margarit",      role:"QA",                  game:"WM + Sol",   gameId:"shared", focus:"WM primary · Sol support" },
+];
+
+// ── Weekly rotation schedule (shared resources: Juan Z + Kris) ────────────
+const RESOURCE_SCHEDULE = [
+  { week:"Apr 20–25",   primary:"wm",  status:"current", label:"This week"  },
+  { week:"Apr 27–May 2",primary:"sol", status:"next",    label:"Next week"  },
+  { week:"May 5–9",     primary:"wm",  status:"future",  label:""           },
+  { week:"May 12–16",   primary:"sol", status:"future",  label:""           },
+  { week:"May 19–23",   primary:"wm",  status:"future",  label:""           },
+  { week:"May 26–30",   primary:"sol", status:"future",  label:""           },
 ];
 
 const WM_ROADMAP = [
@@ -161,6 +175,7 @@ const SOL_ACTIVE = [
   { key:"CHSOL-1358", summary:"[Code] New quest popup design",                assignee:"Murat",    status:"Backlog"       },
 ];
 
+// ── Helpers ────────────────────────────────────────────────────────────────
 function useColor(colorKey, colorStatic) {
   const T = useT();
   if (colorStatic) return colorStatic;
@@ -180,15 +195,10 @@ function Badge({ label, bg, text }) {
   );
 }
 
-function Card({ children, style={}, accentColor }) {
+function Card({ children, style={} }) {
   const T = useT();
   return (
-    <div style={{
-      background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"16px 18px",
-      ...(accentColor ? { borderLeft:`3px solid ${accentColor}`, borderRadius:"0 12px 12px 0" } : {}),
-      transition:"background 0.25s, border-color 0.25s",
-      ...style
-    }}>
+    <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"16px 18px", transition:"background 0.25s, border-color 0.25s", ...style }}>
       {children}
     </div>
   );
@@ -249,27 +259,17 @@ function ThemeToggle({ isDark, onToggle }) {
           return <line key={a} x1={x1} y1={y1} x2={x2} y2={y2} stroke={isDark ? T.faint : T.accent} strokeWidth="1.5" strokeLinecap="round"/>;
         })}
       </svg>
-      <div style={{
-        width:32, height:18, borderRadius:99,
-        background: isDark ? T.accent : "#3A4558",
-        position:"relative", transition:"background 0.25s",
-      }}>
-        <div style={{
-          position:"absolute", top:3, left: isDark ? 15 : 3,
-          width:12, height:12, borderRadius:"50%",
-          background:"#ffffff",
-          transition:"left 0.2s ease",
-          boxShadow:"0 1px 3px rgba(0,0,0,0.3)",
-        }} />
+      <div style={{ width:32, height:18, borderRadius:99, background: isDark ? T.accent : "#3A4558", position:"relative", transition:"background 0.25s" }}>
+        <div style={{ position:"absolute", top:3, left: isDark ? 15 : 3, width:12, height:12, borderRadius:"50%", background:"#ffffff", transition:"left 0.2s ease", boxShadow:"0 1px 3px rgba(0,0,0,0.3)" }} />
       </div>
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-        <path d="M13 9.5A6 6 0 0 1 6.5 3c0-.3 0-.6.03-.9A6.5 6.5 0 1 0 13.9 9.97c-.3.03-.6.03-.9.03v-.5z"
-          stroke={isDark ? T.accent : T.faint} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13 9.5A6 6 0 0 1 6.5 3c0-.3 0-.6.03-.9A6.5 6.5 0 1 0 13.9 9.97c-.3.03-.6.03-.9.03v-.5z" stroke={isDark ? T.accent : T.faint} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </button>
   );
 }
 
+// ── Pages ──────────────────────────────────────────────────────────────────
 function OverviewPage() {
   const T = useT();
   return (
@@ -277,7 +277,7 @@ function OverviewPage() {
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
         {[
           { v:"2",      l:"Active games",       s:"Word Maker · Solitaire"                    },
-          { v:"8",      l:"Initiatives",        s:"4 AI · 2 process · 1 product + CC"         },
+          { v:"9",      l:"Initiatives",        s:"5 AI · 2 process · 1 product + CC"         },
           { v:"5",      l:"Open blockers",      s:"QA bandwidth · TA priority · MetaPlay scope"},
           { v:"v5.7.0", l:"Sol latest build",   s:"Crashlytics stable · rolling out"           },
         ].map(s => (
@@ -301,8 +301,8 @@ function OverviewPage() {
                     <span style={{ fontSize:11, color:T.faint }}>— {g.pm}</span>
                     <div style={{ marginLeft:"auto" }}>
                       {g.activeIssues > 0
-                        ? <Badge label={`${g.activeIssues} issues`} bg={T.isDark ? "#2A1A18" : "#FCEAE6"} text={T.caution} />
-                        : <Badge label="Clear" bg={T.isDark ? "#0E2A1C" : "#E8F5EE"} text={T.ok} />}
+                        ? <Badge label={`${g.activeIssues} issues`} bg={T.isDark?"#2A1A18":"#FCEAE6"} text={T.caution} />
+                        : <Badge label="Clear" bg={T.isDark?"#0E2A1C":"#E8F5EE"} text={T.ok} />}
                     </div>
                   </div>
                   <div style={{ fontSize:11, color:T.muted }}>{g.sprintLabel} · {g.buildLive}</div>
@@ -350,8 +350,8 @@ function OverviewPage() {
         <Sec label="Shared resources — current allocation" />
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
           {[
-            { name:"Juan Zambrana — Technical Artist", alloc:[{l:"Word Maker",k:"wm",w:50},{l:"Solitaire",k:"sol",w:50}],   issue:"No cross-PM priority framework — timing unpredictable" },
-            { name:"Kris Pillai — QA Lead",            alloc:[{l:"WM",k:"wm",w:33},{l:"Solitaire",k:"sol",w:34},{l:"MetaPlay",s:"#C27A3A",w:33}], issue:"Single resource across 3 workstreams · Hiring in progress" },
+            { name:"Juan Zambrana — Technical Artist", alloc:[{l:"Word Maker",k:"wm",w:50},{l:"Solitaire",k:"sol",w:50}], issue:"This week: Word Maker · Next week: Solitaire" },
+            { name:"Kris Pillai — QA Lead", alloc:[{l:"WM",k:"wm",w:33},{l:"Solitaire",k:"sol",w:34},{l:"MetaPlay",s:"#C27A3A",w:33}], issue:"This week: Word Maker · Next week: Solitaire · MetaPlay as needed" },
           ].map(r => (
             <div key={r.name}>
               <div style={{ fontSize:12, fontWeight:700, color:T.text, marginBottom:7 }}>{r.name}</div>
@@ -362,7 +362,7 @@ function OverviewPage() {
                   </div>
                 ))}
               </div>
-              <div style={{ fontSize:10, color:T.caution, fontWeight:600 }}>{r.issue}</div>
+              <div style={{ fontSize:10, color:T.ok, fontWeight:600 }}>{r.issue}</div>
             </div>
           ))}
         </div>
@@ -430,11 +430,11 @@ function WordMakerPage() {
           <Card>
             <Sec label="Sprint 1.47.0 — Beginner's Bonus" />
             {[
-              { t:"Art assets delivered — Juan Zambrana",     done:true  },
-              { t:"Prefabs created — Juan Sabater (PR open)", done:true  },
-              { t:"Logic build — Toni Puig",                  done:false },
-              { t:"Firebase spec confirmed — Didara",         done:true  },
-              { t:"Word Master spec clarifications pending",   done:false },
+              { t:"Art assets delivered — Juan Zambrana", done:true  },
+              { t:"Prefabs — Juan Sabater (PR open)",     done:true  },
+              { t:"Logic build — Toni Puig",              done:false },
+              { t:"Firebase spec confirmed — Didara",     done:true  },
+              { t:"Word Master spec clarifications",       done:false },
             ].map((item, i) => (
               <div key={i} style={{ display:"flex", gap:8, fontSize:11, color:T.muted, marginBottom:7 }}>
                 <span style={{ color:item.done ? T.ok : T.faint, fontWeight:700, flexShrink:0 }}>{item.done ? "✓" : "·"}</span>
@@ -493,8 +493,8 @@ function SolitairePage() {
           <div style={{ fontSize:12, color:T.panelMuted }}>PM: Srikanth Reddy · Tech Lead: Yevhenii Siechko · Firebase: klondike-solitaire-46f14</div>
         </div>
         <div style={{ marginLeft:"auto", display:"flex", gap:8 }}>
-          <Badge label="Active"          bg={T.isDark?"#1A2840":"#EEF4FB"} text={T.sol} />
-          <Badge label="v5.7.0 rolling" bg={T.navActiveBg}                text={T.accent} />
+          <Badge label="Active" bg={T.isDark?"#1A2840":"#EEF4FB"} text={T.sol} />
+          <Badge label="v5.7.0 rolling" bg={T.navActiveBg} text={T.accent} />
         </div>
       </DarkPanel>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
@@ -517,8 +517,7 @@ function SolitairePage() {
             padding:"5px 16px", fontSize:11, fontWeight:700, borderRadius:99, cursor:"pointer",
             border:`1.5px solid ${tab===t ? T.accent : T.border}`,
             background: tab===t ? T.navActiveBg : T.surface,
-            color: tab===t ? T.accent : T.muted,
-            transition:"all 0.15s",
+            color: tab===t ? T.accent : T.muted, transition:"all 0.15s",
           }}>
             {t.charAt(0).toUpperCase()+t.slice(1)}
           </button>
@@ -545,7 +544,7 @@ function SolitairePage() {
           <div style={{ display:"grid", gap:12 }}>
             <Card>
               <Sec label="Active sprint features" />
-              {["Level Up Screen — Henrique (In Progress)","Results Screen — Henrique (Review)","Journey / live ops integration — Angel (In Progress)","Coins behind cards — Angel (Ready for QA)","Timer Booster — Srikanth flagged positive engagement today","Quest popup Phase 2 — Murat (In Progress)"].map((s,i) => (
+              {["Level Up Screen — Henrique (In Progress)","Results Screen — Henrique (Review)","Journey / live ops — Angel (In Progress)","Coins behind cards — Angel (Ready for QA)","Timer Booster — Srikanth flagged positive engagement","Quest popup Phase 2 — Murat (In Progress)"].map((s,i) => (
                 <div key={i} style={{ display:"flex", gap:8, fontSize:11, color:T.muted, marginBottom:6 }}>
                   <span style={{ color:T.sol, fontWeight:700 }}>·</span><span>{s}</span>
                 </div>
@@ -609,7 +608,7 @@ function SolitairePage() {
         <Card>
           <Sec label="Crashlytics — v5.7.0 · Claude AI crash bot · Apr 20" />
           <div style={{ padding:"9px 12px", background:T.isDark?"#0E2A1C":"#E8F5EE", borderRadius:8, fontSize:11, color:T.ok, marginBottom:14, borderLeft:`3px solid ${T.ok}` }}>
-            Claude AI crash bot auto-generated 8 tickets this morning with full root cause, reproduction steps, fix and acceptance criteria. Most technically impressive AI initiative in the division.
+            Claude AI crash bot auto-generated 8 tickets this morning with full root cause, reproduction steps, fix and acceptance criteria.
           </div>
           <div style={{ display:"grid", gap:9 }}>
             {SOL_CRASHES.map(c => (
@@ -663,8 +662,7 @@ function InitiativesPage() {
             padding:"5px 16px", fontSize:11, fontWeight:700, borderRadius:99, cursor:"pointer",
             border:`1.5px solid ${filter===t ? T.accent : T.border}`,
             background: filter===t ? T.navActiveBg : T.surface,
-            color: filter===t ? T.accent : T.muted,
-            transition:"all 0.15s",
+            color: filter===t ? T.accent : T.muted, transition:"all 0.15s",
           }}>
             {t}
           </button>
@@ -725,37 +723,126 @@ function InitiativesPage() {
   );
 }
 
+// ── Team page — full resource schedule view ────────────────────────────────
 function TeamPage() {
   const T = useT();
   const gColor = id => ({ wm:T.wm, sol:T.sol, init:"#C27A3A", shared:T.accent, all:T.muted }[id] || T.faint);
+
+  const currentWeek = RESOURCE_SCHEDULE.find(w => w.status==="current");
+  const currentColor = currentWeek ? T[currentWeek.primary] : T.wm;
+  const currentLabel = currentWeek?.primary === "wm" ? "Word Maker" : "Solitaire";
+
   return (
-    <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
-      {TEAM.map(p => {
-        const c = gColor(p.gameId);
-        return (
-          <Card key={p.initials} style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <div style={{ display:"flex", gap:10, alignItems:"center" }}>
-              <div style={{ width:38, height:38, borderRadius:"50%", background:T.surfaceAlt, display:"flex", alignItems:"center", justifyContent:"center", border:`2px solid ${c}`, flexShrink:0 }}>
-                <span style={{ fontSize:12, fontWeight:700, color:c }}>{p.initials}</span>
+    <div style={{ display:"grid", gap:16 }}>
+
+      {/* ── THIS WEEK callout ── */}
+      <div style={{ background:T.topbar, borderRadius:12, padding:"18px 22px", border:`1px solid ${T.panelBorder}`, display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
+        <div>
+          <div style={{ fontSize:10, fontWeight:700, color:T.panelMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Shared resources — this week</div>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+            <div style={{ width:12, height:12, borderRadius:"50%", background:currentColor }} />
+            <span style={{ fontSize:18, fontWeight:700, color:T.panelText }}>Apr 20–25 · {currentLabel}</span>
+          </div>
+          {[
+            { initials:"JZ", name:"Juan Zambrana", role:"Technical Artist", thisWeek:currentLabel },
+            { initials:"KP", name:"Kris Pillai",   role:"QA Lead",          thisWeek:currentLabel },
+          ].map(p => (
+            <div key={p.initials} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:8 }}>
+              <div style={{ width:32, height:32, borderRadius:"50%", background:currentColor+"30", border:`2px solid ${currentColor}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <span style={{ fontSize:11, fontWeight:700, color:currentColor }}>{p.initials}</span>
               </div>
               <div>
-                <div style={{ fontSize:12, fontWeight:700, color:T.text }}>{p.name}</div>
-                <div style={{ fontSize:10, color:T.faint }}>{p.role}</div>
+                <div style={{ fontSize:12, fontWeight:700, color:T.panelText }}>{p.name}</div>
+                <div style={{ fontSize:10, color:T.panelMuted }}>{p.role} · Primary: {p.thisWeek}</div>
+              </div>
+              <div style={{ marginLeft:"auto" }}>
+                <Badge label={`On ${p.thisWeek}`} bg={currentColor+"30"} text={currentColor} />
               </div>
             </div>
-            <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
-              <Badge label={p.game} bg={c+"22"} text={c} />
-              {p.remote  && <Badge label="Remote"      bg={T.surfaceAlt}   text={T.muted}   />}
-              {p.badge==="shared"     && <Badge label="Shared"     bg={T.badgeBg}    text={T.warn}    />}
-              {p.badge==="bottleneck" && <Badge label="Bottleneck" bg={T.isDark?"#2A1A18":"#FCEAE6"} text={T.caution} />}
-            </div>
-          </Card>
-        );
-      })}
+          ))}
+        </div>
+        <div>
+          <div style={{ fontSize:10, fontWeight:700, color:T.panelMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Override rule</div>
+          <div style={{ fontSize:12, color:T.panelMuted, lineHeight:1.6, marginBottom:10 }}>
+            Juan + Kris stay on their primary project for the full week. They jump to the other project <strong style={{color:T.accent}}>only for Critical or High priority blockers</strong> — and only if the PM co-ordinates with Dheeraj first.
+          </div>
+          <div style={{ fontSize:12, color:T.panelMuted, lineHeight:1.5 }}>
+            Mid-week jumps get logged here and fed into the Slack Resource Bot when it launches.
+          </div>
+          <div style={{ marginTop:10, padding:"7px 10px", background:T.panelAlt, borderRadius:8, fontSize:11, color:T.accent, borderLeft:`2px solid ${T.accent}` }}>
+            Coming soon: daily Slack digest auto-posting who is working where → see Initiatives page
+          </div>
+        </div>
+      </div>
+
+      {/* ── 6-week rotation calendar ── */}
+      <Card>
+        <Sec label="6-week rotation calendar — Juan Zambrana & Kris Pillai" />
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(6,1fr)", gap:10, marginBottom:12 }}>
+          {RESOURCE_SCHEDULE.map(w => {
+            const isCurrent = w.status==="current";
+            const isNext    = w.status==="next";
+            const wColor    = T[w.primary];
+            const wLabel    = w.primary==="wm" ? "Word Maker" : "Solitaire";
+            return (
+              <div key={w.week} style={{
+                borderRadius:10, padding:"10px 12px", textAlign:"center",
+                background: isCurrent ? wColor+"18" : T.surfaceAlt,
+                border: `1px solid ${isCurrent ? wColor : T.border}`,
+                borderTop:`3px solid ${isCurrent ? wColor : isNext ? T.faint : T.border}`,
+              }}>
+                {w.label && <div style={{ fontSize:9, fontWeight:700, color: isCurrent ? wColor : T.faint, textTransform:"uppercase", letterSpacing:"0.08em", marginBottom:4 }}>{w.label}</div>}
+                <div style={{ width:28, height:28, borderRadius:"50%", background:wColor+(isCurrent?"":"40"), margin:"0 auto 6px", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <span style={{ fontSize:9, color: isCurrent ? "#fff" : wColor, fontWeight:700 }}>{w.primary==="wm" ? "WM" : "SOL"}</span>
+                </div>
+                <div style={{ fontSize:11, fontWeight:700, color: isCurrent ? T.text : T.muted }}>{wLabel}</div>
+                <div style={{ fontSize:9, color:T.faint, marginTop:3 }}>{w.week}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ display:"flex", gap:16 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:6, fontSize:11, color:T.muted }}><Dot colorKey="wm" size={8} />Word Maker weeks</div>
+          <div style={{ display:"flex", alignItems:"center", gap:6, fontSize:11, color:T.muted }}><Dot colorKey="sol" size={8} />Solitaire weeks</div>
+          <div style={{ marginLeft:"auto", fontSize:11, color:T.faint }}>Andreu Margarit follows WM primary, supports Sol on overflow</div>
+        </div>
+      </Card>
+
+      {/* ── Full team directory ── */}
+      <Card>
+        <Sec label="Full team directory" />
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10 }}>
+          {TEAM.map(p => {
+            const c = gColor(p.gameId);
+            return (
+              <div key={p.initials} style={{ background:T.surfaceAlt, borderRadius:10, padding:"12px 14px", border:`1px solid ${T.border}`, borderTop:`2px solid ${c}` }}>
+                <div style={{ display:"flex", gap:9, alignItems:"center", marginBottom:8 }}>
+                  <div style={{ width:34, height:34, borderRadius:"50%", background:T.surface, display:"flex", alignItems:"center", justifyContent:"center", border:`2px solid ${c}`, flexShrink:0 }}>
+                    <span style={{ fontSize:11, fontWeight:700, color:c }}>{p.initials}</span>
+                  </div>
+                  <div>
+                    <div style={{ fontSize:12, fontWeight:700, color:T.text }}>{p.name}</div>
+                    <div style={{ fontSize:10, color:T.faint }}>{p.role}</div>
+                  </div>
+                </div>
+                <div style={{ fontSize:11, color:T.muted, marginBottom:6, lineHeight:1.4 }}>{p.focus}</div>
+                <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
+                  {p.remote  && <Badge label="Remote"      bg={T.surface}    text={T.muted}   />}
+                  {p.badge==="shared"     && <Badge label="Shared"     bg={T.badgeBg}    text={T.warn}    />}
+                  {p.badge==="bottleneck" && <Badge label="Bottleneck" bg={T.isDark?"#2A1A18":"#FCEAE6"} text={T.caution} />}
+                  {p.rotation && <Badge label="On rotation" bg={T.accent+"20"} text={T.accent} />}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Card>
+
     </div>
   );
 }
 
+// ── App ────────────────────────────────────────────────────────────────────
 const TABS = [
   { id:"overview",    label:"Overview"     },
   { id:"wordmaker",   label:"Word Maker"   },
@@ -798,14 +885,14 @@ export default function App() {
               ))}
             </div>
             <div style={{ marginLeft:"auto", display:"flex", alignItems:"center", gap:12 }}>
-              <span style={{ fontSize:11, color:T.topbarSub }}>Mon Apr 20, 2026 · v1.5</span>
+              <span style={{ fontSize:11, color:T.topbarSub }}>Mon Apr 20, 2026 · v1.6</span>
               <ThemeToggle isDark={isDark} onToggle={() => setDark(d => !d)} />
             </div>
           </div>
         </div>
         <div style={{ padding:"24px 28px", maxWidth:1120, margin:"0 auto" }}>
           <div style={{ display:"flex", gap:16, marginBottom:22, flexWrap:"wrap", alignItems:"center" }}>
-            {[{ c:T.wm, l:"Word Maker"}, {c:T.sol, l:"Solitaire"}, {c:"#C27A3A", l:"MetaPlay (initiative)"}].map(x => (
+            {[{c:T.wm,l:"Word Maker"},{c:T.sol,l:"Solitaire"},{c:"#C27A3A",l:"MetaPlay (initiative)"}].map(x => (
               <div key={x.l} style={{ display:"flex", alignItems:"center", gap:6, fontSize:11, color:T.muted }}>
                 <Dot colorStatic={x.c} size={9} />{x.l}
               </div>
