@@ -26,7 +26,7 @@ jobs:
       - name: Set up Node 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Fetch Jira data & generate gameData.js
         run: node scripts/fetch-jira-data.js
