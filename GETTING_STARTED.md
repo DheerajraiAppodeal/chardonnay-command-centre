@@ -13,7 +13,7 @@
 - Claude connected to **Google Calendar** (check schedules, create events)
 - Claude with **filesystem access** to this repo (read, edit, commit code)
 - **Skills** loaded so Claude understands how Chardonnay works
-- **Daily morning brief** auto-delivered to your Slack
+- **Daily morning brief** — open Claude, say "morning brief", get your standup prep done in 2 minutes
 
 ---
 
@@ -112,6 +112,7 @@ Paste this (replace the placeholders with your details):
 ```
 
 > Replace `YOUR_USERNAME`, `YOUR_NAME@appodeal.com`, and `YOUR_JIRA_API_TOKEN` with your actual values.
+> Full template at: `team-resources/config/claude_desktop_config.template.json`
 
 ### 4e — Restart Claude Desktop
 
@@ -124,7 +125,7 @@ Close and reopen the app. The MCP connections will activate.
 Open Claude Desktop and try these prompts:
 
 ```
-# Test Jira connection:
+# Test Jira:
 "Show me the latest 5 tickets in CHSOL"
 
 # Test filesystem:
@@ -137,71 +138,92 @@ Open Claude Desktop and try these prompts:
 "What's on my calendar tomorrow?"
 ```
 
-If any of these fail, see the **Troubleshooting** section at the bottom.
+If any of these fail, see **Troubleshooting** at the bottom.
 
 ---
 
-## Step 6 — Load the Chardonnay Skills
+## Step 6 — Load the Skills
 
-Skills are pre-built prompts that tell Claude how our team works. Paste these into Claude at the start of any relevant session:
+Skills are ready-made prompts that tell Claude exactly how to help with Chardonnay work.
+Load them by telling Claude to read the file, or just paste the file contents directly.
 
-### Skill: Jira Ops
-*Use when: creating tickets, doing sprint reviews, managing backlogs*
-
-```
-Load the Jira ops skill from:
-/Users/YOUR_USERNAME/Documents/GitHub/chardonnay-command-centre/team-resources/skills/jira-ops.md
-```
-
-### Skill: 1-on-1 Prep
-*Use when: preparing for 1:1s with team members or Jordi*
+### 🌅 Morning Brief
+*The first thing to use every day. Checks Jira + Slack before standup.*
 
 ```
-Load the 1:1 prep skill from:
-/Users/YOUR_USERNAME/Documents/GitHub/chardonnay-command-centre/team-resources/skills/1on1-prep.md
+Read team-resources/skills/morning-brief.md and run a morning brief for today.
 ```
 
-### Skill: Chardonnay Context
-*Use when: starting any Claude session about the team or games*
-
-```
-Load the team context from:
-/Users/YOUR_USERNAME/Documents/GitHub/chardonnay-command-centre/team-resources/context/team-context.md
-```
+→ Full guide: [`team-resources/skills/morning-brief.md`](./team-resources/skills/morning-brief.md)
 
 ---
 
-## Step 7 — Most useful prompts to get started
+### 🐛 Bug Report
+*Found a bug? Turn rough notes into a perfect Jira ticket in 60 seconds.*
 
-Once set up, here are the prompts Dheeraj uses daily:
-
-### Morning check
 ```
-Morning brief — check CHSOL and WORD Jira for new tickets, 
-unassigned high bugs, and anything in Ready for QA.
-Also check #chardonnay-product on Slack for any overnight flags.
+Read team-resources/skills/bug-report.md, then help me log this bug:
+[describe what broke]
 ```
 
-### Quick ticket creation
+→ Full guide: [`team-resources/skills/bug-report.md`](./team-resources/skills/bug-report.md)
+
+---
+
+### 📋 Feature Spec → Jira Tickets
+*Have a feature idea? Turn a rough brief into a full set of Jira tickets with one prompt.*
+
 ```
-Create a Jira task in CHSOL:
-Summary: [Dev] Your task title here
-Assignee: Murat Kacmaz
-Priority: Medium
-Description: What needs to be done and why
-Acceptance criteria: What done looks like
+Read team-resources/skills/feature-spec.md, then spec this feature for [CHSOL/WORD]:
+[describe the feature]
 ```
 
-### Sprint status
+→ Full guide: [`team-resources/skills/feature-spec.md`](./team-resources/skills/feature-spec.md)
+
+---
+
+### 🎯 Jira Ops
+*Standards, JQL queries, and ticket templates for the Chardonnay boards.*
+
 ```
-Give me a snapshot of the current CHSOL sprint — 
-what's in progress, what's ready for QA, and what's blocked.
+Read team-resources/skills/jira-ops.md
 ```
 
-### Store review summary
+→ Full guide: [`team-resources/skills/jira-ops.md`](./team-resources/skills/jira-ops.md)
+
+---
+
+### 👥 Team Context
+*Load at the start of any session about the team, games, or operations.*
+
 ```
-Summarise the latest messages in #ch-wordmaker-main 
-about store reviews from Darya this week.
+Read team-resources/context/team-context.md
+```
+
+→ Full guide: [`team-resources/context/team-context.md`](./team-resources/context/team-context.md)
+
+---
+
+## Step 7 — Most useful daily prompts
+
+```
+# Morning standup prep (after loading morning-brief skill):
+"Morning brief"
+
+# Log a bug fast:
+"Log a bug in CHSOL — [what broke, one sentence]"
+
+# Spec a feature:
+"Spec [feature name] for Solitaire, target v5.8.0, here's my brief: [paste notes]"
+
+# Sprint status snapshot:
+"What's the current state of the CHSOL sprint — in progress, QA queue, blockers?"
+
+# Unassigned ticket check:
+"Are there any High priority tickets in CHSOL or WORD without an assignee?"
+
+# Store review summary:
+"Summarise this week's store review reports from Darya in #ch-wordmaker-main"
 ```
 
 ---
@@ -211,12 +233,15 @@ about store reviews from Darya this week.
 | Path | What it is |
 |------|-----------|
 | `src/App.jsx` | The Command Centre dashboard (React) |
-| `src/gameData.js` | Auto-generated daily from Jira — don't edit manually |
-| `scripts/fetch-jira-data.js` | The script that pulls Jira data |
-| `.github/workflows/daily-refresh.yml` | GitHub Action running daily at 8am |
-| `team-resources/skills/` | Claude skill files for the team |
-| `team-resources/context/` | Team context Claude should know |
-| `team-resources/config/` | MCP config templates |
+| `src/gameData.js` | Auto-generated daily from Jira — do not edit manually |
+| `scripts/fetch-jira-data.js` | Jira data fetch script (runs via GitHub Action) |
+| `.github/workflows/daily-refresh.yml` | GitHub Action — runs Mon–Fri 8am Madrid |
+| `team-resources/skills/morning-brief.md` | Daily standup prep skill |
+| `team-resources/skills/bug-report.md` | Bug → Jira ticket skill |
+| `team-resources/skills/feature-spec.md` | Feature brief → Jira tickets skill |
+| `team-resources/skills/jira-ops.md` | Jira standards and JQL queries |
+| `team-resources/context/team-context.md` | Full team context — load at session start |
+| `team-resources/config/` | MCP config template — copy and fill in your details |
 
 ---
 
@@ -224,11 +249,11 @@ about store reviews from Darya this week.
 
 | Problem | Fix |
 |---------|-----|
-| MCP not connecting | Restart Claude Desktop. Check Node is installed: `node --version` |
+| MCP not connecting | Restart Claude Desktop. Check Node: `node --version` |
 | Jira auth failing | Regenerate your API token at id.atlassian.com |
 | Filesystem not found | Check the path in config matches exactly where you cloned the repo |
-| `npx` not found | Change `/opt/homebrew/bin/npx` to the output of `which npx` in Terminal |
-| Connectors not working | Make sure you're using the desktop app, not browser |
+| `npx` not found | Run `which npx` in Terminal and use that path in the config |
+| Connectors not working | Make sure you're using the **desktop app**, not the browser |
 
 ---
 
@@ -236,4 +261,4 @@ about store reviews from Darya this week.
 
 Slack DM **Dheeraj Rai** or post in **#chardonnay-product**.
 
-This guide is a living document — if you find something that doesn't work or a better way to do something, raise a PR.
+This is a living document. If you find something that doesn't work or discover a better prompt, raise a PR — the whole team benefits.
