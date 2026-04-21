@@ -2,58 +2,66 @@
 
 Operational intelligence dashboard for the Chardonnay Gaming division at Appodeal.
 
-## Stack
+**Live dashboard:** [chardonnay-command-centre.vercel.app](https://chardonnay-command-centre.vercel.app)
+
+---
+
+## 👋 New to the team?
+
+**Start here → [GETTING_STARTED.md](./GETTING_STARTED.md)**
+
+It covers everything you need to get Claude set up properly — MCP, connectors, skills, and the prompts we use daily. Takes ~30 minutes and saves you weeks of figuring it out yourself.
+
+---
+
+## What's in this repo
+
+| Path | What it is |
+|------|-----------|
+| `GETTING_STARTED.md` | **Start here** — full Claude setup guide for the team |
+| `src/App.jsx` | The Command Centre dashboard (React) |
+| `src/gameData.js` | Auto-generated daily from Jira — do not edit manually |
+| `scripts/fetch-jira-data.js` | Jira data fetch script (runs via GitHub Action) |
+| `.github/workflows/daily-refresh.yml` | GitHub Action — runs Mon–Fri at 8am Madrid |
+| `team-resources/skills/` | Claude skill files — load these for Jira and 1:1 work |
+| `team-resources/context/team-context.md` | Team structure, games status, key rules — load at start of sessions |
+| `team-resources/config/` | MCP config template — copy and fill in your details |
+
+---
+
+## Team Resources (for Claude)
+
+These files are designed to be loaded directly into Claude:
+
+- **`team-resources/context/team-context.md`** — who's who, what we're building, key rules
+- **`team-resources/skills/jira-ops.md`** — Jira standards, JQL queries, ticket templates
+- **`team-resources/skills/1on1-prep.md`** — 1:1 prep framework and question banks
+- **`team-resources/config/claude_desktop_config.template.json`** — MCP config template
+
+---
+
+## Dashboard Stack
 
 - React 19 + Vite 6
-- Tailwind CSS v4 (via `@tailwindcss/vite`)
-- React Router v7
-- Lucide React (icons)
-- No backend — mock data in `src/data/mockData.js`
+- Data: auto-refreshed from Jira daily via GitHub Actions
+- Deployed: Vercel (auto-deploys on push to main)
 
 ## Run locally
 
 ```bash
-cd command-centre
 npm install
 npm run dev
 # → http://localhost:5173
 ```
 
-## Build for production
+## Contributing
 
-```bash
-npm run build
-# Output: dist/
-```
+The dashboard auto-updates daily from Jira — no manual data editing needed.
 
-## Deploy to Netlify
+For dashboard changes, push to main and Vercel deploys automatically.
 
-1. Push to GitHub
-2. Connect repo in Netlify
-3. Build command: `npm run build`
-4. Publish directory: `dist`
-5. No env vars required (all data is mock or MCP-sourced client-side)
+For skill/context improvements, open a PR — the whole team benefits.
 
-Or drag-and-drop the `dist/` folder at netlify.com/drop.
+---
 
-## Pages
-
-| Route | Page | Audience |
-|-------|------|----------|
-| `/` | Overview | Jordi → Ana briefings |
-| `/operations` | Operations | Dheeraj, Carlos, PMs |
-| `/release` | Release Train | Everyone |
-| `/team` | Team | Team reference |
-| `/ai` | AI Impact | Dheeraj only (PIN: see BUILD-LOG) |
-
-## Connecting live data
-
-See `BUILD-LOG.md` for what needs connecting and how.
-Key: update `src/data/mockData.js` arrays as Jira/Grafana come online.
-
-## Editable fields
-
-- **Overview**: stat cards, game one-liners (click pencil icon)
-- **Team**: sprint focus per person (click "edit")
-- **Operations**: resource allocation notes
-- **AI Impact**: baseline values (lock once set), initiatives log (add button)
+*Questions? Slack DM Dheeraj Rai*

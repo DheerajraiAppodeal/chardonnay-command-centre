@@ -1,0 +1,36 @@
+{
+  "_README": "Copy this file, rename it claude_desktop_config.json, fill in YOUR values, and place it at: ~/Library/Application Support/Claude/claude_desktop_config.json",
+  "_INSTRUCTIONS": "Replace YOUR_MAC_USERNAME and YOUR_JIRA_API_TOKEN. Get your Jira token at: https://id.atlassian.com/manage-profile/security/api-tokens",
+
+  "mcpServers": {
+    "filesystem": {
+      "command": "/opt/homebrew/bin/npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/YOUR_MAC_USERNAME/Documents/GitHub/chardonnay-command-centre"
+      ]
+    },
+    "jira": {
+      "command": "/opt/homebrew/bin/npx",
+      "args": [
+        "-y",
+        "@aashari/mcp-server-atlassian-jira"
+      ],
+      "env": {
+        "ATLASSIAN_SITE_URL": "https://appodeal.atlassian.net",
+        "ATLASSIAN_USER_EMAIL": "YOUR_NAME@appodeal.com",
+        "ATLASSIAN_API_TOKEN": "YOUR_JIRA_API_TOKEN"
+      }
+    }
+  },
+
+  "preferences": {
+    "quickEntryDictationShortcut": "off",
+    "coworkScheduledTasksEnabled": true,
+    "ccdScheduledTasksEnabled": true,
+    "sidebarMode": "chat",
+    "coworkWebSearchEnabled": true,
+    "autoPermissionsModeEnabled": true
+  }
+}
