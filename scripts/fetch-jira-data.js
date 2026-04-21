@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 /**
- * fetch-jira-data.js
- * ------------------
+ * fetch-jira-data.js  (ES module — works with "type": "module" in package.json)
+ * -------------------------------------------------------------------------------
  * Fetches live data from Jira (CHSOL + WORD) and writes src/gameData.js.
  * Called daily by GitHub Actions. Also runnable manually:
  *   JIRA_EMAIL=dheeraj.rai@appodeal.com JIRA_API_TOKEN=xxx node scripts/fetch-jira-data.js
- *
- * Required env vars:
- *   JIRA_EMAIL       — dheeraj.rai@appodeal.com
- *   JIRA_API_TOKEN   — from https://id.atlassian.com/manage-profile/security/api-tokens
  */
 
-const https = require('https');
-const fs    = require('fs');
-const path  = require('path');
+import https    from 'https';
+import fs       from 'fs';
+import path     from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
 
 const JIRA_HOST = 'appodeal.atlassian.net';
 const EMAIL     = process.env.JIRA_EMAIL;
