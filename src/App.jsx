@@ -81,11 +81,8 @@ const INITIATIVES = [
   { id:"darya-bot",      label:"Darya Review Bot",            owner:"Darya Ashurkevich",    colorKey:"wm",     type:"AI",      status:"Live — since Mar 11",
     summary:"Automated Monday store review report on #ch-wordmaker-main. Parses reviews, categorises issues, auto-tags owners.",
     note:"Case study for AI impact tracking." },
-  { id:"slack-resource-bot", label:"Slack Resource Allocation Bot", owner:"Dheeraj Rai",   colorKey:"accent", type:"AI",      status:"Planned — Q2",
-    summary:"Daily Slack agent posting who is working where each morning. Reads the rotation schedule + any overrides and posts a digest to #ch-chardonnay. Will eventually be live-updated when blockers cause mid-week jumps.",
-    note:"Requires: rotation schedule locked in Confluence, Slack webhook, Claude API integration. This is the next AI build after Command Centre." },
-  { id:"alt-tester",    label:"ALT Tester Automation",       owner:"Kris Pillai",          colorKey:"sol",    type:"AI",      status:"In progress",
-    summary:"Automated test suite for Solitaire using ALT Tester. Framework scoped by Kris. Needs dev to integrate into build pipeline.",
+  { id:"alt-tester",    label:"ALT Tester Automation",       owner:"Krish Prabha",          colorKey:"sol",    type:"AI",      status:"In progress",
+    summary:"Automated test suite for Solitaire using ALT Tester. Framework scoped by Krish. Needs dev to integrate into build pipeline.",
     note:"Dev time not allocated — raise with Carlos." },
   { id:"remote-cfg-ai", label:"Remote Config AI Tool",        owner:"Giulia Galvani",       colorStatic:"#C27A3A", type:"AI", status:"In progress",
     summary:"AI-assisted remote config management using Cursor + Claude for MetaPlay. Targets faster, lower-error config changes.",
@@ -93,9 +90,12 @@ const INITIATIVES = [
   { id:"command-centre", label:"Command Centre",              owner:"Dheeraj Rai",          colorKey:"accent", type:"AI",      status:"Live — v1.6",
     summary:"This dashboard. Aggregates Jira, Slack, Confluence, analytics. Week 3: live Jira. Week 4: Slack resource agent.",
     note:"Solitaire retention data needs Appodeal analytics connection." },
+  { id:"slack-resource-bot", label:"Slack Resource Allocation Bot", owner:"Dheeraj Rai",   colorKey:"accent", type:"AI",      status:"Planned — Q2",
+    summary:"Daily Slack agent posting who is working where each morning. Reads the rotation schedule + any overrides and posts a digest to #ch-chardonnay.",
+    note:"Next AI build after Command Centre." },
   { id:"jira-overhaul",  label:"Jira Standards Overhaul",     owner:"Dheeraj Rai",          colorKey:"sol",    type:"Process", status:"Week 3 — planned",
     summary:"Unified Epic → Story → Task structure, templates, description standards, release linking. Solitaire is priority; WM is benchmark.",
-    note:"Alignment session with all PMs + Kris needed first." },
+    note:"Alignment session with all PMs + Krish needed first." },
   { id:"release-train",  label:"2-Week Release Train",         owner:"Dheeraj + Chardonnay", colorStatic:"#7A6EA8", type:"Process", status:"Proposed",
     summary:"Formalise 2-week cadence: QA gate, rollout %, KPI tracking per release, release notes, hotfix process.",
     note:"PM buy-in not complete." },
@@ -105,26 +105,25 @@ const INITIATIVES = [
 ];
 
 const TEAM = [
-  { initials:"DR", name:"Dheeraj Rai",         role:"Sr. Project Manager", game:"All",        gameId:"all",    focus:"Division-wide" },
-  { initials:"JP", name:"Jordi Pulles",         role:"CPO",                 game:"All",        gameId:"all",    focus:"Division-wide" },
-  { initials:"CP", name:"Carlos Person",        role:"Head of Dev",         game:"All",        gameId:"all",    focus:"Division-wide" },
-  { initials:"DP", name:"Didara Pernebayeva",   role:"Product Manager",     game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time", remote:true },
-  { initials:"SR", name:"Srikanth Reddy",       role:"Product Manager",     game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"GG", name:"Giulia Galvani",       role:"PM / SPM",            game:"MetaPlay",   gameId:"init",   focus:"MetaPlay initiative" },
-  { initials:"TP", name:"Toni Puig",            role:"Lead Dev",            game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
-  { initials:"VR", name:"Víctor Romero",        role:"Developer",           game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
-  { initials:"JS", name:"Juan Sabater",         role:"Dev / TA",            game:"Word Maker", gameId:"wm",     focus:"Word Maker full-time" },
-  { initials:"YS", name:"Yevhenii Siechko",     role:"Tech Lead",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"AM", name:"Angel Miladinov",      role:"Developer",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"MK", name:"Murat Kacmaz",         role:"Developer",           game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"HN", name:"Henrique Nakajima",    role:"Artist",              game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"GM", name:"Guillem Montserrat",   role:"Artist",              game:"Solitaire",  gameId:"sol",    focus:"Solitaire full-time" },
-  { initials:"JZ", name:"Juan Zambrana",        role:"Technical Artist",    game:"WM + Sol",   gameId:"shared", badge:"shared",     focus:"This week: Word Maker", rotation:true },
-  { initials:"KP", name:"Kris Pillai",          role:"QA Lead",             game:"WM + Sol",   gameId:"shared", badge:"bottleneck", focus:"This week: Word Maker", rotation:true },
-  { initials:"AN", name:"Andreu Margarit",      role:"QA",                  game:"WM + Sol",   gameId:"shared", focus:"WM primary · Sol support" },
+  { initials:"DR", name:"Dheeraj Rai",              role:"Sr. Project Manager", game:"All",        gameId:"all"    },
+  { initials:"JP", name:"Jordi Pulles",              role:"CPO",                 game:"All",        gameId:"all"    },
+  { initials:"CP", name:"Carlos Person",             role:"Head of Dev",         game:"All",        gameId:"all"    },
+  { initials:"DP", name:"Didara Pernebayeva",        role:"Product Manager",     game:"Word Maker", gameId:"wm",    remote:true },
+  { initials:"SR", name:"Srikanth Reddy",            role:"Product Manager",     game:"Solitaire",  gameId:"sol"    },
+  { initials:"GG", name:"Giulia Galvani",            role:"PM / SPM",            game:"MetaPlay",   gameId:"init"   },
+  { initials:"TP", name:"Toni Puig",                 role:"Lead Dev",            game:"Word Maker", gameId:"wm"     },
+  { initials:"VR", name:"Víctor Romero",             role:"Developer",           game:"Word Maker", gameId:"wm"     },
+  { initials:"JS", name:"Juan Sabater",              role:"Dev / TA",            game:"Word Maker", gameId:"wm"     },
+  { initials:"YS", name:"Yevhenii Siechko",          role:"Tech Lead",           game:"Solitaire",  gameId:"sol"    },
+  { initials:"AM", name:"Angel Miladinov",           role:"Developer",           game:"Solitaire",  gameId:"sol"    },
+  { initials:"MK", name:"Murat Kacmaz",              role:"Developer",           game:"Solitaire",  gameId:"sol"    },
+  { initials:"HN", name:"Henrique Nakajima",         role:"Artist",              game:"Solitaire",  gameId:"sol"    },
+  { initials:"GU", name:"Guillem Urpí Montserrat",   role:"Artist",              game:"Solitaire",  gameId:"sol"    },
+  { initials:"JZ", name:"Juan Zambrana",             role:"Technical Artist",    game:"WM + Sol",   gameId:"shared", badge:"shared",     rotation:true },
+  { initials:"KP", name:"Krish Prabha",              role:"QA Lead",             game:"All",        gameId:"shared", badge:"bottleneck", rotation:true },
+  { initials:"AN", name:"Andreu Margarit",           role:"QA",                  game:"WM + Sol",   gameId:"shared" },
 ];
 
-// ── Weekly rotation schedule (shared resources: Juan Z + Kris) ────────────
 const RESOURCE_SCHEDULE = [
   { week:"Apr 20–25",   primary:"wm",  status:"current", label:"This week"  },
   { week:"Apr 27–May 2",primary:"sol", status:"next",    label:"Next week"  },
@@ -144,7 +143,7 @@ const WM_ROADMAP = [
 
 const WM_ISSUES = [
   { desc:"App must reload after every ad",              version:"v1.40.1", owners:"Roman + Viktor"  },
-  { desc:"App freezes on puzzle, force-close required",  version:"v1.39.2", owners:"Kris + Andreu"  },
+  { desc:"App freezes on puzzle, force-close required",  version:"v1.39.2", owners:"Krish + Andreu" },
   { desc:"Deceptive cross-promo redirect",              version:"v1.40.1", owners:"Unassigned"      },
 ];
 
@@ -269,7 +268,6 @@ function ThemeToggle({ isDark, onToggle }) {
   );
 }
 
-// ── Pages ──────────────────────────────────────────────────────────────────
 function OverviewPage() {
   const T = useT();
   return (
@@ -351,7 +349,7 @@ function OverviewPage() {
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
           {[
             { name:"Juan Zambrana — Technical Artist", alloc:[{l:"Word Maker",k:"wm",w:50},{l:"Solitaire",k:"sol",w:50}], issue:"This week: Word Maker · Next week: Solitaire" },
-            { name:"Kris Pillai — QA Lead", alloc:[{l:"WM",k:"wm",w:33},{l:"Solitaire",k:"sol",w:34},{l:"MetaPlay",s:"#C27A3A",w:33}], issue:"This week: Word Maker · Next week: Solitaire · MetaPlay as needed" },
+            { name:"Krish Prabha — QA Lead",           alloc:[{l:"WM",k:"wm",w:33},{l:"Solitaire",k:"sol",w:34},{l:"MetaPlay",s:"#C27A3A",w:33}], issue:"This week: Word Maker · Next week: Solitaire · MetaPlay as needed" },
           ].map(r => (
             <div key={r.name}>
               <div style={{ fontSize:12, fontWeight:700, color:T.text, marginBottom:7 }}>{r.name}</div>
@@ -430,11 +428,11 @@ function WordMakerPage() {
           <Card>
             <Sec label="Sprint 1.47.0 — Beginner's Bonus" />
             {[
-              { t:"Art assets delivered — Juan Zambrana", done:true  },
-              { t:"Prefabs — Juan Sabater (PR open)",     done:true  },
-              { t:"Logic build — Toni Puig",              done:false },
-              { t:"Firebase spec confirmed — Didara",     done:true  },
-              { t:"Word Master spec clarifications",       done:false },
+              { t:"Art assets delivered — Juan Zambrana",     done:true  },
+              { t:"Prefabs created — Juan Sabater (PR open)", done:true  },
+              { t:"Logic build — Toni Puig",                  done:false },
+              { t:"Firebase spec confirmed — Didara",         done:true  },
+              { t:"Word Master spec clarifications pending",   done:false },
             ].map((item, i) => (
               <div key={i} style={{ display:"flex", gap:8, fontSize:11, color:T.muted, marginBottom:7 }}>
                 <span style={{ color:item.done ? T.ok : T.faint, fontWeight:700, flexShrink:0 }}>{item.done ? "✓" : "·"}</span>
@@ -723,19 +721,15 @@ function InitiativesPage() {
   );
 }
 
-// ── Team page — full resource schedule view ────────────────────────────────
 function TeamPage() {
   const T = useT();
   const gColor = id => ({ wm:T.wm, sol:T.sol, init:"#C27A3A", shared:T.accent, all:T.muted }[id] || T.faint);
-
   const currentWeek = RESOURCE_SCHEDULE.find(w => w.status==="current");
   const currentColor = currentWeek ? T[currentWeek.primary] : T.wm;
   const currentLabel = currentWeek?.primary === "wm" ? "Word Maker" : "Solitaire";
 
   return (
     <div style={{ display:"grid", gap:16 }}>
-
-      {/* ── THIS WEEK callout ── */}
       <div style={{ background:T.topbar, borderRadius:12, padding:"18px 22px", border:`1px solid ${T.panelBorder}`, display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
         <div>
           <div style={{ fontSize:10, fontWeight:700, color:T.panelMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Shared resources — this week</div>
@@ -745,7 +739,7 @@ function TeamPage() {
           </div>
           {[
             { initials:"JZ", name:"Juan Zambrana", role:"Technical Artist", thisWeek:currentLabel },
-            { initials:"KP", name:"Kris Pillai",   role:"QA Lead",          thisWeek:currentLabel },
+            { initials:"KP", name:"Krish Prabha",  role:"QA Lead",          thisWeek:currentLabel },
           ].map(p => (
             <div key={p.initials} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:8 }}>
               <div style={{ width:32, height:32, borderRadius:"50%", background:currentColor+"30", border:`2px solid ${currentColor}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
@@ -764,10 +758,7 @@ function TeamPage() {
         <div>
           <div style={{ fontSize:10, fontWeight:700, color:T.panelMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Override rule</div>
           <div style={{ fontSize:12, color:T.panelMuted, lineHeight:1.6, marginBottom:10 }}>
-            Juan + Kris stay on their primary project for the full week. They jump to the other project <strong style={{color:T.accent}}>only for Critical or High priority blockers</strong> — and only if the PM co-ordinates with Dheeraj first.
-          </div>
-          <div style={{ fontSize:12, color:T.panelMuted, lineHeight:1.5 }}>
-            Mid-week jumps get logged here and fed into the Slack Resource Bot when it launches.
+            Juan + Krish stay on their primary project for the full week. They jump to the other project <strong style={{color:T.accent}}>only for Critical or High priority blockers</strong> — and only if the PM co-ordinates with Dheeraj first.
           </div>
           <div style={{ marginTop:10, padding:"7px 10px", background:T.panelAlt, borderRadius:8, fontSize:11, color:T.accent, borderLeft:`2px solid ${T.accent}` }}>
             Coming soon: daily Slack digest auto-posting who is working where → see Initiatives page
@@ -775,9 +766,8 @@ function TeamPage() {
         </div>
       </div>
 
-      {/* ── 6-week rotation calendar ── */}
       <Card>
-        <Sec label="6-week rotation calendar — Juan Zambrana & Kris Pillai" />
+        <Sec label="6-week rotation calendar — Juan Zambrana & Krish Prabha" />
         <div style={{ display:"grid", gridTemplateColumns:"repeat(6,1fr)", gap:10, marginBottom:12 }}>
           {RESOURCE_SCHEDULE.map(w => {
             const isCurrent = w.status==="current";
@@ -808,7 +798,6 @@ function TeamPage() {
         </div>
       </Card>
 
-      {/* ── Full team directory ── */}
       <Card>
         <Sec label="Full team directory" />
         <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10 }}>
@@ -825,24 +814,22 @@ function TeamPage() {
                     <div style={{ fontSize:10, color:T.faint }}>{p.role}</div>
                   </div>
                 </div>
-                <div style={{ fontSize:11, color:T.muted, marginBottom:6, lineHeight:1.4 }}>{p.focus}</div>
                 <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
-                  {p.remote  && <Badge label="Remote"      bg={T.surface}    text={T.muted}   />}
+                  <Badge label={p.game} bg={c+"22"} text={c} />
+                  {p.remote    && <Badge label="Remote"      bg={T.surface}    text={T.muted}   />}
                   {p.badge==="shared"     && <Badge label="Shared"     bg={T.badgeBg}    text={T.warn}    />}
                   {p.badge==="bottleneck" && <Badge label="Bottleneck" bg={T.isDark?"#2A1A18":"#FCEAE6"} text={T.caution} />}
-                  {p.rotation && <Badge label="On rotation" bg={T.accent+"20"} text={T.accent} />}
+                  {p.rotation  && <Badge label="On rotation" bg={T.accent+"20"} text={T.accent} />}
                 </div>
               </div>
             );
           })}
         </div>
       </Card>
-
     </div>
   );
 }
 
-// ── App ────────────────────────────────────────────────────────────────────
 const TABS = [
   { id:"overview",    label:"Overview"     },
   { id:"wordmaker",   label:"Word Maker"   },
