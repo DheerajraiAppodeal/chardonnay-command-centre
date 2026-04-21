@@ -1,60 +1,234 @@
-// ───────────────────────────────────────────────────────────
-// AUTO-GENERATED — do not edit manually.
-// Source:    Jira CHSOL + WORD (appodeal.atlassian.net)
-// Generator: scripts/fetch-jira-data.js
-// Refreshed: 2026-04-21T08:09:00.000Z  (initial stub — will be overwritten by Action)
-// ───────────────────────────────────────────────────────────
-
-export const LAST_UPDATED     = "Tue 21 Apr 2026";
-export const LAST_UPDATED_ISO = "2026-04-21T08:09:00.000Z";
-
-export const GAME_STATS = {
-  wm:  { activeIssues: 11, readyForQA: 11 },
-  sol: { activeIssues: 7,  readyForQA: 3  },
-};
-
-// High-priority unassigned bugs — surfaced in Overview
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-04-21T13:37:47.291Z
+export const LAST_UPDATED     = "Tue, 21 Apr 2026";
+export const LAST_UPDATED_ISO = "2026-04-21T13:37:47.291Z";
+export const GAME_STATS = { wm: { activeIssues: 17, readyForQA: 14 }, sol: { activeIssues: 15, readyForQA: 6 } };
 export const UNASSIGNED_HIGH_BUGS = [
-  { key: "CHSOL-1355", summary: "Left hand mode UI broken", project: "CHSOL", status: "Backlog" },
+  {
+    "key": "CHSOL-1355",
+    "summary": "Left hand mode UI broken",
+    "project": "CHSOL",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-598",
+    "summary": "Integrate Alttester Package into Wordmaker",
+    "project": "WORD",
+    "status": "Backlog"
+  }
 ];
-
-// Solitaire active sprint tickets (non-crash, non-Done)
-export const SOL_ACTIVE = [
-  { key: "CHSOL-1367", summary: "[Art] Level Up Screen",                        assignee: "Henrique", status: "In Progress"  },
-  { key: "CHSOL-1329", summary: "[Art] Results screen",                         assignee: "Henrique", status: "Review"       },
-  { key: "CHSOL-1357", summary: "[Dev] Journey to live ops system",             assignee: "Angel",    status: "In Progress"  },
-  { key: "CHSOL-1344", summary: "[Dev] Coins between cards — shuffle/magic",    assignee: "Angel",    status: "Review"       },
-  { key: "CHSOL-1312", summary: "[Dev] Logic for coins behind cards",            assignee: "Angel",    status: "Ready for QA" },
-  { key: "CHSOL-1352", summary: "Keep infinite time on game relaunch",           assignee: "Murat",    status: "Ready for QA" },
-  { key: "CHSOL-1345", summary: "[Bug] Card to pile instead of foundation",      assignee: "Murat",    status: "Ready for QA" },
-  { key: "CHSOL-1355", summary: "Left hand mode UI broken ⚠ HIGH — unassigned", assignee: "—",        status: "Backlog"      },
-  { key: "CHSOL-1358", summary: "[Code] New quest popup design",                 assignee: "Murat",    status: "Backlog"      },
+export const SOL_ACTIVE  = [
+  {
+    "key": "CHSOL-1328",
+    "summary": "Implement Win Rate Meter UI (Phase 1 — no bots/slots)",
+    "assignee": "Yevhenii",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1381",
+    "summary": "[Art] New Performance Tutorial",
+    "assignee": "Juan",
+    "status": "Review"
+  },
+  {
+    "key": "CHSOL-1388",
+    "summary": "[Dev] Update journey to use graphics and title in main popup from liveop",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1387",
+    "summary": "[Dev] Update journey to use badges config from liveops",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1386",
+    "summary": "[Dev] Update journey to use milestones from liveops",
+    "assignee": "Angel",
+    "status": "To Do"
+  },
+  {
+    "key": "CHSOL-1385",
+    "summary": "[Dev] Update journey to use levels and mission from live ops",
+    "assignee": "Angel",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1384",
+    "summary": "[Art] Well Done popup",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1383",
+    "summary": "[Art] Game Lost popup",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1382",
+    "summary": "[Art] Victory Tiers",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1211",
+    "summary": "[SFX] Quests",
+    "assignee": "Henrique",
+    "status": "On Hold"
+  },
+  {
+    "key": "CHSOL-1379",
+    "summary": "StageManager refactor — extract GameFlowController and delete StageManag",
+    "assignee": "Murat",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1373",
+    "summary": "Refactor StageManager — split god class into focused controllers",
+    "assignee": "Murat",
+    "status": "Backlog"
+  }
 ];
-
-// Solitaire Crashlytics crash tickets
 export const SOL_CRASHES = [
-  { id: "CHSOL-1366", issue: "libil2cpp.so SIGTRAP",           device: "Motorola moto g pure",   note: "Ad WebView corrupting IL2CPP on low-RAM device"       },
-  { id: "CHSOL-1365", issue: "libc.so fatal crash",            device: "Motorola moto g series", note: "Ad WebView / Appodeal bridge on low-RAM devices"      },
-  { id: "CHSOL-1364", issue: "MainBoostersUnlockTracker NRE",  device: "Multiple",               note: "Migration runs before Initialize — order bug"         },
-  { id: "CHSOL-1363", issue: "AutoCompleteService NRE",        device: "Multiple",               note: "StageManager null on offline cold-start"              },
-  { id: "CHSOL-1362", issue: "ANR — WebView freeze",           device: "OnePlus DE2118",         note: "11 notifications + SessionProgression on main thread" },
-  { id: "CHSOL-1361", issue: "CardItem card cycle crash",       device: "Multiple",               note: "Rapid replay creates card chain loop"                 },
+  {
+    "id": "CHSOL-1361",
+    "issue": "Card Item.Get Child Cards List",
+    "device": "Multiple",
+    "note": "CardItem.GetChildCardsList"
+  },
+  {
+    "id": "CHSOL-1364",
+    "issue": "Main Boosters Unlock Tracker.Add Rewards",
+    "device": "Multiple",
+    "note": "MainBoostersUnlockTracker.AddRewards"
+  },
+  {
+    "id": "CHSOL-1363",
+    "issue": "Auto Complete Service.Is Rule Approved For Auto Complet",
+    "device": "Multiple",
+    "note": "AutoCompleteService.IsRuleApprovedForAutoComplete"
+  },
+  {
+    "id": "CHSOL-1360",
+    "issue": "Firebase Analytics.Log Event Implementation",
+    "device": "Multiple",
+    "note": "FirebaseAnalytics.LogEventImplementation"
+  },
+  {
+    "id": "CHSOL-1359",
+    "issue": "Notification Delivery Tracker.Record Delivered",
+    "device": "Multiple",
+    "note": "NotificationDeliveryTracker.RecordDelivered"
+  },
+  {
+    "id": "CHSOL-1366",
+    "issue": "SIGTRAP",
+    "device": "Multiple",
+    "note": "SIGTRAP"
+  },
+  {
+    "id": "CHSOL-1365",
+    "issue": "[libc.so]",
+    "device": "Multiple",
+    "note": "[libc.so]"
+  },
+  {
+    "id": "CHSOL-1362",
+    "issue": "WV.r8.a",
+    "device": "Multiple",
+    "note": "WV.r8.a"
+  }
 ];
-
-// Word Maker recent tickets (last 7 days)
-export const WM_ACTIVE = [
-  { key: "WORD-560", summary: "[DEV] Implement popup priority system",          assignee: "—", status: "Ready for QA" },
-  { key: "WORD-562", summary: "[DEV] Wire logic to the widget",                 assignee: "—", status: "Ready for QA" },
-  { key: "WORD-561", summary: "[DEV] Wire logic to the popup",                  assignee: "—", status: "Ready for QA" },
-  { key: "WORD-559", summary: "[DEV] Save and restore event state",             assignee: "—", status: "Ready for QA" },
-  { key: "WORD-558", summary: "[DEV] Set up timer in the widget",               assignee: "—", status: "Ready for QA" },
-  { key: "WORD-557", summary: "[DEV] Show widget in the lobby",                 assignee: "—", status: "Ready for QA" },
-  { key: "WORD-556", summary: "[DEV] Event completion logic — expiration",      assignee: "—", status: "Ready for QA" },
-  { key: "WORD-555", summary: "[DEV] Event completion logic — success",         assignee: "—", status: "Ready for QA" },
-  { key: "WORD-554", summary: "[DEV] Progress bar logic in the popup",          assignee: "—", status: "Ready for QA" },
-  { key: "WORD-553", summary: "[DEV] Set up timer in the popup",                assignee: "—", status: "Ready for QA" },
-  { key: "WORD-552", summary: "[DEV] Popup appearance logic",                   assignee: "—", status: "Ready for QA" },
-  { key: "WORD-551", summary: "[DEV] Implement one-time activation",            assignee: "—", status: "Ready for QA" },
-  { key: "WORD-550", summary: "[DEV] Create remote config for feature params",  assignee: "—", status: "Ready for QA" },
-  { key: "WORD-549", summary: "[DEV] Create feature flag for Beginner's Bonus", assignee: "—", status: "Ready for QA" },
+export const WM_ACTIVE   = [
+  {
+    "key": "WORD-606",
+    "summary": "[DEV] Word Master progress is language-agnostic",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-605",
+    "summary": "[DEV] Coin icon display logic based on reward amount",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-580",
+    "summary": "[DEV] Tutorial is shown after reaching the first objective",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-604",
+    "summary": "[TA] Implementation and animations of Word Master feature",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-544",
+    "summary": "[Art] Create Word Master event popup assets",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
+  {
+    "key": "WORD-583",
+    "summary": "[DEV] Close popup with the close button",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-543",
+    "summary": "[Art] Create widget assets for Word Master states",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
+  {
+    "key": "WORD-581",
+    "summary": "[DEV] Automatically open the popup when a reward is ready to claim",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-573",
+    "summary": "[DEV] Full reset when the cycle expires",
+    "assignee": "—",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-603",
+    "summary": "[Art] New Tutorial 3 steps",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
+  {
+    "key": "WORD-489",
+    "summary": "[Dev] Currency Fly Animation (Reward → Widget)",
+    "assignee": "Toni",
+    "status": "Selected for Development"
+  },
+  {
+    "key": "WORD-602",
+    "summary": "[WORD SUBMIT] - Correct words feedback is not correct in some languages",
+    "assignee": "Toni",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-601",
+    "summary": "Missing exclamation mark after the word “coins” in Beginner’s Bonus popu",
+    "assignee": "Toni",
+    "status": "Selected for Development"
+  },
+  {
+    "key": "WORD-560",
+    "summary": "[DEV] Implement popup priority system",
+    "assignee": "—",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-557",
+    "summary": "[DEV] Show widget in the lobby",
+    "assignee": "—",
+    "status": "Ready for QA"
+  }
 ];
