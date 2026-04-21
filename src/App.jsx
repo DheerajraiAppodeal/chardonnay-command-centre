@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react";
+import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
 
 // ── Theme definitions ──────────────────────────────────────────────────────
 const LIGHT = {
@@ -68,10 +69,10 @@ const useT = () => useContext(ThemeCtx);
 const GAMES = [
   { id:"wm",  label:"Word Maker", pm:"Didara Pernebayeva", colorKey:"wm",
     sprintLabel:"1.47.0 – Beginner's Bonus", buildLive:"1.46.0 @ 10% Android",
-    retention:"D3 –4% vs baseline", retentionStatus:"on-track", activeIssues:3, retentionPct:46 },
+    retention:"D3 –4% vs baseline", retentionStatus:"on-track", activeIssues:GAME_STATS.wm.activeIssues, retentionPct:46 },
   { id:"sol", label:"Solitaire",  pm:"Srikanth Reddy",     colorKey:"sol",
     sprintLabel:"Active sprint — 5.7.x features", buildLive:"v5.7.0 @ limited rollout",
-    retention:"D7 +20% above 8.5–10% baseline", retentionStatus:"in-progress", activeIssues:2, retentionPct:30 },
+    retention:"D7 +20% above 8.5–10% baseline", retentionStatus:"in-progress", activeIssues:GAME_STATS.sol.activeIssues, retentionPct:30 },
 ];
 
 const INITIATIVES = [
@@ -153,26 +154,6 @@ const SOL_VERSIONS = [
   { v:"v5.7.0", users:"2,378",   winRate:"94.4%", avgWin:"2.8m", kind:"new", note:"Just released — Crashlytics stable (Apr 18)"         },
 ];
 
-const SOL_CRASHES = [
-  { id:"CHSOL-1366", issue:"libil2cpp.so SIGTRAP",          device:"Motorola moto g pure",  note:"Ad WebView corrupting IL2CPP on low-RAM device"      },
-  { id:"CHSOL-1365", issue:"libc.so fatal crash",           device:"Motorola moto g series",note:"Ad WebView / Appodeal bridge on low-RAM devices"      },
-  { id:"CHSOL-1364", issue:"MainBoostersUnlockTracker NRE", device:"Multiple",              note:"Migration runs before Initialize — order bug"          },
-  { id:"CHSOL-1363", issue:"AutoCompleteService NRE",       device:"Multiple",              note:"StageManager null on offline cold-start"               },
-  { id:"CHSOL-1362", issue:"ANR — WebView freeze",          device:"OnePlus DE2118",        note:"11 notifications + SessionProgression on main thread"  },
-  { id:"CHSOL-1361", issue:"CardItem card cycle crash",     device:"Multiple",              note:"Rapid replay creates card chain loop"                  },
-];
-
-const SOL_ACTIVE = [
-  { key:"CHSOL-1367", summary:"[Art] Level Up Screen",                       assignee:"Henrique", status:"In Progress"   },
-  { key:"CHSOL-1329", summary:"[Art] Results screen",                        assignee:"Henrique", status:"Review"        },
-  { key:"CHSOL-1357", summary:"[Dev] Journey to live ops system",            assignee:"Angel",    status:"In Progress"   },
-  { key:"CHSOL-1344", summary:"[Dev] Coins between cards — shuffle/magic",   assignee:"Angel",    status:"Review"        },
-  { key:"CHSOL-1312", summary:"[Dev] Logic for coins behind cards",           assignee:"Angel",    status:"Ready for QA"  },
-  { key:"CHSOL-1352", summary:"Keep infinite time on game relaunch",          assignee:"Murat",    status:"Ready for QA"  },
-  { key:"CHSOL-1345", summary:"[Bug] Card to pile instead of foundation",     assignee:"Murat",    status:"Ready for QA"  },
-  { key:"CHSOL-1355", summary:"Left hand mode UI broken ⚠ HIGH — unassigned",assignee:"—",        status:"Backlog"       },
-  { key:"CHSOL-1358", summary:"[Code] New quest popup design",                assignee:"Murat",    status:"Backlog"       },
-];
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 function useColor(colorKey, colorStatic) {
@@ -872,7 +853,7 @@ export default function App() {
               ))}
             </div>
             <div style={{ marginLeft:"auto", display:"flex", alignItems:"center", gap:12 }}>
-              <span style={{ fontSize:11, color:T.topbarSub }}>Mon Apr 20, 2026 · v1.6</span>
+              <span style={{ fontSize:11, color:T.topbarSub }}>{LAST_UPDATED} · v1.6</span>
               <ThemeToggle isDark={isDark} onToggle={() => setDark(d => !d)} />
             </div>
           </div>

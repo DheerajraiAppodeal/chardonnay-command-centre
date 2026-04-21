@@ -1,0 +1,42 @@
+name: Daily Data Refresh
+
+# Runs Mon–Fri at 6:00 AM UTC = 8:00 AM Madrid (CEST / UTC+2).
+# Also triggerable manually from the GitHub Actions tab.
+#
+# Required GitHub Secrets (Settings → Secrets → Actions):
+#   JIRA_EMAIL       — dheeraj.rai@appodeal.com
+#   JIRA_API_TOKEN   — from https://id.atlassian.com/manage-profile/security/api-tokens
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'   # Mon–Fri 06:00 UTC = 08:00 Madrid CEST
+  workflow_dispatch:          # Manual trigger from GitHub UI
+
+jobs:
+  refresh:
+    name: Fetch Jira → update gameData.js
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Jira data & generate gameData.js
+        run: node scripts/fetch-jira-data.js
+        env:
+          JIRA_EMAIL:       ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN:   ${{ secrets.JIRA_API_TOKEN }}
+
+      - name: Commit updated data file
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'data: daily Jira refresh [skip ci]'
+          file_pattern:    src/gameData.js
+          commit_author:   'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
