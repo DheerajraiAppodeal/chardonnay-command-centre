@@ -21,7 +21,7 @@ const AUTH = Buffer.from(`${EMAIL}:${TOKEN}`).toString('base64');
 function jiraGet(jql, fields, maxResults = 50) {
   return new Promise((resolve, reject) => {
     const qs = [`jql=${encodeURIComponent(jql)}`,`fields=${fields.join(',')}`,`maxResults=${maxResults}`].join('&');
-    const options = { hostname: JIRA_HOST, path: `/rest/api/3/search?${qs}`, method: 'GET', headers: { Authorization: `Basic ${AUTH}`, Accept: 'application/json' } };
+    const options = { hostname: JIRA_HOST, path: `/rest/api/3/search/jql?${qs}`, method: 'GET', headers: { Authorization: `Basic ${AUTH}`, Accept: 'application/json' } };
     let raw = '';
     const req = https.request(options, (res) => {
       res.on('data', (c) => (raw += c));
