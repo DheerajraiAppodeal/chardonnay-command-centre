@@ -1,7 +1,7 @@
-// AUTO-GENERATED — do not edit manually. Refreshed: 2026-04-21T13:37:47.291Z
-export const LAST_UPDATED     = "Tue, 21 Apr 2026";
-export const LAST_UPDATED_ISO = "2026-04-21T13:37:47.291Z";
-export const GAME_STATS = { wm: { activeIssues: 17, readyForQA: 14 }, sol: { activeIssues: 15, readyForQA: 6 } };
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-04-22T07:57:47.329Z
+export const LAST_UPDATED     = "Wed, 22 Apr 2026";
+export const LAST_UPDATED_ISO = "2026-04-22T07:57:47.329Z";
+export const GAME_STATS = { wm: { activeIssues: 6, readyForQA: 5 }, sol: { activeIssues: 22, readyForQA: 8 } };
 export const UNASSIGNED_HIGH_BUGS = [
   {
     "key": "CHSOL-1355",
@@ -18,22 +18,64 @@ export const UNASSIGNED_HIGH_BUGS = [
 ];
 export const SOL_ACTIVE  = [
   {
-    "key": "CHSOL-1328",
-    "summary": "Implement Win Rate Meter UI (Phase 1 — no bots/slots)",
-    "assignee": "Yevhenii",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1381",
-    "summary": "[Art] New Performance Tutorial",
+    "key": "CHSOL-1383",
+    "summary": "[Art] Game Lost popup",
     "assignee": "Juan",
     "status": "Review"
   },
   {
-    "key": "CHSOL-1388",
-    "summary": "[Dev] Update journey to use graphics and title in main popup from liveop",
-    "assignee": "—",
-    "status": "Backlog"
+    "key": "CHSOL-1382",
+    "summary": "[Art] Victory Tiers",
+    "assignee": "Juan",
+    "status": "Review"
+  },
+  {
+    "key": "CHSOL-1384",
+    "summary": "[Art] Well Done popup",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1389",
+    "summary": "[Dev] Update journey to use liveops config for backgrounds and title",
+    "assignee": "Angel",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1309",
+    "summary": "[Dev] Implement coin functionality",
+    "assignee": "Angel",
+    "status": "Review"
+  },
+  {
+    "key": "CHSOL-1386",
+    "summary": "[Dev] Update journey to use milestones from liveops",
+    "assignee": "Angel",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1390",
+    "summary": "[Dev] Update journey to use rewards from liveops",
+    "assignee": "Angel",
+    "status": "To Do"
+  },
+  {
+    "key": "CHSOL-1356",
+    "summary": "After shuffle we don't show deck card amount",
+    "assignee": "Angel",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1312",
+    "summary": "[Dev] Logic for \"coins behind cards\" (instantiating coin triggers when a",
+    "assignee": "Angel",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1314",
+    "summary": "[Dev] Add logic to support showing coins in every place we show rewards",
+    "assignee": "Angel",
+    "status": "Ready for QA"
   },
   {
     "key": "CHSOL-1387",
@@ -42,55 +84,25 @@ export const SOL_ACTIVE  = [
     "status": "Backlog"
   },
   {
-    "key": "CHSOL-1386",
-    "summary": "[Dev] Update journey to use milestones from liveops",
-    "assignee": "Angel",
-    "status": "To Do"
-  },
-  {
-    "key": "CHSOL-1385",
-    "summary": "[Dev] Update journey to use levels and mission from live ops",
-    "assignee": "Angel",
-    "status": "In Progress"
-  },
-  {
-    "key": "CHSOL-1384",
-    "summary": "[Art] Well Done popup",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1383",
-    "summary": "[Art] Game Lost popup",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1382",
-    "summary": "[Art] Victory Tiers",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1211",
-    "summary": "[SFX] Quests",
-    "assignee": "Henrique",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1379",
-    "summary": "StageManager refactor — extract GameFlowController and delete StageManag",
-    "assignee": "Murat",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1373",
-    "summary": "Refactor StageManager — split god class into focused controllers",
-    "assignee": "Murat",
-    "status": "Backlog"
+    "key": "CHSOL-1328",
+    "summary": "Implement Win Rate Meter UI (Phase 1 — no bots/slots)",
+    "assignee": "Yevhenii",
+    "status": "Ready for QA"
   }
 ];
 export const SOL_CRASHES = [
+  {
+    "id": "CHSOL-1365",
+    "issue": "[libc.so]",
+    "device": "Multiple",
+    "note": "[libc.so]"
+  },
+  {
+    "id": "CHSOL-1360",
+    "issue": "Firebase Analytics.Log Event Implementation",
+    "device": "Multiple",
+    "note": "FirebaseAnalytics.LogEventImplementation"
+  },
   {
     "id": "CHSOL-1361",
     "issue": "Card Item.Get Child Cards List",
@@ -110,12 +122,6 @@ export const SOL_CRASHES = [
     "note": "AutoCompleteService.IsRuleApprovedForAutoComplete"
   },
   {
-    "id": "CHSOL-1360",
-    "issue": "Firebase Analytics.Log Event Implementation",
-    "device": "Multiple",
-    "note": "FirebaseAnalytics.LogEventImplementation"
-  },
-  {
     "id": "CHSOL-1359",
     "issue": "Notification Delivery Tracker.Record Delivered",
     "device": "Multiple",
@@ -128,12 +134,6 @@ export const SOL_CRASHES = [
     "note": "SIGTRAP"
   },
   {
-    "id": "CHSOL-1365",
-    "issue": "[libc.so]",
-    "device": "Multiple",
-    "note": "[libc.so]"
-  },
-  {
     "id": "CHSOL-1362",
     "issue": "WV.r8.a",
     "device": "Multiple",
@@ -142,93 +142,93 @@ export const SOL_CRASHES = [
 ];
 export const WM_ACTIVE   = [
   {
-    "key": "WORD-606",
-    "summary": "[DEV] Word Master progress is language-agnostic",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-605",
-    "summary": "[DEV] Coin icon display logic based on reward amount",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-580",
-    "summary": "[DEV] Tutorial is shown after reaching the first objective",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
     "key": "WORD-604",
     "summary": "[TA] Implementation and animations of Word Master feature",
     "assignee": "Juan",
     "status": "Backlog"
   },
   {
-    "key": "WORD-544",
-    "summary": "[Art] Create Word Master event popup assets",
-    "assignee": "Juan",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-583",
-    "summary": "[DEV] Close popup with the close button",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-543",
-    "summary": "[Art] Create widget assets for Word Master states",
-    "assignee": "Juan",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-581",
-    "summary": "[DEV] Automatically open the popup when a reward is ready to claim",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-573",
-    "summary": "[DEV] Full reset when the cycle expires",
-    "assignee": "—",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-603",
-    "summary": "[Art] New Tutorial 3 steps",
-    "assignee": "Juan",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-489",
-    "summary": "[Dev] Currency Fly Animation (Reward → Widget)",
+    "key": "WORD-609",
+    "summary": "[BEGINNER BONUS] - Popup does not open when tapping the widget after the",
     "assignee": "Toni",
     "status": "Selected for Development"
   },
   {
-    "key": "WORD-602",
-    "summary": "[WORD SUBMIT] - Correct words feedback is not correct in some languages",
-    "assignee": "Toni",
+    "key": "WORD-541",
+    "summary": "[EVENT] - Event timer on lobby does not update when unlocking the phone",
+    "assignee": "—",
     "status": "Backlog"
   },
   {
-    "key": "WORD-601",
-    "summary": "Missing exclamation mark after the word “coins” in Beginner’s Bonus popu",
-    "assignee": "Toni",
-    "status": "Selected for Development"
+    "key": "WORD-552",
+    "summary": "[DEV] Popup appearance logic",
+    "assignee": "—",
+    "status": "Done"
+  },
+  {
+    "key": "WORD-561",
+    "summary": "[DEV] Wire logic to the popup",
+    "assignee": "—",
+    "status": "Done"
   },
   {
     "key": "WORD-560",
     "summary": "[DEV] Implement popup priority system",
     "assignee": "—",
-    "status": "Ready for QA"
+    "status": "Done"
+  },
+  {
+    "key": "WORD-559",
+    "summary": "[DEV] Save and restore event state",
+    "assignee": "—",
+    "status": "Done"
   },
   {
     "key": "WORD-557",
     "summary": "[DEV] Show widget in the lobby",
     "assignee": "—",
+    "status": "Done"
+  },
+  {
+    "key": "WORD-551",
+    "summary": "[DEV] Implement one-time activation of the feature",
+    "assignee": "—",
+    "status": "Done"
+  },
+  {
+    "key": "WORD-562",
+    "summary": "[DEV] Wire logic to the widget",
+    "assignee": "—",
     "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-558",
+    "summary": "[DEV] Set up timer in the widget",
+    "assignee": "—",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-556",
+    "summary": "[DEV] Event completion logic — expiration without success",
+    "assignee": "—",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-555",
+    "summary": "[DEV] Event completion logic — success",
+    "assignee": "—",
+    "status": "Done"
+  },
+  {
+    "key": "WORD-554",
+    "summary": "[DEV] Progress bar logic in the popup",
+    "assignee": "—",
+    "status": "Done"
+  },
+  {
+    "key": "WORD-553",
+    "summary": "[DEV] Set up timer in the popup",
+    "assignee": "—",
+    "status": "Done"
   }
 ];
