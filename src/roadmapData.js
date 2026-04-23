@@ -1,9 +1,11 @@
 // ── Feature Roadmap Data ─────────────────────────────────────────────────
-// This file is the MANUAL layer on top of gameData.js (auto-generated).
-// Edit this file directly to update feature roadmap status.
-// The dashboard reads both files and merges them.
+// MANUAL layer — edit this file to update feature roadmap status.
+// Auto-generated gameData.js handles ticket counts; this handles feature stages.
 //
-// STATUS OPTIONS: "not-started" | "in-progress" | "review" | "done" | "blocked"
+// TRACK STATUS OPTIONS:
+//   "not-started" | "in-progress" | "review" | "done" | "blocked" | "live"
+//
+// TRACKS: design → art → techArt → dev → qa → release
 // ─────────────────────────────────────────────────────────────────────────
 
 export const FEATURE_ROADMAP = {
@@ -16,11 +18,13 @@ export const FEATURE_ROADMAP = {
       milestone: "M7",
       targetMonth: "Apr 2026",
       status: "live",
+      weekStart: 0,   // week index from Apr 21 (0 = Apr W3)
       tracks: {
-        design: { status: "done",        note: "Finalised" },
-        art:    { status: "done",        note: "Assets delivered — Juan Z" },
-        dev:    { status: "done",        note: "Live @ 10% Android" },
-        qa:     { status: "done",        note: "Signed off" },
+        design:  { status: "done",        note: "Spec finalised — Didara",         weekStart: 0, weekEnd: 1 },
+        art:     { status: "done",        note: "Assets delivered — Juan Z",       weekStart: 0, weekEnd: 1 },
+        techArt: { status: "done",        note: "Integration done — Juan Z",       weekStart: 1, weekEnd: 2 },
+        dev:     { status: "done",        note: "Live @ 10% Android — Toni",       weekStart: 1, weekEnd: 2 },
+        qa:      { status: "done",        note: "Signed off — Krish",             weekStart: 2, weekEnd: 2 },
       },
       jiraEpic: null,
       risks: [],
@@ -34,11 +38,13 @@ export const FEATURE_ROADMAP = {
       milestone: "M8",
       targetMonth: "Apr 2026",
       status: "in-progress",
+      weekStart: 0,
       tracks: {
-        design: { status: "done",        note: "Spec complete — Didara" },
-        art:    { status: "done",        note: "Assets delivered — Juan Z" },
-        dev:    { status: "review",      note: "11 tickets Ready for QA — unassigned ⚠️" },
-        qa:     { status: "not-started", note: "Waiting for assignees" },
+        design:  { status: "done",        note: "Spec complete — Didara",          weekStart: 0, weekEnd: 1 },
+        art:     { status: "done",        note: "Assets delivered — Juan Z",       weekStart: 0, weekEnd: 1 },
+        techArt: { status: "done",        note: "Prefabs created — Juan S",        weekStart: 1, weekEnd: 2 },
+        dev:     { status: "review",      note: "11 tickets Ready for QA",         weekStart: 1, weekEnd: 2 },
+        qa:      { status: "not-started", note: "Waiting — tickets unassigned ⚠️", weekStart: 2, weekEnd: 3 },
       },
       jiraEpic: null,
       risks: ["11 QA tickets unassigned — Krish not yet briefed"],
@@ -52,11 +58,13 @@ export const FEATURE_ROADMAP = {
       milestone: "M9",
       targetMonth: "May 2026",
       status: "planned",
+      weekStart: 2,
       tracks: {
-        design: { status: "in-progress", note: "Spec in progress — Didara" },
-        art:    { status: "not-started", note: "" },
-        dev:    { status: "not-started", note: "" },
-        qa:     { status: "not-started", note: "" },
+        design:  { status: "in-progress", note: "Spec in progress — Didara",       weekStart: 2, weekEnd: 3 },
+        art:     { status: "not-started", note: "",                                 weekStart: 3, weekEnd: 4 },
+        techArt: { status: "not-started", note: "",                                 weekStart: 4, weekEnd: 5 },
+        dev:     { status: "not-started", note: "",                                 weekStart: 4, weekEnd: 6 },
+        qa:      { status: "not-started", note: "",                                 weekStart: 6, weekEnd: 7 },
       },
       jiraEpic: null,
       risks: [],
@@ -70,11 +78,13 @@ export const FEATURE_ROADMAP = {
       milestone: "M10",
       targetMonth: "Jun 2026",
       status: "planned",
+      weekStart: 5,
       tracks: {
-        design: { status: "not-started", note: "" },
-        art:    { status: "not-started", note: "" },
-        dev:    { status: "not-started", note: "" },
-        qa:     { status: "not-started", note: "" },
+        design:  { status: "not-started", note: "",  weekStart: 5, weekEnd: 6 },
+        art:     { status: "not-started", note: "",  weekStart: 6, weekEnd: 7 },
+        techArt: { status: "not-started", note: "",  weekStart: 7, weekEnd: 8 },
+        dev:     { status: "not-started", note: "",  weekStart: 7, weekEnd: 9 },
+        qa:      { status: "not-started", note: "",  weekStart: 9, weekEnd: 9 },
       },
       jiraEpic: null,
       risks: [],
@@ -88,11 +98,13 @@ export const FEATURE_ROADMAP = {
       milestone: "M11",
       targetMonth: "Jun 2026",
       status: "planned",
+      weekStart: 7,
       tracks: {
-        design: { status: "not-started", note: "" },
-        art:    { status: "not-started", note: "" },
-        dev:    { status: "not-started", note: "" },
-        qa:     { status: "not-started", note: "" },
+        design:  { status: "not-started", note: "",  weekStart: 7, weekEnd: 8 },
+        art:     { status: "not-started", note: "",  weekStart: 8, weekEnd: 9 },
+        techArt: { status: "not-started", note: "",  weekStart: 8, weekEnd: 9 },
+        dev:     { status: "not-started", note: "",  weekStart: 8, weekEnd: 9 },
+        qa:      { status: "not-started", note: "",  weekStart: 9, weekEnd: 9 },
       },
       jiraEpic: null,
       risks: [],
@@ -109,14 +121,16 @@ export const FEATURE_ROADMAP = {
       milestone: "",
       targetMonth: "Apr 2026",
       status: "in-progress",
+      weekStart: 0,
       tracks: {
-        design: { status: "done",        note: "Spec complete — Srikanth" },
-        art:    { status: "done",        note: "UI assets complete" },
-        dev:    { status: "review",      note: "Angel — multiple tickets Ready for QA" },
-        qa:     { status: "in-progress", note: "Krish — active testing" },
+        design:  { status: "done",        note: "Spec complete — Srikanth",         weekStart: 0, weekEnd: 1 },
+        art:     { status: "done",        note: "UI assets complete — Henrique",    weekStart: 0, weekEnd: 1 },
+        techArt: { status: "done",        note: "Integration — Juan Z",             weekStart: 1, weekEnd: 2 },
+        dev:     { status: "review",      note: "Angel — multiple tickets in QA",   weekStart: 1, weekEnd: 2 },
+        qa:      { status: "in-progress", note: "Krish — active testing",           weekStart: 2, weekEnd: 3 },
       },
       jiraEpic: null,
-      risks: ["v4.3.4 still has 139K users — multi-version QA burden"],
+      risks: ["v4.3.4 still has 139K users — multi-version QA burden ongoing"],
       kpiTarget: "Engagement + monetisation",
     },
     {
@@ -127,11 +141,13 @@ export const FEATURE_ROADMAP = {
       milestone: "",
       targetMonth: "Apr 2026",
       status: "in-progress",
+      weekStart: 0,
       tracks: {
-        design: { status: "done",        note: "Spec complete" },
-        art:    { status: "in-progress", note: "Henrique — In Progress" },
-        dev:    { status: "not-started", note: "Blocked on art" },
-        qa:     { status: "not-started", note: "" },
+        design:  { status: "done",        note: "Spec complete — Srikanth",         weekStart: 0, weekEnd: 1 },
+        art:     { status: "in-progress", note: "Henrique — In Progress",           weekStart: 0, weekEnd: 2 },
+        techArt: { status: "not-started", note: "Waiting on art",                   weekStart: 2, weekEnd: 3 },
+        dev:     { status: "not-started", note: "Blocked on art completion",        weekStart: 2, weekEnd: 3 },
+        qa:      { status: "not-started", note: "",                                  weekStart: 3, weekEnd: 4 },
       },
       jiraEpic: "CHSOL-1367",
       risks: [],
@@ -139,38 +155,62 @@ export const FEATURE_ROADMAP = {
     },
     {
       id: "sol-journey-liveops",
-      name: "Journey / Live Ops Integration",
+      name: "Journey / Live Ops",
       subtitle: "Journey system using live ops infrastructure",
       version: "v5.8.0",
       milestone: "",
       targetMonth: "May 2026",
       status: "in-progress",
+      weekStart: 1,
       tracks: {
-        design: { status: "done",        note: "Spec complete — Giulia" },
-        art:    { status: "not-started", note: "" },
-        dev:    { status: "in-progress", note: "Angel — CHSOL-1357 In Progress" },
-        qa:     { status: "not-started", note: "" },
+        design:  { status: "done",        note: "Spec complete — Giulia",           weekStart: 0, weekEnd: 1 },
+        art:     { status: "not-started", note: "",                                  weekStart: 3, weekEnd: 4 },
+        techArt: { status: "not-started", note: "",                                  weekStart: 4, weekEnd: 5 },
+        dev:     { status: "in-progress", note: "Angel — CHSOL-1357 In Progress",   weekStart: 1, weekEnd: 4 },
+        qa:      { status: "not-started", note: "",                                  weekStart: 5, weekEnd: 6 },
       },
       jiraEpic: "CHSOL-1357",
       risks: ["Depends on MetaPlay live ops infrastructure — scope TBD"],
       kpiTarget: "D7+ retention",
     },
+    {
+      id: "sol-quest-popup",
+      name: "Quest Popup Phase 2",
+      subtitle: "New quest popup design + flow",
+      version: "v5.8.0",
+      milestone: "",
+      targetMonth: "May 2026",
+      status: "in-progress",
+      weekStart: 1,
+      tracks: {
+        design:  { status: "done",        note: "Design complete",                  weekStart: 0, weekEnd: 1 },
+        art:     { status: "not-started", note: "",                                  weekStart: 2, weekEnd: 3 },
+        techArt: { status: "not-started", note: "",                                  weekStart: 3, weekEnd: 4 },
+        dev:     { status: "in-progress", note: "Murat — CHSOL-1358 Backlog",       weekStart: 1, weekEnd: 3 },
+        qa:      { status: "not-started", note: "",                                  weekStart: 4, weekEnd: 5 },
+      },
+      jiraEpic: "CHSOL-1358",
+      risks: [],
+      kpiTarget: "D3–D7 retention",
+    },
   ],
 };
 
-// Track label display names
+// Track display metadata
 export const TRACK_LABELS = {
-  design: "Design",
-  art:    "Art",
-  dev:    "Dev",
-  qa:     "QA",
+  design:  "Design",
+  art:     "Art",
+  techArt: "Tech Art",
+  dev:     "Dev",
+  qa:      "QA",
 };
 
 // Status display config
 export const TRACK_STATUS_CONFIG = {
-  "not-started": { label: "Not started", color: "#8B93A8", bg: "#F0F2F5" },
-  "in-progress":  { label: "In progress", color: "#4A7BB5", bg: "#EEF4FB" },
-  "review":       { label: "Review",      color: "#B07020", bg: "#FEF5E8" },
-  "done":         { label: "Done",        color: "#2E8A5A", bg: "#E8F5EE" },
-  "blocked":      { label: "Blocked",     color: "#8A3828", bg: "#FCEAE6" },
+  "not-started": { label: "Not started", bar: "#D8DCE5", text: "#8B93A8", bg: "transparent"  },
+  "in-progress":  { label: "In progress", bar: "#4A7BB5", text: "#4A7BB5", bg: "#EEF4FB"     },
+  "review":       { label: "Review",      bar: "#F4A428", text: "#B07020", bg: "#FEF5E8"     },
+  "done":         { label: "Done",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"     },
+  "blocked":      { label: "Blocked",     bar: "#C05040", text: "#8A3828", bg: "#FCEAE6"     },
+  "live":         { label: "Live",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"     },
 };

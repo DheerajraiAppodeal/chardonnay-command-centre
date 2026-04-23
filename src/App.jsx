@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from "react";
 import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
+import RoadmapPage from './pages/Roadmap.jsx';
 
 // ── Theme definitions ──────────────────────────────────────────────────────
 const LIGHT = {
@@ -815,6 +816,7 @@ const TABS = [
   { id:"overview",    label:"Overview"     },
   { id:"wordmaker",   label:"Word Maker"   },
   { id:"solitaire",   label:"Solitaire"    },
+  { id:"roadmap",     label:"Roadmap"      },
   { id:"initiatives", label:"Initiatives"  },
   { id:"team",        label:"Team"         },
 ];
@@ -827,6 +829,7 @@ export default function App() {
     overview:    <OverviewPage />,
     wordmaker:   <WordMakerPage />,
     solitaire:   <SolitairePage />,
+    roadmap:     <RoadmapPage T={T} />,
     initiatives: <InitiativesPage />,
     team:        <TeamPage />,
   };
