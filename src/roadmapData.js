@@ -1,18 +1,18 @@
 // ── Feature Roadmap Data ─────────────────────────────────────────────────
 // MANUAL layer — edit this file to update feature roadmap status.
+// Last updated: 2026-04-27 — Feature Kickoff #1 outputs added
 //
 // KEY PEOPLE:
 //   WM PM: Didara Pernebayeva
-//   Sol PM: Srikanth Reddy
 //   WM Lead Dev: Toni Puig | WM Devs: Víctor Romero, Juan Sabater
-//   Sol Tech Lead: Yevhenii Siechko | Sol Devs: Angel Miladinov, Murat Kacmaz
-//   WM Artists: Juan Zambrana (full-time WM), Henrique Nakajima
-//   Sol Artists: Henrique Nakajima, Guillem Urpí Montserrat
-//   Shared TA: Juan Sabater (rotates WM ↔ Sol weekly) ← NOT Juan Zambrana
+//   WM Artists: Juan Zambrana (full-time WM)
+//   Shared TA: Juan Sabater (rotates WM ↔ Sol weekly)
 //   QA Lead: Krish Prabha (rotates WM ↔ Sol weekly)
 //   QA: Andreu Margarit
 //
 // TRACK STATUS: "not-started"|"in-progress"|"review"|"done"|"blocked"|"live"
+//
+// WEEK INDEX: Week 0 = Apr 21. Week 1 = Apr 28. Week 2 = May 5. Etc.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const FEATURE_ROADMAP = {
@@ -29,11 +29,11 @@ export const FEATURE_ROADMAP = {
       status: "live",
       weekStart: 0,
       tracks: {
-        design:  { status: "done", note: "Spec finalised",        weekStart: 0, weekEnd: 1, people: ["Didara"] },
-        art:     { status: "done", note: "Assets delivered",      weekStart: 0, weekEnd: 1, people: ["Juan Z"] },
-        techArt: { status: "done", note: "Integration complete",  weekStart: 1, weekEnd: 2, people: ["Juan S"] },
-        dev:     { status: "done", note: "Live @ 10% Android",    weekStart: 1, weekEnd: 2, people: ["Toni", "Víctor"] },
-        qa:      { status: "done", note: "Signed off",            weekStart: 2, weekEnd: 2, people: ["Krish"] },
+        design:  { status: "done", note: "Spec finalised",       weekStart: 0, weekEnd: 1, people: ["Didara"] },
+        art:     { status: "done", note: "Assets delivered",     weekStart: 0, weekEnd: 1, people: ["Juan Z"] },
+        techArt: { status: "done", note: "Integration complete", weekStart: 1, weekEnd: 2, people: ["Juan S"] },
+        dev:     { status: "done", note: "Live @ 10% Android",   weekStart: 1, weekEnd: 2, people: ["Toni", "Víctor"] },
+        qa:      { status: "done", note: "Signed off",           weekStart: 2, weekEnd: 2, people: ["Krish"] },
       },
       jiraEpic: null,
       risks: [],
@@ -49,11 +49,11 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 0,
       tracks: {
-        design:  { status: "done",        note: "Spec complete",              weekStart: 0, weekEnd: 1, people: ["Didara"] },
-        art:     { status: "done",        note: "Assets delivered",           weekStart: 0, weekEnd: 1, people: ["Juan Z"] },
-        techArt: { status: "done",        note: "Prefabs created",            weekStart: 1, weekEnd: 2, people: ["Juan S"] },
-        dev:     { status: "review",      note: "11 tickets Ready for QA",   weekStart: 1, weekEnd: 2, people: ["Toni", "Víctor"] },
-        qa:      { status: "not-started", note: "Tickets unassigned ⚠️",      weekStart: 2, weekEnd: 3, people: ["Krish"] },
+        design:  { status: "done",        note: "Spec complete",            weekStart: 0, weekEnd: 1, people: ["Didara"] },
+        art:     { status: "done",        note: "Assets delivered",         weekStart: 0, weekEnd: 1, people: ["Juan Z"] },
+        techArt: { status: "done",        note: "Prefabs created",          weekStart: 1, weekEnd: 2, people: ["Juan S"] },
+        dev:     { status: "review",      note: "11 tickets Ready for QA", weekStart: 1, weekEnd: 2, people: ["Toni", "Víctor"] },
+        qa:      { status: "not-started", note: "Tickets unassigned ⚠️",    weekStart: 2, weekEnd: 3, people: ["Krish"] },
       },
       jiraEpic: null,
       risks: ["11 QA tickets unassigned — Krish not yet briefed"],
@@ -69,36 +69,69 @@ export const FEATURE_ROADMAP = {
       status: "planned",
       weekStart: 2,
       tracks: {
-        design:  { status: "in-progress", note: "Spec in progress",   weekStart: 2, weekEnd: 3, people: ["Didara"] },
-        art:     { status: "not-started", note: "",                    weekStart: 3, weekEnd: 4, people: ["Juan Z"] },
-        techArt: { status: "not-started", note: "",                    weekStart: 4, weekEnd: 5, people: ["Juan S"] },
-        dev:     { status: "not-started", note: "",                    weekStart: 4, weekEnd: 6, people: ["Toni", "Víctor"] },
-        qa:      { status: "not-started", note: "",                    weekStart: 6, weekEnd: 7, people: ["Krish"] },
+        design:  { status: "in-progress", note: "Spec in progress", weekStart: 2, weekEnd: 3, people: ["Didara"] },
+        art:     { status: "not-started", note: "",                  weekStart: 3, weekEnd: 4, people: ["Juan Z"] },
+        techArt: { status: "not-started", note: "",                  weekStart: 4, weekEnd: 5, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "",                  weekStart: 4, weekEnd: 6, people: ["Toni", "Víctor"] },
+        qa:      { status: "not-started", note: "",                  weekStart: 6, weekEnd: 7, people: ["Krish"] },
       },
       jiraEpic: null,
       risks: [],
       kpiTarget: "D1–D3 retention uplift",
     },
+
+    // ── 1.49.0 — Trivia Levels + Album Event ─────────────────────────────
+    // Source: Feature Kickoff #1 — Apr 27 2026
+    // Art sprint planned Apr 27 · Art delivers by Wed Apr 29
+    // Design done by end of week / start of next (May 1–4)
+    // Dev picks up next sprint (May 5+)
     {
-      id: "wm-m10",
-      name: "Breather Levels",
-      subtitle: "New gameplay mode",
+      id: "wm-trivia-levels",
+      name: "Trivia Levels",
+      subtitle: "New breather game mode — trivia Q&A every 5 levels",
       version: "1.49.0",
       milestone: "M10",
-      targetMonth: "Jun 2026",
-      status: "planned",
-      weekStart: 5,
+      targetMonth: "May 2026",
+      status: "in-progress",
+      weekStart: 1,
       tracks: {
-        design:  { status: "not-started", note: "", weekStart: 5, weekEnd: 6, people: ["Didara"] },
-        art:     { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Juan Z"] },
-        techArt: { status: "not-started", note: "", weekStart: 7, weekEnd: 8, people: ["Juan S"] },
-        dev:     { status: "not-started", note: "", weekStart: 7, weekEnd: 9, people: ["Toni", "Víctor"] },
-        qa:      { status: "not-started", note: "", weekStart: 9, weekEnd: 9, people: ["Krish"] },
+        design:  { status: "in-progress", note: "Spec in progress — done by end of week",       weekStart: 1, weekEnd: 2, people: ["Didara"] },
+        art:     { status: "in-progress", note: "Art sprint planned Apr 27 — delivering Wed",   weekStart: 1, weekEnd: 2, people: ["Juan Z"] },
+        techArt: { status: "not-started", note: "Starts when art assets land",                   weekStart: 2, weekEnd: 3, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "Next sprint — picks up May 5",                  weekStart: 2, weekEnd: 4, people: ["Toni", "Víctor"] },
+        qa:      { status: "not-started", note: "",                                               weekStart: 4, weekEnd: 5, people: ["Krish"] },
       },
       jiraEpic: null,
-      risks: [],
-      kpiTarget: "D3–D7 retention uplift",
+      risks: [
+        "Level System rebuild is out of scope — confirm existing system supports trivia mode",
+        "10 themed levels at launch — English only, easy difficulty only",
+      ],
+      kpiTarget: "+3pp D3 · +2pp D7 · +15s avg session",
     },
+    {
+      id: "wm-album-event",
+      name: "Album Event",
+      subtitle: "1-week seasonal event — collect stickers, fill albums, win grand prize",
+      version: "1.49.0",
+      milestone: "M10",
+      targetMonth: "May 2026",
+      status: "in-progress",
+      weekStart: 1,
+      tracks: {
+        design:  { status: "in-progress", note: "Spec in progress — done start of next week",  weekStart: 1, weekEnd: 2, people: ["Didara"] },
+        art:     { status: "in-progress", note: "Art sprint planned Apr 27 — delivering Wed",  weekStart: 1, weekEnd: 2, people: ["Juan Z", "Guillem"] },
+        techArt: { status: "not-started", note: "Starts when art assets land",                  weekStart: 2, weekEnd: 3, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "Next sprint — picks up May 5",                 weekStart: 2, weekEnd: 4, people: ["Toni", "Víctor"] },
+        qa:      { status: "not-started", note: "",                                              weekStart: 4, weekEnd: 5, people: ["Krish", "Andreu"] },
+      },
+      jiraEpic: null,
+      risks: [
+        "Art cadence risk — 6 badges + Grand Prize per event weekly. Confirm art bandwidth.",
+        "Timer/FOMO mechanics need clear spec: timezone behaviour, re-entry after event ends.",
+      ],
+      kpiTarget: "+2pp D3 · +2pp D7 · +10s avg session vs baseline",
+    },
+
     {
       id: "wm-m11",
       name: "Meta Progress + FTUE Polish",
@@ -122,10 +155,7 @@ export const FEATURE_ROADMAP = {
   ],
 
   // ── SOLITAIRE ─────────────────────────────────────────────────────────────
-  // Source: Srikanth Reddy — Apr 23 2026
-  // Team: 2.5 Devs · 2 Artists · 2 QA · 1 PM · 1 Tech Art (shared)
   sol: [
-
     // ── v5.8.0 — Apr 23 ────────────────────────────────────────────────────
     {
       id: "sol-5.8.0-game-end",
@@ -137,15 +167,13 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 0,
       tracks: {
-        design:  { status: "done",        note: "Spec complete",            weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
-        art:     { status: "done",        note: "Assets ready",             weekStart: 0, weekEnd: 1, people: ["Henrique"] },
-        techArt: { status: "done",        note: "Integration done",         weekStart: 0, weekEnd: 1, people: ["Juan S"] },
-        dev:     { status: "review",      note: "Ready for QA",             weekStart: 0, weekEnd: 1, people: ["Angel", "Murat"] },
-        qa:      { status: "in-progress", note: "Krish testing",            weekStart: 1, weekEnd: 2, people: ["Krish"] },
+        design:  { status: "done",        note: "Spec complete",  weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
+        art:     { status: "done",        note: "Assets ready",   weekStart: 0, weekEnd: 1, people: ["Henrique"] },
+        techArt: { status: "done",        note: "",               weekStart: 0, weekEnd: 1, people: ["Juan S"] },
+        dev:     { status: "review",      note: "Ready for QA",   weekStart: 0, weekEnd: 1, people: ["Angel", "Murat"] },
+        qa:      { status: "in-progress", note: "Krish testing",  weekStart: 1, weekEnd: 2, people: ["Krish"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "D1 retention",
+      jiraEpic: null, risks: [], kpiTarget: "D1 retention",
     },
     {
       id: "sol-5.8.0-ftue",
@@ -157,15 +185,13 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 0,
       tracks: {
-        design:  { status: "done",        note: "Spec complete",            weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
-        art:     { status: "done",        note: "UI assets complete",       weekStart: 0, weekEnd: 1, people: ["Guillem"] },
-        techArt: { status: "done",        note: "",                         weekStart: 0, weekEnd: 1, people: ["Juan S"] },
-        dev:     { status: "review",      note: "Ready for QA",             weekStart: 0, weekEnd: 1, people: ["Yevhenii", "Murat"] },
-        qa:      { status: "in-progress", note: "Active testing",           weekStart: 1, weekEnd: 2, people: ["Krish", "Andreu"] },
+        design:  { status: "done",        note: "Spec complete",      weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
+        art:     { status: "done",        note: "UI assets complete", weekStart: 0, weekEnd: 1, people: ["Guillem"] },
+        techArt: { status: "done",        note: "",                   weekStart: 0, weekEnd: 1, people: ["Juan S"] },
+        dev:     { status: "review",      note: "Ready for QA",       weekStart: 0, weekEnd: 1, people: ["Yevhenii", "Murat"] },
+        qa:      { status: "in-progress", note: "Active testing",     weekStart: 1, weekEnd: 2, people: ["Krish", "Andreu"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "D1 retention",
+      jiraEpic: null, risks: [], kpiTarget: "D1 retention",
     },
     {
       id: "sol-5.8.0-win-meter",
@@ -177,15 +203,13 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 0,
       tracks: {
-        design:  { status: "done",        note: "Spec complete",      weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
-        art:     { status: "done",        note: "Assets ready",       weekStart: 0, weekEnd: 1, people: ["Henrique"] },
-        techArt: { status: "done",        note: "",                   weekStart: 0, weekEnd: 1, people: ["Juan S"] },
-        dev:     { status: "review",      note: "Ready for QA",       weekStart: 0, weekEnd: 1, people: ["Angel"] },
-        qa:      { status: "in-progress", note: "Active testing",     weekStart: 1, weekEnd: 2, people: ["Krish"] },
+        design:  { status: "done",        note: "Spec complete",  weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
+        art:     { status: "done",        note: "Assets ready",   weekStart: 0, weekEnd: 1, people: ["Henrique"] },
+        techArt: { status: "done",        note: "",               weekStart: 0, weekEnd: 1, people: ["Juan S"] },
+        dev:     { status: "review",      note: "Ready for QA",   weekStart: 0, weekEnd: 1, people: ["Angel"] },
+        qa:      { status: "in-progress", note: "Active testing", weekStart: 1, weekEnd: 2, people: ["Krish"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "D3–D7 retention",
+      jiraEpic: null, risks: [], kpiTarget: "D3–D7 retention",
     },
     {
       id: "sol-5.8.0-quests",
@@ -197,17 +221,14 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 0,
       tracks: {
-        design:  { status: "done",        note: "Spec complete",      weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
-        art:     { status: "in-progress", note: "UI assets",          weekStart: 0, weekEnd: 2, people: ["Guillem"] },
-        techArt: { status: "in-progress", note: "",                   weekStart: 1, weekEnd: 2, people: ["Juan S"] },
-        dev:     { status: "in-progress", note: "CHSOL-1358",         weekStart: 0, weekEnd: 2, people: ["Murat"] },
-        qa:      { status: "not-started", note: "",                   weekStart: 2, weekEnd: 3, people: ["Krish", "Andreu"] },
+        design:  { status: "done",        note: "Spec complete", weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
+        art:     { status: "in-progress", note: "UI assets",     weekStart: 0, weekEnd: 2, people: ["Guillem"] },
+        techArt: { status: "in-progress", note: "",              weekStart: 1, weekEnd: 2, people: ["Juan S"] },
+        dev:     { status: "in-progress", note: "CHSOL-1358",    weekStart: 0, weekEnd: 2, people: ["Murat"] },
+        qa:      { status: "not-started", note: "",              weekStart: 2, weekEnd: 3, people: ["Krish", "Andreu"] },
       },
-      jiraEpic: "CHSOL-1358",
-      risks: [],
-      kpiTarget: "D3–D7 retention",
+      jiraEpic: "CHSOL-1358", risks: [], kpiTarget: "D3–D7 retention",
     },
-
     // ── v5.9.0 — Apr 30 ────────────────────────────────────────────────────
     {
       id: "sol-5.9.0-economy",
@@ -219,14 +240,14 @@ export const FEATURE_ROADMAP = {
       status: "in-progress",
       weekStart: 1,
       tracks: {
-        design:  { status: "done",        note: "Critical path — defines balance logic",  weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
-        art:     { status: "in-progress", note: "Economy UI assets",                      weekStart: 1, weekEnd: 2, people: ["Henrique", "Guillem"] },
-        techArt: { status: "not-started", note: "",                                        weekStart: 2, weekEnd: 3, people: ["Juan S"] },
-        dev:     { status: "in-progress", note: "P1 — all downstream features depend on this", weekStart: 1, weekEnd: 2, people: ["Yevhenii", "Angel"] },
-        qa:      { status: "not-started", note: "",                                        weekStart: 2, weekEnd: 3, people: ["Krish"] },
+        design:  { status: "done",        note: "Critical path",                           weekStart: 0, weekEnd: 1, people: ["Srikanth"] },
+        art:     { status: "in-progress", note: "Economy UI assets",                       weekStart: 1, weekEnd: 2, people: ["Henrique", "Guillem"] },
+        techArt: { status: "not-started", note: "",                                         weekStart: 2, weekEnd: 3, people: ["Juan S"] },
+        dev:     { status: "in-progress", note: "P1 — all downstream depends on this",    weekStart: 1, weekEnd: 2, people: ["Yevhenii", "Angel"] },
+        qa:      { status: "not-started", note: "",                                         weekStart: 2, weekEnd: 3, people: ["Krish"] },
       },
       jiraEpic: null,
-      risks: ["CRITICAL PATH — Coins, Store, Spin Wheel, Boosters all depend on this. Any April slip carries through to May."],
+      risks: ["CRITICAL PATH — Coins, Store, Spin Wheel, Boosters all depend on this."],
       kpiTarget: "Monetisation",
     },
     {
@@ -239,15 +260,13 @@ export const FEATURE_ROADMAP = {
       status: "planned",
       weekStart: 1,
       tracks: {
-        design:  { status: "in-progress", note: "Spec in progress",   weekStart: 1, weekEnd: 2, people: ["Srikanth"] },
-        art:     { status: "not-started", note: "",                    weekStart: 2, weekEnd: 3, people: ["Henrique"] },
-        techArt: { status: "not-started", note: "",                    weekStart: 3, weekEnd: 4, people: ["Juan S"] },
-        dev:     { status: "not-started", note: "",                    weekStart: 2, weekEnd: 3, people: ["Angel", "Murat"] },
-        qa:      { status: "not-started", note: "",                    weekStart: 3, weekEnd: 4, people: ["Krish", "Andreu"] },
+        design:  { status: "in-progress", note: "", weekStart: 1, weekEnd: 2, people: ["Srikanth"] },
+        art:     { status: "not-started", note: "", weekStart: 2, weekEnd: 3, people: ["Henrique"] },
+        techArt: { status: "not-started", note: "", weekStart: 3, weekEnd: 4, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "", weekStart: 2, weekEnd: 3, people: ["Angel", "Murat"] },
+        qa:      { status: "not-started", note: "", weekStart: 3, weekEnd: 4, people: ["Krish", "Andreu"] },
       },
-      jiraEpic: null,
-      risks: ["Requires LiveOps to be wired first"],
-      kpiTarget: "Retention",
+      jiraEpic: null, risks: ["Requires LiveOps wired first"], kpiTarget: "Retention",
     },
     {
       id: "sol-5.9.0-store",
@@ -259,15 +278,13 @@ export const FEATURE_ROADMAP = {
       status: "planned",
       weekStart: 1,
       tracks: {
-        design:  { status: "in-progress", note: "Spec in progress",   weekStart: 1, weekEnd: 2, people: ["Srikanth"] },
-        art:     { status: "not-started", note: "",                    weekStart: 2, weekEnd: 3, people: ["Guillem"] },
-        techArt: { status: "not-started", note: "",                    weekStart: 3, weekEnd: 4, people: ["Juan S"] },
-        dev:     { status: "not-started", note: "Depends on Economy Phase 1", weekStart: 2, weekEnd: 3, people: ["Yevhenii", "Murat"] },
-        qa:      { status: "not-started", note: "",                    weekStart: 3, weekEnd: 4, people: ["Krish"] },
+        design:  { status: "in-progress", note: "",                      weekStart: 1, weekEnd: 2, people: ["Srikanth"] },
+        art:     { status: "not-started", note: "",                      weekStart: 2, weekEnd: 3, people: ["Guillem"] },
+        techArt: { status: "not-started", note: "",                      weekStart: 3, weekEnd: 4, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "Depends on Economy P1", weekStart: 2, weekEnd: 3, people: ["Yevhenii", "Murat"] },
+        qa:      { status: "not-started", note: "",                      weekStart: 3, weekEnd: 4, people: ["Krish"] },
       },
-      jiraEpic: null,
-      risks: ["QA — Store + IAP overlap with Gameplay Levels in May. Consider staggering releases by 1 week."],
-      kpiTarget: "Monetisation",
+      jiraEpic: null, risks: [], kpiTarget: "Monetisation",
     },
     {
       id: "sol-5.9.0-boosters",
@@ -285,11 +302,8 @@ export const FEATURE_ROADMAP = {
         dev:     { status: "not-started", note: "", weekStart: 3, weekEnd: 4, people: ["Angel"] },
         qa:      { status: "not-started", note: "", weekStart: 4, weekEnd: 5, people: ["Krish", "Andreu"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "Monetisation · Retention",
+      jiraEpic: null, risks: [], kpiTarget: "Monetisation · Retention",
     },
-
     // ── v6.0.0 — May 14 ────────────────────────────────────────────────────
     {
       id: "sol-6.0.0-economy-p2",
@@ -307,9 +321,7 @@ export const FEATURE_ROADMAP = {
         dev:     { status: "not-started", note: "Depends on Phase 1", weekStart: 4, weekEnd: 6, people: ["Yevhenii", "Angel"] },
         qa:      { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Krish"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "Monetisation",
+      jiraEpic: null, risks: [], kpiTarget: "Monetisation",
     },
     {
       id: "sol-6.0.0-store-p2",
@@ -327,9 +339,7 @@ export const FEATURE_ROADMAP = {
         dev:     { status: "not-started", note: "", weekStart: 4, weekEnd: 6, people: ["Murat"] },
         qa:      { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Krish", "Andreu"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "Monetisation",
+      jiraEpic: null, risks: [], kpiTarget: "Monetisation",
     },
     {
       id: "sol-6.0.0-event-corgi",
@@ -348,7 +358,7 @@ export const FEATURE_ROADMAP = {
         qa:      { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Krish"] },
       },
       jiraEpic: null,
-      risks: ["Art — 2 artists fully committed to Store (May). Skins are stretch to protect art bandwidth."],
+      risks: ["Art fully committed to Store May — Skins stretch only"],
       kpiTarget: "Retention",
     },
     {
@@ -361,17 +371,16 @@ export const FEATURE_ROADMAP = {
       status: "planned",
       weekStart: 3,
       tracks: {
-        design:  { status: "not-started", note: "Depends on level deduplication being complete", weekStart: 3, weekEnd: 4, people: ["Srikanth"] },
+        design:  { status: "not-started", note: "", weekStart: 3, weekEnd: 4, people: ["Srikanth"] },
         art:     { status: "not-started", note: "", weekStart: 5, weekEnd: 6, people: ["Guillem"] },
         techArt: { status: "not-started", note: "", weekStart: 5, weekEnd: 6, people: ["Juan S"] },
         dev:     { status: "not-started", note: "", weekStart: 4, weekEnd: 6, people: ["Yevhenii"] },
         qa:      { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Andreu"] },
       },
       jiraEpic: null,
-      risks: ["Level deduplication must complete before Daily Challenges Phase 3 starts"],
+      risks: ["Level dedup must complete before DC Phase 3 starts"],
       kpiTarget: "Retention",
     },
-
     // ── v6.1.0 — May 28 ────────────────────────────────────────────────────
     {
       id: "sol-6.1.0-spin-wheel",
@@ -384,14 +393,12 @@ export const FEATURE_ROADMAP = {
       weekStart: 5,
       tracks: {
         design:  { status: "not-started", note: "", weekStart: 5, weekEnd: 6, people: ["Srikanth"] },
-        art:     { status: "not-started", note: "Skins tied to Spin Wheel theme", weekStart: 6, weekEnd: 7, people: ["Henrique"] },
+        art:     { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Henrique"] },
         techArt: { status: "not-started", note: "", weekStart: 7, weekEnd: 8, people: ["Juan S"] },
         dev:     { status: "not-started", note: "", weekStart: 6, weekEnd: 8, people: ["Angel", "Murat"] },
         qa:      { status: "not-started", note: "", weekStart: 8, weekEnd: 9, people: ["Krish"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "Monetisation · Retention",
+      jiraEpic: null, risks: [], kpiTarget: "Monetisation · Retention",
     },
     {
       id: "sol-6.1.0-avatar",
@@ -409,9 +416,7 @@ export const FEATURE_ROADMAP = {
         dev:     { status: "not-started", note: "", weekStart: 6, weekEnd: 8, people: ["Yevhenii"] },
         qa:      { status: "not-started", note: "", weekStart: 8, weekEnd: 9, people: ["Andreu"] },
       },
-      jiraEpic: null,
-      risks: [],
-      kpiTarget: "Retention",
+      jiraEpic: null, risks: [], kpiTarget: "Retention",
     },
     {
       id: "sol-6.1.0-cosmetics",
@@ -423,34 +428,28 @@ export const FEATURE_ROADMAP = {
       status: "planned",
       weekStart: 6,
       tracks: {
-        design:  { status: "not-started", note: "", weekStart: 6, weekEnd: 7, people: ["Srikanth"] },
-        art:     { status: "not-started", note: "Stretch — confirm at May retro", weekStart: 7, weekEnd: 9, people: ["Henrique", "Guillem"] },
-        techArt: { status: "not-started", note: "", weekStart: 8, weekEnd: 9, people: ["Juan S"] },
-        dev:     { status: "not-started", note: "", weekStart: 7, weekEnd: 9, people: ["Angel", "Murat"] },
-        qa:      { status: "not-started", note: "", weekStart: 9, weekEnd: 9, people: ["Krish", "Andreu"] },
+        design:  { status: "not-started", note: "",                             weekStart: 6, weekEnd: 7, people: ["Srikanth"] },
+        art:     { status: "not-started", note: "Stretch — confirm May retro", weekStart: 7, weekEnd: 9, people: ["Henrique", "Guillem"] },
+        techArt: { status: "not-started", note: "",                             weekStart: 8, weekEnd: 9, people: ["Juan S"] },
+        dev:     { status: "not-started", note: "",                             weekStart: 7, weekEnd: 9, people: ["Angel", "Murat"] },
+        qa:      { status: "not-started", note: "",                             weekStart: 9, weekEnd: 9, people: ["Krish", "Andreu"] },
       },
       jiraEpic: null,
-      risks: ["Stretch item — scoped to 1–2 day pickup. Confirm capacity at May retrospective."],
+      risks: ["Stretch item — confirm capacity at May retrospective"],
       kpiTarget: "Monetisation",
     },
   ],
 };
 
-// Track display metadata
 export const TRACK_LABELS = {
-  design:  "Design",
-  art:     "Art",
-  techArt: "Tech Art",
-  dev:     "Dev",
-  qa:      "QA",
+  design: "Design", art: "Art", techArt: "Tech Art", dev: "Dev", qa: "QA",
 };
 
-// Status display config
 export const TRACK_STATUS_CONFIG = {
-  "not-started": { label: "Not started", bar: "#D8DCE5", text: "#8B93A8", bg: "transparent"  },
-  "in-progress":  { label: "In progress", bar: "#4A7BB5", text: "#4A7BB5", bg: "#EEF4FB"     },
-  "review":       { label: "Review",      bar: "#F4A428", text: "#B07020", bg: "#FEF5E8"     },
-  "done":         { label: "Done",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"     },
-  "blocked":      { label: "Blocked",     bar: "#C05040", text: "#8A3828", bg: "#FCEAE6"     },
-  "live":         { label: "Live",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"     },
+  "not-started": { label: "Not started", bar: "#D8DCE5", text: "#8B93A8", bg: "transparent" },
+  "in-progress":  { label: "In progress", bar: "#4A7BB5", text: "#4A7BB5", bg: "#EEF4FB"    },
+  "review":       { label: "Review",      bar: "#F4A428", text: "#B07020", bg: "#FEF5E8"    },
+  "done":         { label: "Done",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"    },
+  "blocked":      { label: "Blocked",     bar: "#C05040", text: "#8A3828", bg: "#FCEAE6"    },
+  "live":         { label: "Live",        bar: "#3E9E6A", text: "#2E8A5A", bg: "#E8F5EE"    },
 };
