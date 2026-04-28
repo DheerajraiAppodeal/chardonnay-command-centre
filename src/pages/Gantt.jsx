@@ -7,7 +7,7 @@ import { supabase, isConfigured } from "../lib/supabase.js";
 import { getOOOPeopleOnDate, getPublicHolidayOnDate } from "../teamAvailability.js";
 
 // ── Grid constants ────────────────────────────────────────────────────────────
-const DAY_W      = 38;
+const DAY_W      = 56;
 const WEEK_W     = DAY_W * 5;
 const LABEL_W    = 148;
 const TRACK_W    = 72;
@@ -31,6 +31,21 @@ const TODAY_STR = new Date().toISOString().slice(0,10);
 const TODAY_IDX = ALL_DAYS.findIndex(d => d.toISOString().slice(0,10) === TODAY_STR);
 const MON = ["Mon","Tue","Wed","Thu","Fri"];
 const MSHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+// ── Week-float ↔ calendar date helpers ───────────────────────────────────────
+function weekFloatToDate(wf) {
+  const idx = Math.max(0, Math.min(Math.round(wf * 5), ALL_DAYS.length - 1));
+  return ALL_DAYS[idx]?.toISOString().slice(0, 10) ?? '';
+}
+function dateToWeekFloat(dateStr) {
+  const exact = ALL_DAYS.findIndex(d => d.toISOString().slice(0, 10) === dateStr);
+  if (exact >= 0) return exact / 5;
+  // Nearest working day (handles weekends / out-of-range)
+  const target = new Date(dateStr + 'T00:00:00');
+  let nearest = 0, minDiff = Infinity;
+  ALL_DAYS.forEach((d, i) => { const diff = Math.abs(d - target); if (diff < minDiff) { minDiff = diff; nearest = i; } });
+  return nearest / 5;
+}
 
 // ── Discipline colours ────────────────────────────────────────────────────────
 const D = {
@@ -97,9 +112,11 @@ function EditPanel({ track, featureName, onUpdate, onClose, T }) {
   const [note, setNote]       = useState(track.note || "");
   const [people, setPeople]   = useState((track.people || []).join(", "));
   const [jira, setJira]       = useState((track.jira_tickets || []).join(", "));
+  const [wkStart, setWkStart] = useState(track.week_start ?? 0);
+  const [wkEnd, setWkEnd]     = useState(track.week_end ?? 1);
   const dirty = useRef(false);
 
-  // Debounced save
+  // Debounced save (status / note / people / jira)
   useEffect(() => {
     if (!dirty.current) return;
     const t = setTimeout(() => {
@@ -112,6 +129,21 @@ function EditPanel({ track, featureName, onUpdate, onClose, T }) {
     }, 600);
     return () => clearTimeout(t);
   }, [status, note, people, jira]);
+
+  // Immediate save for date changes
+  const handleStartDate = val => {
+    const wf = dateToWeekFloat(val);
+    setWkStart(wf);
+    const newEnd = Math.max(wf + 0.2, wkEnd);
+    setWkEnd(newEnd);
+    onUpdate(track.id, { week_start: wf, week_end: newEnd });
+  };
+  const handleEndDate = val => {
+    const wf = dateToWeekFloat(val);
+    const newEnd = Math.max(wkStart + 0.2, wf);
+    setWkEnd(newEnd);
+    onUpdate(track.id, { week_end: newEnd });
+  };
 
   const field = (label, el) => (
     <div style={{ marginBottom:14 }}>
@@ -138,6 +170,16 @@ function EditPanel({ track, featureName, onUpdate, onClose, T }) {
             {Object.entries(STATUS).map(([k,v]) => <option key={k} value={k}>{v.label}</option>)}
           </select>
         )}
+        <div style={{ display:"flex", gap:8, marginBottom:14 }}>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:10, fontWeight:700, color:T.faint, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:5 }}>Start</div>
+            <input type="date" value={weekFloatToDate(wkStart)} onChange={e => handleStartDate(e.target.value)} style={inputStyle} />
+          </div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:10, fontWeight:700, color:T.faint, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:5 }}>End</div>
+            <input type="date" value={weekFloatToDate(wkEnd)} onChange={e => handleEndDate(e.target.value)} style={inputStyle} />
+          </div>
+        </div>
         {field("People (comma-separated)",
           <input value={people} onChange={e=>{dirty.current=true;setPeople(e.target.value)}} style={inputStyle} placeholder="Toni, Víctor" />
         )}
@@ -175,14 +217,14 @@ function TrackBar({ track, editMode, onEdit, T }) {
     data: { type:"resize", trackId:track.id, weekStart:track.week_start, weekEnd:track.week_end },
   });
 
-  // Live snap-to-week preview during drag
-  const moveWeeks   = isMoving   ? Math.round((mT?.x || 0) / WEEK_W) : 0;
-  const resizeWeeks = isResizing ? Math.round((rT?.x || 0) / WEEK_W) : 0;
+  // Live snap-to-day preview during drag
+  const moveWeeks   = isMoving   ? Math.round((mT?.x || 0) / DAY_W) / 5 : 0;
+  const resizeWeeks = isResizing ? Math.round((rT?.x || 0) / DAY_W) / 5 : 0;
   const visStart    = Math.max(0, track.week_start + moveWeeks);
-  const visEnd      = Math.max(visStart + 1, track.week_end + moveWeeks + resizeWeeks);
+  const visEnd      = Math.max(visStart + 0.2, track.week_end + moveWeeks + resizeWeeks);
 
   const left  = visStart * WEEK_W;
-  const width = Math.max(WEEK_W, (visEnd - visStart) * WEEK_W);
+  const width = Math.max(DAY_W, (visEnd - visStart) * WEEK_W);
   const sc    = STATUS[track.status] || STATUS["not-started"];
 
   return (
@@ -204,6 +246,7 @@ function TrackBar({ track, editMode, onEdit, T }) {
     >
       <span style={{ flex:1, fontSize:9, color:"rgba(255,255,255,0.95)", fontWeight:700, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", padding:"0 8px" }}>
         {(track.people || []).join(" · ") || TRACK_LABELS[track.track]}
+        {width > 70 && <span style={{ fontWeight:400, opacity:0.75 }}> ({Math.round((visEnd - visStart) * 5)}d)</span>}
       </span>
       {track.updated_by && (
         <span style={{ fontSize:8, color:"rgba(255,255,255,0.65)", paddingRight:editMode ? 2 : 8, flexShrink:0 }}>
@@ -304,15 +347,16 @@ export default function GanttPage({ T }) {
   const handleDragEnd = useCallback(({ active, delta }) => {
     if (!active?.data?.current) return;
     const { type, trackId, weekStart, weekEnd } = active.data.current;
-    const weeksShifted = Math.round(delta.x / WEEK_W);
-    if (weeksShifted === 0) return;
+    const daysShifted = Math.round(delta.x / DAY_W);
+    if (daysShifted === 0) return;
+    const weeksShifted = daysShifted / 5;
 
     if (type === "move") {
       const newStart = Math.max(0, weekStart + weeksShifted);
       const dur = weekEnd - weekStart;
       updateTrack(trackId, { week_start: newStart, week_end: newStart + dur });
     } else if (type === "resize") {
-      const newEnd = Math.max(weekStart + 1, weekEnd + weeksShifted);
+      const newEnd = Math.max(weekStart + 0.2, weekEnd + weeksShifted);
       updateTrack(trackId, { week_end: newEnd });
     }
   }, [updateTrack]);
