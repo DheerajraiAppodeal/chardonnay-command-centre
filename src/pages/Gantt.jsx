@@ -206,7 +206,7 @@ function EditPanel({ track, featureName, onUpdate, onClose, T }) {
 }
 
 // ── TrackBar — draggable + resizable ─────────────────────────────────────────
-function TrackBar({ track, editMode, onEdit, T }) {
+function TrackBar({ track, editMode, onEdit, dayOOO, dayHoliday, T }) {
   // Move drag
   const { setNodeRef:mRef, attributes:mAttr, listeners:mList, transform:mT, isDragging:isMoving } = useDraggable({
     id: `move-${track.id}`,
@@ -230,6 +230,22 @@ function TrackBar({ track, editMode, onEdit, T }) {
   const width = Math.max(DAY_W, (visEnd - visStart) * WEEK_W);
   const sc    = STATUS[track.status] || STATUS["not-started"];
 
+  // OOO / holiday stripes — one per day inside the bar
+  const dayIdxStart = Math.round(visStart * 5);
+  const dayIdxEnd   = Math.round(visEnd * 5);
+  const stripes = [];
+  for (let i = dayIdxStart; i < dayIdxEnd; i++) {
+    const ooo     = dayOOO ? dayOOO(i) : [];
+    const hol     = dayHoliday ? dayHoliday(i) : null;
+    const hasOOO  = (track.people || []).some(p => ooo.includes(p));
+    if (hasOOO || hol) {
+      stripes.push({
+        relX: (i - dayIdxStart) * DAY_W,
+        type: hasOOO ? "ooo" : "holiday",
+      });
+    }
+  }
+
   return (
     <div
       ref={mRef}
@@ -237,7 +253,7 @@ function TrackBar({ track, editMode, onEdit, T }) {
       {...mList}
       style={{
         position:"absolute", left, width, height:ROW_H - 6, top:3,
-        background:sc.bar, borderRadius:5,
+        background:sc.bar, borderRadius:5, overflow:"hidden",
         display:"flex", alignItems:"center",
         cursor: editMode ? (isMoving ? "grabbing" : "grab") : "pointer",
         opacity: isMoving ? 0.75 : 1,
@@ -247,21 +263,26 @@ function TrackBar({ track, editMode, onEdit, T }) {
       }}
       onClick={e => { if (!isMoving && !isResizing) { e.stopPropagation(); onEdit(track); } }}
     >
-      <span style={{ flex:1, fontSize:9, color:"rgba(255,255,255,0.95)", fontWeight:700, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", padding:"0 8px" }}>
+      {/* OOO / holiday hatch stripes */}
+      {stripes.map(({ relX, type }) => (
+        <div key={relX} style={{
+          position:"absolute", left:relX, top:0, width:DAY_W, height:"100%", pointerEvents:"none",
+          background: type === "ooo"
+            ? "repeating-linear-gradient(45deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 3px, rgba(192,80,64,0.4) 3px, rgba(192,80,64,0.4) 6px)"
+            : "repeating-linear-gradient(45deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 3px, rgba(74,154,154,0.5) 3px, rgba(74,154,154,0.5) 6px)",
+        }} />
+      ))}
+      {/* Task owner label — never shows last editor */}
+      <span style={{ flex:1, fontSize:9, color:"rgba(255,255,255,0.95)", fontWeight:700, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", padding:"0 8px", position:"relative", zIndex:2 }}>
         {(track.people || []).join(" · ") || TRACK_LABELS[track.track]}
         {width > 70 && <span style={{ fontWeight:400, opacity:0.75 }}> ({Math.round((visEnd - visStart) * 5)}d)</span>}
       </span>
-      {track.updated_by && (
-        <span style={{ fontSize:8, color:"rgba(255,255,255,0.65)", paddingRight:editMode ? 2 : 8, flexShrink:0 }}>
-          {track.updated_by}
-        </span>
-      )}
       {editMode && (
         <div
           ref={rRef}
           {...rAttr}
           {...rList}
-          style={{ width:10, height:"100%", cursor:"col-resize", background:"rgba(0,0,0,0.18)", borderRadius:"0 5px 5px 0", flexShrink:0 }}
+          style={{ width:10, height:"100%", cursor:"col-resize", background:"rgba(0,0,0,0.18)", borderRadius:"0 5px 5px 0", flexShrink:0, position:"relative", zIndex:2 }}
           onClick={e => e.stopPropagation()}
         />
       )}
@@ -524,6 +545,8 @@ export default function GanttPage({ T }) {
                           track={track}
                           editMode={editMode}
                           onEdit={t => setEditTrack({ track:t, featureName:feat.name })}
+                          dayOOO={dayOOO}
+                          dayHoliday={dayHoliday}
                           T={T}
                         />
                       )}
@@ -603,14 +626,22 @@ export default function GanttPage({ T }) {
       </div>
 
       {/* OOO legend */}
-      <div style={{ display:"flex", gap:14, marginBottom:10, flexWrap:"wrap" }}>
+      <div style={{ display:"flex", gap:14, marginBottom:10, flexWrap:"wrap", alignItems:"center" }}>
         {[
-          { color:"#C05040", label:"OOO day" },
-          { color:"#4A9A9A", label:"Public holiday" },
-          { color:T.accent,  label:"Today" },
+          {
+            swatch: "repeating-linear-gradient(45deg, rgba(192,80,64,0.5) 0px, rgba(192,80,64,0.5) 3px, rgba(255,255,255,0.25) 3px, rgba(255,255,255,0.25) 6px)",
+            border: "#C05040", label: "Personal OOO on bar",
+          },
+          {
+            swatch: "repeating-linear-gradient(45deg, rgba(74,154,154,0.6) 0px, rgba(74,154,154,0.6) 3px, rgba(255,255,255,0.25) 3px, rgba(255,255,255,0.25) 6px)",
+            border: "#4A9A9A", label: "Public holiday on bar",
+          },
+          {
+            swatch: T.accent+"40", border: T.accent, label: "Today",
+          },
         ].map(x => (
           <div key={x.label} style={{ display:"flex", alignItems:"center", gap:5, fontSize:10, color:T.muted }}>
-            <div style={{ width:10, height:10, borderRadius:2, background:x.color+"40", border:`1px solid ${x.color}` }} />
+            <div style={{ width:14, height:10, borderRadius:2, background:x.swatch, border:`1px solid ${x.border}`, flexShrink:0 }} />
             {x.label}
           </div>
         ))}
