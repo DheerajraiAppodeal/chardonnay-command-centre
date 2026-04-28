@@ -2,6 +2,7 @@ import { useState, createContext, useContext } from "react";
 import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
 import RoadmapPage from './pages/Roadmap.jsx';
 import SprintProposalPage from './pages/SprintProposal.jsx';
+import GanttPage from './pages/Gantt.jsx';
 
 // ── Theme definitions ──────────────────────────────────────────────────────
 const LIGHT = {
@@ -819,6 +820,7 @@ const TABS = [
   { id:"solitaire",   label:"Solitaire"    },
   { id:"roadmap",     label:"Roadmap"      },
   { id:"sprint",      label:"Sprint"       },
+  { id:"gantt",       label:"Live Sprint"  },
   { id:"initiatives", label:"Initiatives"  },
   { id:"team",        label:"Team"         },
 ];
@@ -833,6 +835,7 @@ export default function App() {
     solitaire:   <SolitairePage />,
     roadmap:     <RoadmapPage T={T} />,
     sprint:      <SprintProposalPage T={T} />,
+    gantt:       <GanttPage T={T} />,
     initiatives: <InitiativesPage />,
     team:        <TeamPage />,
   };
