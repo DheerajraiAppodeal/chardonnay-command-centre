@@ -19,7 +19,7 @@ const TRACK_LABELS = { design:"Design", art:"Art", techArt:"Tech Art", dev:"Dev"
 const TEAM_MEMBERS = ["Didara","Srikanth","Toni","Víctor","Juan S","Juan Z","Yevhenii","Angel","Murat","Henrique","Guillem","Krish","Andreu","Dheeraj"];
 
 // ── Week 0 = Apr 21 2026 · generate working days ─────────────────────────────
-const W0 = new Date("2026-04-21T00:00:00");
+const W0 = new Date("2026-04-28T00:00:00");
 const ALL_DAYS = [];
 { let d = new Date(W0);
   while (ALL_DAYS.length < NUM_WEEKS * 5) {
