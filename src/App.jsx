@@ -1,8 +1,28 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, lazy, Suspense, Component } from "react";
 import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
 import RoadmapPage from './pages/Roadmap.jsx';
 import SprintProposalPage from './pages/SprintProposal.jsx';
-import GanttPage from './pages/Gantt.jsx';
+
+// Lazy-loaded — isolates Supabase + dnd-kit from the main bundle
+const GanttPage = lazy(() => import('./pages/Gantt.jsx'));
+
+// Error boundary — catches render errors in GanttPage without crashing the app
+class GanttErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(e) { return { error: e }; }
+  render() {
+    if (this.state.error) {
+      const T = this.props.T;
+      return (
+        <div style={{ padding:24, background:T?.surfaceAlt, borderRadius:12, textAlign:"center" }}>
+          <div style={{ fontSize:13, fontWeight:700, color:T?.text, marginBottom:6 }}>Live Sprint failed to load</div>
+          <div style={{ fontSize:11, color:T?.muted }}>{this.state.error.message}</div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // ── Theme definitions ──────────────────────────────────────────────────────
 const LIGHT = {
@@ -835,7 +855,7 @@ export default function App() {
     solitaire:   <SolitairePage />,
     roadmap:     <RoadmapPage T={T} />,
     sprint:      <SprintProposalPage T={T} />,
-    gantt:       <GanttPage T={T} />,
+    gantt:       <GanttErrorBoundary T={T}><Suspense fallback={<div style={{padding:40,textAlign:"center",color:T.muted,fontSize:13}}>Loading Live Sprint…</div>}><GanttPage T={T} /></Suspense></GanttErrorBoundary>,
     initiatives: <InitiativesPage />,
     team:        <TeamPage />,
   };
