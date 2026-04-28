@@ -5,7 +5,7 @@ const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
   || 'https://bbzhntajcxdgeskbmbzp.supabase.co'
 
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
-  || 'sb_publishable_yg4cwAEi_Rq9aqe9KJrhPQ_Cq7gkb3z'
+  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJiemhudGFqY3hkZ2Vza2JtYnpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczNTk5MjUsImV4cCI6MjA5MjkzNTkyNX0.4v_Uf8ypcyfAcb8zAhNZoWIMetvlnfHGgOQj9QkttOc'
 
 // Guard: validate before calling createClient — a bad value would throw
 const urlOk = typeof SUPABASE_URL === 'string' && SUPABASE_URL.startsWith('https://')
