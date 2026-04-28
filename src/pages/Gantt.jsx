@@ -22,7 +22,7 @@ const TEAM_MEMBERS = ["Didara","Srikanth","Toni","Víctor","Juan S","Juan Z","Ye
 const toYMD = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 
 // ── Week 0 = Mon Apr 27 2026 · generate working days ─────────────────────────
-const W0 = new Date("2026-04-27T00:00:00");
+const W0 = new Date(2026, 3, 27); // Month is 0-indexed: 3 = April. Always local time, no UTC shift.
 const ALL_DAYS = [];
 { let d = new Date(W0);
   while (ALL_DAYS.length < NUM_WEEKS * 5) {
