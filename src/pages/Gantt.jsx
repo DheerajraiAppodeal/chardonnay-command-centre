@@ -403,7 +403,7 @@ export default function GanttPage({ T }) {
               const day = ALL_DAYS[w * 5];
               return (
                 <div key={w} style={{ width:WEEK_W, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", borderRight:`1px solid ${T.panelBorder}` }}>
-                  <span style={{ fontSize:9, fontWeight:700, color:T.panelMuted, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+                  <span style={{ fontSize:9, fontWeight:700, color:T.topbarSub, textTransform:"uppercase", letterSpacing:"0.06em" }}>
                     {day ? `${MSHORT[day.getMonth()]} W${Math.ceil(day.getDate()/7)}` : `W${w+1}`}
                   </span>
                 </div>
@@ -428,10 +428,10 @@ export default function GanttPage({ T }) {
                   title={ooo.length ? `OOO: ${ooo.join(', ')}` : holiday?.name || ""}
                 >
                   <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:2 }}>
-                    <span style={{ fontSize:8, fontWeight: isToday ? 700 : 500, color: isToday ? T.accent : T.panelMuted, lineHeight:1, textTransform:"uppercase", letterSpacing:"0.05em" }}>
+                    <span style={{ fontSize:8, fontWeight: isToday ? 700 : 500, color: isToday ? T.accent : T.topbarSub, lineHeight:1, textTransform:"uppercase", letterSpacing:"0.05em" }}>
                       {MON[d.getDay() - 1]}
                     </span>
-                    <span style={{ fontSize:11, fontWeight: isToday ? 700 : 400, color: isToday ? T.accent : T.text, lineHeight:1 }}>
+                    <span style={{ fontSize:11, fontWeight: isToday ? 700 : 400, color: isToday ? T.accent : T.topbarTitle, lineHeight:1 }}>
                       {d.getDate()}
                     </span>
                   </div>
