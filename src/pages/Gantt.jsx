@@ -22,14 +22,14 @@ const TEAM_MEMBERS = ["Didara","Srikanth","Toni","Víctor","Juan S","Juan Z","Ye
 const toYMD = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 
 // ── Week 0 = Mon Apr 27 2026 · generate working days ─────────────────────────
-const W0 = new Date(2026, 3, 27); // Month is 0-indexed: 3 = April. Always local time, no UTC shift.
-const ALL_DAYS = [];
-{ let d = new Date(W0);
-  while (ALL_DAYS.length < NUM_WEEKS * 5) {
-    if (d.getDay() !== 0 && d.getDay() !== 6) ALL_DAYS.push(new Date(d));
-    d.setDate(d.getDate() + 1);
-  }
-}
+// Use new Date(y,m,d) — always local midnight, no UTC shift.
+// Generate days as explicit week×5+day offsets so weeks are ALWAYS Mon→Fri.
+const W0 = new Date(2026, 3, 27); // 3 = April (0-indexed). Apr 27 2026 = Monday.
+const ALL_DAYS = Array.from({ length: NUM_WEEKS * 5 }, (_, i) => {
+  const week = Math.floor(i / 5);
+  const day  = i % 5;                        // 0=Mon … 4=Fri
+  return new Date(W0.getFullYear(), W0.getMonth(), W0.getDate() + week * 7 + day);
+});
 const TODAY_STR = toYMD(new Date());
 const TODAY_IDX = ALL_DAYS.findIndex(d => toYMD(d) === TODAY_STR);
 const MON = ["Mon","Tue","Wed","Thu","Fri"];
