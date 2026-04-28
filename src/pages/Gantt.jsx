@@ -18,8 +18,11 @@ const TRACKS     = ["design","art","techArt","dev","qa"];
 const TRACK_LABELS = { design:"Design", art:"Art", techArt:"Tech Art", dev:"Dev", qa:"QA" };
 const TEAM_MEMBERS = ["Didara","Srikanth","Toni","Víctor","Juan S","Juan Z","Yevhenii","Angel","Murat","Henrique","Guillem","Krish","Andreu","Dheeraj"];
 
-// ── Week 0 = Apr 21 2026 · generate working days ─────────────────────────────
-const W0 = new Date("2026-04-28T00:00:00");
+// ── Local date helper — avoids UTC shift in UTC+ timezones (e.g. CEST) ───────
+const toYMD = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+
+// ── Week 0 = Mon Apr 27 2026 · generate working days ─────────────────────────
+const W0 = new Date("2026-04-27T00:00:00");
 const ALL_DAYS = [];
 { let d = new Date(W0);
   while (ALL_DAYS.length < NUM_WEEKS * 5) {
@@ -27,18 +30,18 @@ const ALL_DAYS = [];
     d.setDate(d.getDate() + 1);
   }
 }
-const TODAY_STR = new Date().toISOString().slice(0,10);
-const TODAY_IDX = ALL_DAYS.findIndex(d => d.toISOString().slice(0,10) === TODAY_STR);
+const TODAY_STR = toYMD(new Date());
+const TODAY_IDX = ALL_DAYS.findIndex(d => toYMD(d) === TODAY_STR);
 const MON = ["Mon","Tue","Wed","Thu","Fri"];
 const MSHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 // ── Week-float ↔ calendar date helpers ───────────────────────────────────────
 function weekFloatToDate(wf) {
   const idx = Math.max(0, Math.min(Math.round(wf * 5), ALL_DAYS.length - 1));
-  return ALL_DAYS[idx]?.toISOString().slice(0, 10) ?? '';
+  return ALL_DAYS[idx] ? toYMD(ALL_DAYS[idx]) : '';
 }
 function dateToWeekFloat(dateStr) {
-  const exact = ALL_DAYS.findIndex(d => d.toISOString().slice(0, 10) === dateStr);
+  const exact = ALL_DAYS.findIndex(d => toYMD(d) === dateStr);
   if (exact >= 0) return exact / 5;
   // Nearest working day (handles weekends / out-of-range)
   const target = new Date(dateStr + 'T00:00:00');
@@ -376,8 +379,8 @@ export default function GanttPage({ T }) {
   }, new Map());
 
   // ── OOO / holiday helpers ─────────────────────────────────────────────────
-  const dayOOO  = idx => idx >= 0 && idx < ALL_DAYS.length ? getOOOPeopleOnDate(ALL_DAYS[idx].toISOString().slice(0,10)) : [];
-  const dayHoliday = idx => idx >= 0 && idx < ALL_DAYS.length ? getPublicHolidayOnDate(ALL_DAYS[idx].toISOString().slice(0,10)) : null;
+  const dayOOO  = idx => idx >= 0 && idx < ALL_DAYS.length ? getOOOPeopleOnDate(toYMD(ALL_DAYS[idx])) : [];
+  const dayHoliday = idx => idx >= 0 && idx < ALL_DAYS.length ? getPublicHolidayOnDate(toYMD(ALL_DAYS[idx])) : null;
 
   // ── Render helpers ────────────────────────────────────────────────────────
   const gridW = NUM_WEEKS * WEEK_W;
