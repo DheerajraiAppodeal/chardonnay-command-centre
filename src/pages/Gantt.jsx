@@ -12,7 +12,7 @@ const WEEK_W     = DAY_W * 5;
 const LABEL_W    = 148;
 const TRACK_W    = 72;
 const ROW_H      = 34;
-const HDR_H      = 48; // two-line header (week + day)
+const HDR_H      = 58; // three-line header (week + day name + date number)
 const NUM_WEEKS  = 10;
 const TRACKS     = ["design","art","techArt","dev","qa"];
 const TRACK_LABELS = { design:"Design", art:"Art", techArt:"Tech Art", dev:"Dev", qa:"QA" };
@@ -427,9 +427,14 @@ export default function GanttPage({ T }) {
                   }}
                   title={ooo.length ? `OOO: ${ooo.join(', ')}` : holiday?.name || ""}
                 >
-                  <span style={{ fontSize:9, fontWeight: isToday ? 700 : 400, color: isToday ? T.accent : T.panelMuted }}>
-                    {MON[d.getDay() - 1]}
-                  </span>
+                  <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:2 }}>
+                    <span style={{ fontSize:8, fontWeight: isToday ? 700 : 500, color: isToday ? T.accent : T.panelMuted, lineHeight:1, textTransform:"uppercase", letterSpacing:"0.05em" }}>
+                      {MON[d.getDay() - 1]}
+                    </span>
+                    <span style={{ fontSize:11, fontWeight: isToday ? 700 : 400, color: isToday ? T.accent : T.text, lineHeight:1 }}>
+                      {d.getDate()}
+                    </span>
+                  </div>
                   {isToday && (
                     <div style={{ position:"absolute", bottom:-1, width:2, height:2, background:T.accent, borderRadius:2 }} />
                   )}
