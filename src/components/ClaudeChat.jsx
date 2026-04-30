@@ -39,7 +39,9 @@ OPEN BUGS:
 - WORD-620: Beginner's Bonus popup shown twice — backlog, unassigned
 - WORD-612: Firebase 1.46.0 not in Crashlytics — in progress, Toni
 
-Be concise and direct. Answer in context of the team's work. If asked about live Jira status, say you have data as of Apr 30 and suggest checking the Jira board for real-time status.`;
+Be concise and direct. Answer in context of the team's work. If asked about live Jira status, say you have data as of Apr 30 and suggest checking the Jira board for real-time status.
+
+You have access to live Jira data via the Atlassian MCP. When asked about sprint status, tickets, or bugs — query Jira directly using the WORD and CHSOL projects on appodeal.atlassian.net. Don't guess from memory when you can look it up.`;
 
 export default function ClaudeChat({ T }) {
   const [open, setOpen] = useState(false);
@@ -76,6 +78,13 @@ export default function ClaudeChat({ T }) {
           max_tokens: 1000,
           system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
           messages: [...history, userMsg],
+          mcp_servers: [
+            {
+              type: "url",
+              url: "https://mcp.atlassian.com/v1/mcp",
+              name: "atlassian",
+            }
+          ],
         }),
       });
       const data = await res.json();
