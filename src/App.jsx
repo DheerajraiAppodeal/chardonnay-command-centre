@@ -1,6 +1,5 @@
 import { useState, createContext, useContext, lazy, Suspense, Component } from "react";
 import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
-import RoadmapPage from './pages/Roadmap.jsx';
 import { FEATURE_ROADMAP } from './roadmapData.js';
 import SprintProposalPage from './pages/SprintProposal.jsx';
 import AIHubPage from './pages/AIHub.jsx';
@@ -942,7 +941,6 @@ const TABS = [
   { id:"overview",    label:"Overview"     },
   { id:"wordmaker",   label:"Word Maker"   },
   { id:"solitaire",   label:"Solitaire"    },
-  { id:"roadmap",     label:"Roadmap"      },
   { id:"sprint",      label:"Sprint"       },
   { id:"gantt",       label:"Live Sprint"  },
   { id:"ai",          label:"AI Guide"     },
@@ -958,7 +956,6 @@ export default function App() {
     overview:    <OverviewPage />,
     wordmaker:   <WordMakerPage />,
     solitaire:   <SolitairePage />,
-    roadmap:     <RoadmapPage T={T} />,
     sprint:      <SprintProposalPage T={T} />,
     gantt:       <GanttErrorBoundary T={T}><Suspense fallback={<div style={{padding:40,textAlign:"center",color:T.muted,fontSize:13}}>Loading Live Sprint…</div>}><GanttPage T={T} /></Suspense></GanttErrorBoundary>,
     ai:          <AIHubPage T={T} />,
