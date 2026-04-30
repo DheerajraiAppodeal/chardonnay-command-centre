@@ -988,6 +988,25 @@ export default function App() {
               ))}
             </div>
             <div style={{ marginLeft:"auto", display:"flex", alignItems:"center", gap:12 }}>
+              <a
+                href="https://script.google.com/a/macros/appodeal.com/s/AKfycbwfQ40J8ZZfA2ZyIv-s11O8IiZMl0mHf4rpFZjHdHmoOSOlNRz4uxGJuabMvnktJVLZ/exec"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display:"flex", alignItems:"center", gap:5,
+                  padding:"5px 12px", borderRadius:8, fontSize:12, fontWeight:700,
+                  color: T.topbarSub, background:"transparent",
+                  border:`1px solid ${T.topbarBorder}`,
+                  textDecoration:"none", transition:"all 0.15s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = T.accent; e.currentTarget.style.borderColor = T.accent; }}
+                onMouseLeave={e => { e.currentTarget.style.color = T.topbarSub; e.currentTarget.style.borderColor = T.topbarBorder; }}
+              >
+                QA Dashboard
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
               <span style={{ fontSize:11, color:T.topbarSub }}>{LAST_UPDATED} · v1.6</span>
               <ThemeToggle isDark={isDark} onToggle={() => setDark(d => !d)} />
             </div>
