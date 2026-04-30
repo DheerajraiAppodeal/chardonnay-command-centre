@@ -3,7 +3,7 @@
 
 export default function AIHub({ T }) {
   const s = {
-    page: { padding: '32px 28px 80px', maxWidth: 960, margin: '0 auto', fontFamily: 'inherit' },
+    page: { padding: '32px 28px 80px', width: '100%', fontFamily: 'inherit' },
     hero: { marginBottom: 36 },
     heroTitle: { fontSize: 28, fontWeight: 700, color: T?.text || '#1E2530', marginBottom: 6, letterSpacing: '-0.02em' },
     heroSub: { fontSize: 13, color: T?.muted || '#5A6172', maxWidth: 620, lineHeight: 1.6 },

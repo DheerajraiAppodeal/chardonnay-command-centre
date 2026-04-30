@@ -1,8 +1,10 @@
 import { useState, createContext, useContext, lazy, Suspense, Component } from "react";
 import { LAST_UPDATED, GAME_STATS, UNASSIGNED_HIGH_BUGS, SOL_ACTIVE, SOL_CRASHES, WM_ACTIVE } from './gameData.js';
 import RoadmapPage from './pages/Roadmap.jsx';
+import { FEATURE_ROADMAP } from './roadmapData.js';
 import SprintProposalPage from './pages/SprintProposal.jsx';
 import AIHubPage from './pages/AIHub.jsx';
+import ClaudeChat from './components/ClaudeChat.jsx';
 
 // Lazy-loaded — isolates Supabase + dnd-kit from the main bundle
 const GanttPage = lazy(() => import('./pages/Gantt.jsx'));
@@ -376,6 +378,38 @@ function OverviewPage() {
 
 function WordMakerPage() {
   const T = useT();
+  const ROADMAP_W0  = new Date(2026, 3, 21);
+  const wmFeats     = FEATURE_ROADMAP.wm;
+  const qaInProg    = wmFeats.filter(f => f.tracks.qa?.status === "in-progress");
+  const devInProg   = wmFeats.filter(f => ["in-progress","review"].includes(f.tracks.dev?.status));
+  const nonLive     = wmFeats.filter(f => f.status !== "live").sort((a,b) => a.weekStart - b.weekStart);
+  const nextFeat    = nonLive[0];
+  const wkDate      = (wk, dayOff = 4) => { const d = new Date(ROADMAP_W0); d.setDate(d.getDate() + wk*7 + dayOff); return d; };
+  const fmtDate     = d => `${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()]} ${d.getDate()}`;
+  const nextRelDate = nextFeat ? wkDate(nextFeat.tracks.qa?.weekEnd ?? nextFeat.weekStart + 1, 4) : null;
+  const toYMDL      = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  const todayD      = new Date();
+  const todayYMD    = toYMDL(todayD);
+  const monOff      = (todayD.getDay() + 6) % 7;
+  const weekMon     = new Date(todayD); weekMon.setDate(todayD.getDate() - monOff);
+  const weekDays    = Array.from({length:5}, (_,i) => { const d=new Date(weekMon); d.setDate(weekMon.getDate()+i); return d; });
+  const relCards    = nonLive.slice(0, 4);
+  const cardColor   = st => ({ live:T.ok, "in-progress":T.accent, planned:T.border }[st] || T.border);
+  const qaCountdown = f => {
+    const qa = f.tracks.qa; if (!qa) return null;
+    if (qa.status === "done") return "Sign-off complete ✓";
+    if (qa.status === "in-progress") return "QA in progress";
+    const diffD = Math.ceil((wkDate(qa.weekStart,0) - todayD) / 86400000);
+    return diffD <= 0 ? "QA in progress" : `QA starts in ${diffD}d`;
+  };
+  const dayDots = d => {
+    const wkIdx = (d - ROADMAP_W0) / (7 * 86400000);
+    return wmFeats.filter(f => {
+      if (f.status === "live") return false;
+      const trks = Object.values(f.tracks);
+      return wkIdx >= Math.min(...trks.map(t=>t.weekStart)) && wkIdx <= Math.max(...trks.map(t=>t.weekEnd));
+    });
+  };
   return (
     <div style={{ display:"grid", gap:16 }}>
       <DarkPanel style={{ display:"flex", alignItems:"center", gap:14 }}>
@@ -389,6 +423,75 @@ function WordMakerPage() {
           <Badge label="Q2 experiment programme" bg={T.navActiveBg} text={T.accent} />
         </div>
       </DarkPanel>
+
+      {/* A. Stats row — QA / Dev in progress + next release */}
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12 }}>
+        {[
+          { label:"QA IN PROGRESS",  value: qaInProg.length,  items: qaInProg.map(f=>`• ${f.version} ${f.name}`),  color: T.ok     },
+          { label:"DEV IN PROGRESS", value: devInProg.length, items: devInProg.map(f=>`• ${f.version} ${f.name}`), color: T.accent },
+          { label:"NEXT RELEASE",    value: nextRelDate ? fmtDate(nextRelDate) : "TBD", items: nextFeat ? [`• ${nextFeat.version} ${nextFeat.name}`] : [], color: T.wm },
+        ].map(s => (
+          <div key={s.label} style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"14px 16px", borderTop:`3px solid ${s.color}`, transition:"background 0.25s" }}>
+            <div style={{ fontSize:10, fontWeight:700, color:T.muted, textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:6 }}>{s.label}</div>
+            <div style={{ fontSize:26, fontWeight:700, color:s.color, lineHeight:1.1, marginBottom:6 }}>{s.value}</div>
+            {s.items.map((item,i) => <div key={i} style={{ fontSize:11, color:T.faint }}>{item}</div>)}
+          </div>
+        ))}
+      </div>
+
+      {/* B. This Week strip — Mon–Fri with active release dots */}
+      <div style={{ background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"12px 16px", transition:"background 0.25s" }}>
+        <div style={{ fontSize:10, fontWeight:700, color:T.muted, textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:10 }}>This Week</div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:8 }}>
+          {weekDays.map((d,i) => {
+            const isToday = toYMDL(d) === todayYMD;
+            const dots = dayDots(d);
+            return (
+              <div key={i} style={{
+                background: isToday ? T.accent+"20" : T.surfaceAlt,
+                borderRadius:8, padding:"8px 10px",
+                border: isToday ? `1px solid ${T.accent}` : `1px solid ${T.border}`,
+                minHeight:64,
+              }}>
+                <div style={{ fontSize:9, fontWeight:700, color:isToday?T.accent:T.muted, textTransform:"uppercase", marginBottom:2 }}>{["Mon","Tue","Wed","Thu","Fri"][i]}</div>
+                <div style={{ fontSize:16, fontWeight:700, color:isToday?T.accent:T.text, marginBottom:6 }}>{d.getDate()}</div>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
+                  {dots.length > 0
+                    ? dots.map((f,j) => <div key={j} title={`${f.version} ${f.name}`} style={{ width:8, height:8, borderRadius:"50%", background:f.status==="in-progress"?T.accent:T.wm }} />)
+                    : <div style={{ fontSize:9, color:T.faint }}>—</div>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* C. Upcoming release cards — horizontal scroll */}
+      <div>
+        <div style={{ fontSize:10, fontWeight:700, color:T.muted, textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:10 }}>Upcoming Releases</div>
+        <div style={{ display:"flex", gap:12, overflowX:"auto", paddingBottom:8 }}>
+          {relCards.map(f => {
+            const allTrk = Object.values(f.tracks);
+            const startDate = wkDate(Math.min(...allTrk.map(t=>t.weekStart)), 0);
+            const endDate   = wkDate(Math.max(...allTrk.map(t=>t.weekEnd)), 4);
+            const col = cardColor(f.status);
+            return (
+              <div key={f.id} style={{ flexShrink:0, width:220, background:T.surface, border:`1px solid ${T.border}`, borderRadius:12, padding:"14px 16px", borderLeft:`4px solid ${col}`, transition:"background 0.25s" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:8 }}>
+                  <div style={{ width:8, height:8, borderRadius:"50%", background:col }} />
+                  <span style={{ fontSize:13, fontWeight:700, color:T.text }}>{f.version}</span>
+                  <span style={{ fontSize:10, background:T.navActiveBg, color:T.accent, borderRadius:4, padding:"1px 6px", fontWeight:700 }}>Android</span>
+                </div>
+                <div style={{ fontSize:11, color:T.muted, marginBottom:2 }}>{f.name}</div>
+                {f.subtitle && <div style={{ fontSize:10, color:T.faint, marginBottom:6 }}>{f.subtitle}</div>}
+                <div style={{ fontSize:10, color:T.faint, marginBottom:6 }}>{fmtDate(startDate)} → {fmtDate(endDate)}</div>
+                <div style={{ fontSize:10, fontWeight:700, color:col }}>{qaCountdown(f)}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
         {[
           { v:"–4% vs baseline", l:"D3 retention",  s:"On track → target +20%", ck:"ok" },
@@ -890,7 +993,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <div style={{ padding:"24px 28px", maxWidth:1120, margin:"0 auto" }}>
+        <div style={{ padding:"24px 28px", width:"100%" }}>
           <div style={{ display:"flex", gap:16, marginBottom:22, flexWrap:"wrap", alignItems:"center" }}>
             {[{c:T.wm,l:"Word Maker"},{c:T.sol,l:"Solitaire"},{c:"#C27A3A",l:"MetaPlay (initiative)"}].map(x => (
               <div key={x.l} style={{ display:"flex", alignItems:"center", gap:6, fontSize:11, color:T.muted }}>
@@ -902,6 +1005,7 @@ export default function App() {
           {pages[tab]}
         </div>
       </div>
+      <ClaudeChat T={T} />
     </ThemeCtx.Provider>
   );
 }

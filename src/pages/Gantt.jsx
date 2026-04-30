@@ -300,6 +300,8 @@ export default function GanttPage({ T }) {
   const [currentUser, setUser]    = useState(storedUser);
   const [showModal, setShowModal] = useState(!storedUser());
   const [editTrack, setEditTrack] = useState(null);   // { track, featureName }
+  const [trackFilter, setTrackFilter] = useState('all');
+  const [ganttView,   setGanttView]   = useState('track'); // 'track' | 'release'
   const subRef                    = useRef(null);
 
   // ── Load from Supabase ───────────────────────────────────────────────────
@@ -468,6 +470,64 @@ export default function GanttPage({ T }) {
     );
   }
 
+  // ── Release View row — one bar per version ───────────────────────────────
+  function ReleaseViewRow({ version, feats }) {
+    const [hovered, setHovered] = useState(null);
+    const allTracks = feats.flatMap(f => (f.sprint_tracks || []).map(t => ({ ...t, featureName: f.name })));
+    if (!allTracks.length) return null;
+    const minStart = Math.min(...allTracks.map(t => t.week_start ?? 0));
+    const maxEnd   = Math.max(...allTracks.map(t => t.week_end   ?? 0));
+    const barLeft  = minStart * WEEK_W;
+    const barW     = Math.max((maxEnd - minStart) * WEEK_W, DAY_W);
+    const statusColor = FEAT_STATUS[feats[0]?.status] || T.faint;
+
+    return (
+      <div style={{ display:"flex", borderBottom:`1px solid ${T.border}` }}>
+        {/* Version label */}
+        <div style={{ width:LABEL_W + TRACK_W, flexShrink:0, position:"sticky", left:0, zIndex:3, background:T.surfaceAlt, borderRight:`1px solid ${T.border}`, display:"flex", alignItems:"center", padding:"0 10px 0 14px", gap:8, height:ROW_H }}>
+          <div style={{ width:8, height:8, borderRadius:"50%", background:statusColor, flexShrink:0 }} />
+          <span style={{ fontSize:12, fontWeight:700, color:T.text }}>{version}</span>
+        </div>
+        {/* Bar area */}
+        <div style={{ position:"relative", width:gridW, height:ROW_H, flexShrink:0 }}>
+          {ALL_DAYS.map((_,i) => {
+            const bg = i === TODAY_IDX ? T.accent+"12" : "transparent";
+            return <div key={i} style={{ position:"absolute", left:i*DAY_W, top:0, width:DAY_W, height:"100%", background:bg, borderRight:`1px solid ${T.border+"44"}` }} />;
+          })}
+          {TODAY_IDX >= 0 && (
+            <div style={{ position:"absolute", left: TODAY_IDX*DAY_W+DAY_W/2-1, top:0, width:2, height:"100%", background:T.accent+"60", zIndex:1 }} />
+          )}
+          {/* Composite bar */}
+          <div style={{ position:"absolute", left:barLeft, top:6, width:barW, height:ROW_H-12, borderRadius:6, overflow:"hidden", zIndex:2 }}>
+            {allTracks.sort((a,b)=>(a.week_start??0)-(b.week_start??0)).map((t,i) => {
+              const segLeft = ((t.week_start??0) - minStart) * WEEK_W;
+              const segW    = Math.max(((t.week_end??0) - (t.week_start??0)) * WEEK_W, 4);
+              const dc = D[t.track] || { bg:"#888" };
+              const isActive = trackFilter === t.track;
+              const dim = trackFilter !== 'all' && !isActive;
+              return (
+                <div
+                  key={i}
+                  style={{ position:"absolute", left:segLeft, top:0, width:segW, height:"100%", background:dc.bg, opacity: dim ? 0.2 : 0.85, cursor:"default", transition:"opacity 0.15s" }}
+                  onMouseEnter={() => setHovered(t)}
+                  onMouseLeave={() => setHovered(null)}
+                />
+              );
+            })}
+          </div>
+          {/* Tooltip */}
+          {hovered && (
+            <div style={{ position:"absolute", left: Math.min((hovered.week_start??0)*WEEK_W, gridW-200), top:-74, zIndex:10, background:T.topbar, color:T.panelText, borderRadius:8, padding:"8px 12px", fontSize:11, lineHeight:1.6, pointerEvents:"none", whiteSpace:"nowrap", boxShadow:"0 4px 12px rgba(0,0,0,0.3)" }}>
+              <div style={{ fontWeight:700 }}>{TRACK_LABELS[hovered.track]} — {hovered.status}</div>
+              <div style={{ color:T.panelMuted }}>{hovered.featureName}</div>
+              {hovered.people?.length > 0 && <div style={{ color:T.panelMuted }}>{hovered.people.join(", ")}</div>}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   // Version group
   function VersionGroup({ version, feats }) {
     const minWeek = Math.min(...feats.map(f => f.sprint_week_start ?? 0));
@@ -501,16 +561,17 @@ export default function GanttPage({ T }) {
           return (
             <div key={feat.id}>
               {TRACKS.map((tk, ti) => {
+                if (trackFilter !== 'all' && tk !== trackFilter) return null;
                 const track = trkMap[tk];
                 const dc = D[tk];
-                const isFirstTrack = ti === 0;
+                const isFirstTrack = trackFilter === 'all' ? ti === 0 : true;
 
                 return (
                   <div key={tk} style={{ display:"flex", borderTop:`1px solid ${T.border}` }}>
                     {/* Labels */}
                     <div style={{ width:LABEL_W + TRACK_W, flexShrink:0, position:"sticky", left:0, zIndex:3, background:T.surface, borderRight:`1px solid ${T.border}`, display:"flex", alignItems:"stretch" }}>
                       {/* Feature name (only on first track row) */}
-                      <div style={{ width:LABEL_W, flexShrink:0, borderRight:`1px solid ${T.border}`, display:"flex", alignItems:"center", padding:"0 10px 0 14px", background: isFirstTrack ? T.surface : T.surface }}>
+                      <div style={{ width:LABEL_W, flexShrink:0, borderRight:`1px solid ${T.border}`, display:"flex", alignItems:"center", padding:"0 10px 0 14px", background:T.surface }}>
                         {isFirstTrack && (
                           <div style={{ overflow:"hidden" }}>
                             <div style={{ fontSize:11, fontWeight:700, color:T.text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{feat.name}</div>
@@ -521,7 +582,7 @@ export default function GanttPage({ T }) {
                       {/* Track label */}
                       <div style={{ width:TRACK_W, flexShrink:0, display:"flex", alignItems:"center", padding:"0 8px", gap:5 }}>
                         <div style={{ width:6, height:6, borderRadius:"50%", background:dc.bg, flexShrink:0 }} />
-                        <span style={{ fontSize:9, fontWeight:700, color:dc.text, textTransform:"uppercase", letterSpacing:"0.06em" }}>{TRACK_LABELS[tk]}</span>
+                        <span style={{ fontSize: trackFilter === tk ? 10 : 9, fontWeight:700, color: trackFilter === tk ? dc.bg : dc.text, textTransform:"uppercase", letterSpacing:"0.06em" }}>{TRACK_LABELS[tk]}</span>
                       </div>
                     </div>
 
@@ -598,6 +659,38 @@ export default function GanttPage({ T }) {
           ))}
         </div>
 
+        {/* View toggle — Track View / Release View */}
+        <div style={{ display:"flex", gap:4 }}>
+          {[["track","Track View"],["release","Release View"]].map(([id,label]) => (
+            <button key={id} onClick={() => setGanttView(id)} style={{
+              padding:"5px 14px", fontSize:11, fontWeight:700, borderRadius:99, cursor:"pointer",
+              border:`1.5px solid ${ganttView===id ? T.accent : T.border}`,
+              background: ganttView===id ? T.navActiveBg : T.surface,
+              color: ganttView===id ? T.accent : T.muted, transition:"all 0.15s",
+            }}>{label}</button>
+          ))}
+        </div>
+
+        {/* Track filter */}
+        <select
+          value={trackFilter}
+          onChange={e => setTrackFilter(e.target.value)}
+          style={{
+            padding:"5px 10px", fontSize:11, fontWeight:700, borderRadius:99, cursor:"pointer",
+            border:`1.5px solid ${trackFilter !== 'all' ? T.accent : T.border}`,
+            background: trackFilter !== 'all' ? T.navActiveBg : T.surface,
+            color: trackFilter !== 'all' ? T.accent : T.muted,
+            outline:"none", appearance:"none", WebkitAppearance:"none",
+          }}
+        >
+          <option value="all">All Tracks</option>
+          <option value="design">Design</option>
+          <option value="art">Art</option>
+          <option value="techArt">Tech Art</option>
+          <option value="dev">Dev</option>
+          <option value="qa">QA</option>
+        </select>
+
         {/* Live indicator */}
         <div style={{ display:"flex", alignItems:"center", gap:5, fontSize:10, color:T.ok }}>
           <div style={{ width:6, height:6, borderRadius:"50%", background:T.ok }} />
@@ -670,7 +763,9 @@ export default function GanttPage({ T }) {
             {/* Version groups */}
             <div>
               {[...versionGroups.entries()].map(([version, feats]) => (
-                <VersionGroup key={version} version={version} feats={feats} />
+                ganttView === 'release'
+                  ? <ReleaseViewRow key={version} version={version} feats={feats} />
+                  : <VersionGroup   key={version} version={version} feats={feats} />
               ))}
             </div>
           </DndContext>
