@@ -1,9 +1,15 @@
-// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-04T08:06:03.618Z
-export const LAST_UPDATED     = "Mon, 04 May 2026 08:06:03";
-export const LAST_UPDATED_ISO = "2026-05-04T08:06:03.618Z";
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-04T08:36:21.437Z
+export const LAST_UPDATED     = "Mon, 04 May 2026 08:36:21";
+export const LAST_UPDATED_ISO = "2026-05-04T08:36:21.437Z";
 export const GAME_STATS = {"wm":{"activeIssues":50,"readyForQA":13},"sol":{"activeIssues":50,"readyForQA":20}};
 export const UNASSIGNED_HIGH_BUGS = [];
 export const SOL_ACTIVE  = [
+  {
+    "key": "CHSOL-1449",
+    "summary": "Magic Wand power boost on 10-win streak (configurable duration)",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
   {
     "key": "CHSOL-1448",
     "summary": "Integrate haptic feedback package into the game",
@@ -177,16 +183,16 @@ export const SOL_ACTIVE  = [
     "summary": "[Dev] Create half solved levels",
     "assignee": "Murat",
     "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1198",
-    "summary": "Journey mode crash: QuickPlay/AutoComplete not stopped at move limit causes StackOverflow",
-    "assignee": "Yevhenii",
-    "status": "In QA"
   }
 ];
 export const SOL_CRASHES = [];
 export const WM_ACTIVE   = [
+  {
+    "key": "WORD-628",
+    "summary": "[ART] Check different widget sizes.",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
   {
     "key": "WORD-627",
     "summary": "Create a popup manager for wordmaker",
@@ -360,11 +366,5 @@ export const WM_ACTIVE   = [
     "summary": "Puzzle Currency Storage",
     "assignee": "Toni",
     "status": "In Progress"
-  },
-  {
-    "key": "WORD-604",
-    "summary": "[TA] Implementation and animations of Word Master feature",
-    "assignee": "Juan",
-    "status": "Backlog"
   }
 ];
