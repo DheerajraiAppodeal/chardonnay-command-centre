@@ -8,7 +8,7 @@
       "port": 5173
     },
     {
-      "name": "Chardonnay Command Centre (preview build)",
+      "name": "Chardonnay Command Centre (preview)",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "preview"],
       "port": 4173
