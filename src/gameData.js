@@ -1,37 +1,181 @@
-// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-04T08:36:21.437Z
-export const LAST_UPDATED     = "Mon, 04 May 2026 08:36:21";
-export const LAST_UPDATED_ISO = "2026-05-04T08:36:21.437Z";
-export const GAME_STATS = {"wm":{"activeIssues":50,"readyForQA":13},"sol":{"activeIssues":50,"readyForQA":20}};
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-05T08:18:18.598Z
+export const LAST_UPDATED     = "Tue, 05 May 2026 08:18:18";
+export const LAST_UPDATED_ISO = "2026-05-05T08:18:18.598Z";
+export const GAME_STATS = {"wm":{"activeIssues":50,"readyForQA":25},"sol":{"activeIssues":50,"readyForQA":21}};
 export const UNASSIGNED_HIGH_BUGS = [];
 export const SOL_ACTIVE  = [
   {
+    "key": "CHSOL-1468",
+    "summary": "[Sounds] Sounds for Magic wand 2x boost",
+    "assignee": "Henrique",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1250",
+    "summary": "[CODE] Booster purchase flow — buy boosters with coins",
+    "assignee": "Murat",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1454",
+    "summary": "[Dev] Perfect round 2x magic wand boost functionality",
+    "assignee": "Murat",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1473",
+    "summary": "[Analytics] Magic wand boost analytics",
+    "assignee": "Murat",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1453",
+    "summary": "Increase the size of the quests completed counter (x/y)",
+    "assignee": "Guillem",
+    "status": "Backlog"
+  },
+  {
     "key": "CHSOL-1449",
     "summary": "Magic Wand power boost on 10-win streak (configurable duration)",
+    "assignee": "Murat",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1483",
+    "summary": "Add 20 new pre-solved FTUE levels to FtueSequence",
+    "assignee": "Murat",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1115",
+    "summary": "[FTUE] Tutorial needs to be simplified",
+    "assignee": "Angel",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1480",
+    "summary": "[Design] New interstitial placements",
     "assignee": "Unassigned",
     "status": "Backlog"
   },
   {
-    "key": "CHSOL-1448",
-    "summary": "Integrate haptic feedback package into the game",
+    "key": "CHSOL-1482",
+    "summary": "Add new pre-solved levels to the game.",
+    "assignee": "Murat",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1485",
+    "summary": "[Design] Add more quest types for daily and weekly quests",
+    "assignee": "Srikanth",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1478",
+    "summary": "[Sounds] Avatar system sounds and haptics",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1477",
+    "summary": "[Tech Art] Avatar system asset integration",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1476",
+    "summary": "[Design] Avatar system functionality design",
+    "assignee": "Unassigned",
+    "status": "Review"
+  },
+  {
+    "key": "CHSOL-1475",
+    "summary": "[Dev] Avatar system functionality",
+    "assignee": "Angel",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1474",
+    "summary": "[Art+UX] Avatar icons inside profile page + UX flow",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1472",
+    "summary": "[Analytics] Gem merge event analytics",
+    "assignee": "Yevhenii",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1469",
+    "summary": "[Sounds] Gems merge event",
+    "assignee": "Henrique",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1467",
+    "summary": "[Tech Art] Integration of Magic wand boost assets in performance round functionality",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1464",
+    "summary": "[Art] New Journey seasons art",
+    "assignee": "Guillem",
+    "status": "To Do"
+  },
+  {
+    "key": "CHSOL-1463",
+    "summary": "[Design] Magic wand boost for perfect performance round",
+    "assignee": "Srikanth",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1462",
+    "summary": "[Tech Art] Gems merge event asset integration and optimization",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1461",
+    "summary": "[Art] Gems merge event art and animations",
+    "assignee": "Guillem",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1460",
+    "summary": "[UI/UX] Gems merge event UI/UX flow",
+    "assignee": "Guillem",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1459",
+    "summary": "[Dev] Gems merge event functionality implementation",
+    "assignee": "Yevhenii",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1458",
+    "summary": "[Design] Gems merge event design",
+    "assignee": "Srikanth",
+    "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1456",
+    "summary": "Daily and weekly tabs inside quests should be made bigger to divide the menu bar into 2 parts",
+    "assignee": "Guillem",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1452",
+    "summary": "Turn off \"need a hand\" pop up for being idle in the game. Instead play an interstitial ad",
     "assignee": "Yevhenii",
     "status": "In Progress"
   },
   {
-    "key": "CHSOL-1447",
-    "summary": "[Crashlytics: e87dae39a5b6e0fc877ec23b5c481d2c] [libwebviewchromium.so]",
-    "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1435",
-    "summary": "[IOS] Change purchase values",
-    "assignee": "Murat",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1359",
-    "summary": "[Crashlytics: 4bc227f4d9c452c932f435d2cf21dc21] NotificationDeliveryTracker.RecordDelivered",
-    "assignee": "Murat",
+    "key": "CHSOL-1451",
+    "summary": "Show Daily and Journey icons in menu UI for all game modes",
+    "assignee": "Henrique",
     "status": "Backlog"
   },
   {
@@ -39,183 +183,141 @@ export const SOL_ACTIVE  = [
     "summary": "[Dev] Create unity runtime tests for opening and closing popups fast",
     "assignee": "Angel",
     "status": "To Do"
-  },
-  {
-    "key": "CHSOL-1310",
-    "summary": "[Dev] Create coins statistics: lifetime earned, lifetime spent",
-    "assignee": "Angel",
-    "status": "To Do"
-  },
-  {
-    "key": "CHSOL-1399",
-    "summary": "[Dev] Create new products in store for coins and boosters with coins",
-    "assignee": "Angel",
-    "status": "Cancelled"
-  },
-  {
-    "key": "CHSOL-1351",
-    "summary": "[Dev] \"coins between cards\" add show hide animations + timing of showing hiding of cards",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1347",
-    "summary": "[Dev] \"coins between cards\" improve distribution of cards (currently coins go to the right side because there are more cards there)",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1344",
-    "summary": "[Dev] \"coins between cards\" shuffle and magic wand cases",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1389",
-    "summary": "[Dev] Update journey to use liveops config for backgrounds and title",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1386",
-    "summary": "[Dev] Update journey to use milestones from liveops",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1357",
-    "summary": "[Dev] Update journey to use live ops system",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1312",
-    "summary": "[Dev] Logic for \"coins behind cards\" (instantiating coin triggers when a card is moved).",
-    "assignee": "Angel",
-    "status": "On Hold"
-  },
-  {
-    "key": "CHSOL-1446",
-    "summary": "[Crashlytics: 8f0be5b432c60dfc5bf0164380f5b4d5] [libil2cpp.so]",
-    "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1445",
-    "summary": "[DAILY QUESTS] - Alert icon appears on the main menu widget without any milestone reached ",
-    "assignee": "Murat",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1443",
-    "summary": "[DAILY QUESTS] - Small yellow line out of place on daily quests progress bar",
-    "assignee": "Guillem",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1416",
-    "summary": "[Crashlytics: ac798d662c743bf745cb775c53420ffe] DailyChallengeUnlockedTrophyPopup.ShowFlyAnimation — NullReferenceException",
-    "assignee": "Yevhenii",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1394",
-    "summary": "Fix Left Hand mode issues",
-    "assignee": "Murat",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1361",
-    "summary": "[Crashlytics: 022be79d405085779bd24ff7c6653207] CardItem.GetChildCardsList",
-    "assignee": "Yevhenii",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1334",
-    "summary": "Bonus quest pool to firebase",
-    "assignee": "Murat",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1139",
-    "summary": "Discuss the journey notifications are needed or not",
-    "assignee": "Murat",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1116",
-    "summary": "Update Notification messages on the sheet",
-    "assignee": "Srikanth",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1040",
-    "summary": "[Sounds] Undo still uses the previous card movement sound",
-    "assignee": "Henrique",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-924",
-    "summary": "[Code]Reduce ADs failed events",
-    "assignee": "Yevhenii",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1149",
-    "summary": "Stop counting moves during autocomplete",
-    "assignee": "Yevhenii",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1233",
-    "summary": "Create new quest types --- Level up only",
-    "assignee": "Murat",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1358",
-    "summary": "[Code] Implement new quest popup design",
-    "assignee": "Murat",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "CHSOL-1331",
-    "summary": "[Dev] Create half solved levels",
-    "assignee": "Murat",
-    "status": "Ready for QA"
   }
 ];
 export const SOL_CRASHES = [];
 export const WM_ACTIVE   = [
   {
-    "key": "WORD-628",
-    "summary": "[ART] Check different widget sizes.",
-    "assignee": "Juan",
+    "key": "WORD-639",
+    "summary": "Word Maker widget should represent full process when reward is ready to collect  ",
+    "assignee": "Víctor",
     "status": "In Progress"
   },
   {
-    "key": "WORD-627",
-    "summary": "Create a popup manager for wordmaker",
+    "key": "WORD-637",
+    "summary": "[PUZZLE EVENT] - Event unlocks at a past level when updating from a previous version",
     "assignee": "Toni",
-    "status": "Selected for Development"
+    "status": "In Progress"
   },
   {
-    "key": "WORD-603",
-    "summary": "[Art] New Tutorial 3 steps",
-    "assignee": "Juan",
-    "status": "QA Verified"
+    "key": "WORD-638",
+    "summary": "[PUZZLE EVENT] - Event ended popup appears every time you go back to the lobby",
+    "assignee": "Toni",
+    "status": "Ready for QA"
   },
   {
-    "key": "WORD-624",
-    "summary": "[Art] Word Master Widget + popup",
-    "assignee": "Juan",
-    "status": "QA Verified"
+    "key": "WORD-486",
+    "summary": "sfx for Puzzle event ",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-515",
+    "summary": "Try Access Feature",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-513",
+    "summary": "Event Start Logic",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-520",
+    "summary": "[VIEW] Event Screen",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-511",
+    "summary": "Event Rewards Storage",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-514",
+    "summary": "Event End Logic",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-512",
+    "summary": "Puzzle Definition & Storage",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-510",
+    "summary": "Remove Puzzle Currency",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-521",
+    "summary": "[VIEW] Event Complete Popup",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-508",
+    "summary": "Puzzle Currency Storage",
+    "assignee": "Toni",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-509",
+    "summary": "Award Puzzle Currency on Level End",
+    "assignee": "Toni",
+    "status": "Ready for QA"
   },
   {
     "key": "WORD-612",
     "summary": "Firebase 1.46.0 (612) build is not appearing in Crashlytics ",
     "assignee": "Toni",
-    "status": "In Progress"
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-633",
+    "summary": "Jigsaw event FTUE: Hand pointer overlaps and cut off the tutorial text",
+    "assignee": "Toni",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-636",
+    "summary": "Jigsaw event icon remains in active state after event completion",
+    "assignee": "Juan",
+    "status": "Selected for Development"
+  },
+  {
+    "key": "WORD-635",
+    "summary": "Jigsaw event completion screen shows currency and lacks completion message",
+    "assignee": "Toni",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-630",
+    "summary": "[TA] Implement Album Event Visuals in Unity — Animation & VFX",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-632",
+    "summary": "Word Master popup: inconsistent icon styling and issue with text spacing/readability",
+    "assignee": "Juan",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-634",
+    "summary": "Jigsaw event: Multiple “not enough currency” messages stack on repeated taps",
+    "assignee": "Toni",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-631",
+    "summary": "Bug Title: Word Master notification pip (!) is lost with background",
+    "assignee": "Juan",
+    "status": "Backlog"
   },
   {
     "key": "WORD-625",
@@ -224,52 +326,10 @@ export const WM_ACTIVE   = [
     "status": "In Progress"
   },
   {
-    "key": "WORD-626",
-    "summary": "Album Event (Badges)",
-    "assignee": "Unassigned",
+    "key": "WORD-629",
+    "summary": "Home screen appears cluttered with multiple event icons on the Homescreen",
+    "assignee": "Juan",
     "status": "Backlog"
-  },
-  {
-    "key": "WORD-617",
-    "summary": "[ART] Concept and asset creation for Trivia Levels",
-    "assignee": "Juan",
-    "status": "Selected for Development"
-  },
-  {
-    "key": "WORD-486",
-    "summary": "sfx for Puzzle event ",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-521",
-    "summary": "[VIEW] Event Complete Popup",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-520",
-    "summary": "[VIEW] Event Screen",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-565",
-    "summary": "[TA] Implementation of Beginner's Bonus popup",
-    "assignee": "Juan",
-    "status": "QA Verified"
-  },
-  {
-    "key": "WORD-620",
-    "summary": "Beginner’s Bonus popup shown twice if accessed before Level 1 completion",
-    "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-547",
-    "summary": "[Art] Beginner’s Bonus Asset Creation & Implementation",
-    "assignee": "Juan",
-    "status": "QA Verified"
   },
   {
     "key": "WORD-619",
@@ -278,26 +338,8 @@ export const WM_ACTIVE   = [
     "status": "Backlog"
   },
   {
-    "key": "WORD-618",
-    "summary": "Trivia Levels",
-    "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-616",
-    "summary": "[EVENT] - Collectible event chest popup appears at the same time as the beginner event popup",
-    "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-608",
-    "summary": "[LOBBY POPUPS] - Input is enabled while a popup is opening",
-    "assignee": "Toni",
-    "status": "Selected for Development"
-  },
-  {
-    "key": "WORD-564",
-    "summary": "Localisation Beginner's Bonus",
+    "key": "WORD-485",
+    "summary": "Localisation for Puzzle event",
     "assignee": "Didara",
     "status": "Ready for QA"
   },
@@ -305,66 +347,24 @@ export const WM_ACTIVE   = [
     "key": "WORD-611",
     "summary": "Localisation for Word Master ",
     "assignee": "Didara",
-    "status": "QA Verified"
-  },
-  {
-    "key": "WORD-562",
-    "summary": "[DEV] Wire logic to the widget",
-    "assignee": "Toni",
     "status": "Ready for QA"
   },
   {
-    "key": "WORD-549",
-    "summary": "[DEV] Create feature flag for Beginner's Bonus",
-    "assignee": "Toni",
-    "status": "Ready for QA"
+    "key": "WORD-568",
+    "summary": "[DEV] Create Word Master feature flag",
+    "assignee": "Víctor",
+    "status": "Backlog"
   },
   {
-    "key": "WORD-514",
-    "summary": "Event End Logic",
-    "assignee": "Toni",
-    "status": "In Progress"
+    "key": "WORD-545",
+    "summary": "Word Master Event",
+    "assignee": "Unassigned",
+    "status": "Backlog"
   },
   {
-    "key": "WORD-515",
-    "summary": "Try Access Feature",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-513",
-    "summary": "Event Start Logic",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-511",
-    "summary": "Event Rewards Storage",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-512",
-    "summary": "Puzzle Definition & Storage",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-510",
-    "summary": "Remove Puzzle Currency",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-509",
-    "summary": "Award Puzzle Currency on Level End",
-    "assignee": "Toni",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-508",
-    "summary": "Puzzle Currency Storage",
-    "assignee": "Toni",
-    "status": "In Progress"
+    "key": "WORD-591",
+    "summary": "[DEV] Sync the widget timer with the popup timer",
+    "assignee": "Víctor",
+    "status": "Backlog"
   }
 ];
