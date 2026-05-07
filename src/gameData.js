@@ -1,32 +1,86 @@
-// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-05T08:18:18.598Z
-export const LAST_UPDATED     = "Tue, 05 May 2026 08:18:18";
-export const LAST_UPDATED_ISO = "2026-05-05T08:18:18.598Z";
-export const GAME_STATS = {"wm":{"activeIssues":50,"readyForQA":25},"sol":{"activeIssues":50,"readyForQA":21}};
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-05-07T08:41:06.593Z
+export const LAST_UPDATED     = "Thu, 07 May 2026 08:41:06";
+export const LAST_UPDATED_ISO = "2026-05-07T08:41:06.593Z";
+export const GAME_STATS = {"wm":{"activeIssues":50,"readyForQA":40},"sol":{"activeIssues":50,"readyForQA":23}};
 export const UNASSIGNED_HIGH_BUGS = [];
 export const SOL_ACTIVE  = [
   {
-    "key": "CHSOL-1468",
-    "summary": "[Sounds] Sounds for Magic wand 2x boost",
-    "assignee": "Henrique",
+    "key": "CHSOL-1490",
+    "summary": "[Dev] Option to configure the display of streak save pop up",
+    "assignee": "Yevhenii",
+    "status": "Backlog"
+  },
+  {
+    "key": "CHSOL-1489",
+    "summary": "Skin shop: coin spend flow + remote config pricing",
+    "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1302",
+    "summary": "[Dev] New store and IAPs implementation",
+    "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1475",
+    "summary": "[Dev] Avatar system functionality",
+    "assignee": "Angel",
     "status": "In Progress"
   },
   {
-    "key": "CHSOL-1250",
-    "summary": "[CODE] Booster purchase flow — buy boosters with coins",
+    "key": "CHSOL-1445",
+    "summary": "[DAILY QUESTS] - Alert icon appears on the main menu widget without any milestone reached ",
+    "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1488",
+    "summary": "Implement new quest task types: Coins, PerformanceRound, SuperWand",
     "assignee": "Murat",
     "status": "In Progress"
   },
   {
-    "key": "CHSOL-1454",
-    "summary": "[Dev] Perfect round 2x magic wand boost functionality",
+    "key": "CHSOL-1482",
+    "summary": "Add new pre-solved levels to the game.",
     "assignee": "Murat",
-    "status": "In Progress"
+    "status": "Ready for QA"
   },
   {
     "key": "CHSOL-1473",
     "summary": "[Analytics] Magic wand boost analytics",
     "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1454",
+    "summary": "[Dev] Perfect round 2x magic wand boost functionality",
+    "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1250",
+    "summary": "[CODE] Booster purchase flow — buy boosters with coins",
+    "assignee": "Murat",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "CHSOL-1468",
+    "summary": "[Sounds] Sounds for Magic wand 2x boost",
+    "assignee": "Henrique",
+    "status": "Review"
+  },
+  {
+    "key": "CHSOL-1459",
+    "summary": "[Dev] Gems merge event functionality implementation",
+    "assignee": "Yevhenii",
     "status": "In Progress"
+  },
+  {
+    "key": "CHSOL-1452",
+    "summary": "Turn off \"need a hand\" pop up for being idle in the game. Instead play an interstitial ad",
+    "assignee": "Yevhenii",
+    "status": "Review"
   },
   {
     "key": "CHSOL-1453",
@@ -35,33 +89,9 @@ export const SOL_ACTIVE  = [
     "status": "Backlog"
   },
   {
-    "key": "CHSOL-1449",
-    "summary": "Magic Wand power boost on 10-win streak (configurable duration)",
-    "assignee": "Murat",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1483",
-    "summary": "Add 20 new pre-solved FTUE levels to FtueSequence",
-    "assignee": "Murat",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1115",
-    "summary": "[FTUE] Tutorial needs to be simplified",
-    "assignee": "Angel",
-    "status": "In Progress"
-  },
-  {
     "key": "CHSOL-1480",
     "summary": "[Design] New interstitial placements",
     "assignee": "Unassigned",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1482",
-    "summary": "Add new pre-solved levels to the game.",
-    "assignee": "Murat",
     "status": "Backlog"
   },
   {
@@ -87,12 +117,6 @@ export const SOL_ACTIVE  = [
     "summary": "[Design] Avatar system functionality design",
     "assignee": "Unassigned",
     "status": "Review"
-  },
-  {
-    "key": "CHSOL-1475",
-    "summary": "[Dev] Avatar system functionality",
-    "assignee": "Angel",
-    "status": "Backlog"
   },
   {
     "key": "CHSOL-1474",
@@ -149,12 +173,6 @@ export const SOL_ACTIVE  = [
     "status": "Backlog"
   },
   {
-    "key": "CHSOL-1459",
-    "summary": "[Dev] Gems merge event functionality implementation",
-    "assignee": "Yevhenii",
-    "status": "Backlog"
-  },
-  {
     "key": "CHSOL-1458",
     "summary": "[Design] Gems merge event design",
     "assignee": "Srikanth",
@@ -165,69 +183,57 @@ export const SOL_ACTIVE  = [
     "summary": "Daily and weekly tabs inside quests should be made bigger to divide the menu bar into 2 parts",
     "assignee": "Guillem",
     "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1452",
-    "summary": "Turn off \"need a hand\" pop up for being idle in the game. Instead play an interstitial ad",
-    "assignee": "Yevhenii",
-    "status": "In Progress"
-  },
-  {
-    "key": "CHSOL-1451",
-    "summary": "Show Daily and Journey icons in menu UI for all game modes",
-    "assignee": "Henrique",
-    "status": "Backlog"
-  },
-  {
-    "key": "CHSOL-1348",
-    "summary": "[Dev] Create unity runtime tests for opening and closing popups fast",
-    "assignee": "Angel",
-    "status": "To Do"
   }
 ];
 export const SOL_CRASHES = [];
 export const WM_ACTIVE   = [
   {
-    "key": "WORD-639",
-    "summary": "Word Maker widget should represent full process when reward is ready to collect  ",
-    "assignee": "Víctor",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-637",
-    "summary": "[PUZZLE EVENT] - Event unlocks at a past level when updating from a previous version",
+    "key": "WORD-644",
+    "summary": "Expired puzzle event FTUE remains interactive with no feedback after timer ends",
     "assignee": "Toni",
-    "status": "In Progress"
+    "status": "Backlog"
   },
   {
-    "key": "WORD-638",
-    "summary": "[PUZZLE EVENT] - Event ended popup appears every time you go back to the lobby",
+    "key": "WORD-641",
+    "summary": "Puzzle event expiry not communicated while popup is open",
     "assignee": "Toni",
-    "status": "Ready for QA"
+    "status": "Backlog"
   },
   {
-    "key": "WORD-486",
-    "summary": "sfx for Puzzle event ",
+    "key": "WORD-635",
+    "summary": "Jigsaw event completion screen shows currency and lacks completion message",
     "assignee": "Toni",
     "status": "Ready for QA"
   },
   {
-    "key": "WORD-515",
-    "summary": "Try Access Feature",
+    "key": "WORD-640",
+    "summary": "[BEGINNER BONUS] - Beginner Event end popup appears in-game after lantern event popup",
     "assignee": "Toni",
     "status": "Ready for QA"
   },
   {
-    "key": "WORD-513",
-    "summary": "Event Start Logic",
-    "assignee": "Toni",
-    "status": "Ready for QA"
+    "key": "WORD-648",
+    "summary": "[WORD MASTER] - The coins value is updated at the start instead of during the reward animation",
+    "assignee": "Unassigned",
+    "status": "Backlog"
   },
   {
-    "key": "WORD-520",
-    "summary": "[VIEW] Event Screen",
-    "assignee": "Toni",
-    "status": "Ready for QA"
+    "key": "WORD-647",
+    "summary": "[WORD MASTER] - On the 3-step tutorial screen the shop button is visible and interactable",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-646",
+    "summary": "[WORD MASTER] - tutorial popup do not close if you tap on the highest or lowest zone of the scren",
+    "assignee": "Unassigned",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-645",
+    "summary": "[WORD MASTER] - Words and Bonus Words from a different language count towards the progress",
+    "assignee": "Unassigned",
+    "status": "Backlog"
   },
   {
     "key": "WORD-511",
@@ -236,64 +242,52 @@ export const WM_ACTIVE   = [
     "status": "Ready for QA"
   },
   {
-    "key": "WORD-514",
-    "summary": "Event End Logic",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-512",
-    "summary": "Puzzle Definition & Storage",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-510",
-    "summary": "Remove Puzzle Currency",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-521",
-    "summary": "[VIEW] Event Complete Popup",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-508",
-    "summary": "Puzzle Currency Storage",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-509",
-    "summary": "Award Puzzle Currency on Level End",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-612",
-    "summary": "Firebase 1.46.0 (612) build is not appearing in Crashlytics ",
-    "assignee": "Toni",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-633",
-    "summary": "Jigsaw event FTUE: Hand pointer overlaps and cut off the tutorial text",
+    "key": "WORD-627",
+    "summary": "Create a popup manager for wordmaker",
     "assignee": "Toni",
     "status": "Backlog"
   },
   {
-    "key": "WORD-636",
-    "summary": "Jigsaw event icon remains in active state after event completion",
+    "key": "WORD-643",
+    "summary": "Overlapping event popups when Puzzle Event ends and Collection Event starts on same level",
+    "assignee": "Toni",
+    "status": "Backlog"
+  },
+  {
+    "key": "WORD-642",
+    "summary": "[Art] Trivia Levels",
+    "assignee": "Juan",
+    "status": "In Progress"
+  },
+  {
+    "key": "WORD-632",
+    "summary": "Word Master popup: inconsistent icon styling and issue with text spacing/readability",
     "assignee": "Juan",
     "status": "Selected for Development"
   },
   {
-    "key": "WORD-635",
-    "summary": "Jigsaw event completion screen shows currency and lacks completion message",
-    "assignee": "Toni",
-    "status": "Backlog"
+    "key": "WORD-631",
+    "summary": "Bug Title: Word Master notification pip (!) is lost with background",
+    "assignee": "Juan",
+    "status": "Selected for Development"
+  },
+  {
+    "key": "WORD-629",
+    "summary": "Home screen appears cluttered with multiple event icons on the Homescreen",
+    "assignee": "Juan",
+    "status": "Selected for Development"
+  },
+  {
+    "key": "WORD-617",
+    "summary": "[ART] Concept and asset creation for Trivia Levels",
+    "assignee": "Juan",
+    "status": "QA Verified"
+  },
+  {
+    "key": "WORD-639",
+    "summary": "Word Maker widget should represent full progress when reward is ready to collect  ",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
   },
   {
     "key": "WORD-630",
@@ -302,69 +296,75 @@ export const WM_ACTIVE   = [
     "status": "Backlog"
   },
   {
-    "key": "WORD-632",
-    "summary": "Word Master popup: inconsistent icon styling and issue with text spacing/readability",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-634",
-    "summary": "Jigsaw event: Multiple “not enough currency” messages stack on repeated taps",
-    "assignee": "Toni",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-631",
-    "summary": "Bug Title: Word Master notification pip (!) is lost with background",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-625",
-    "summary": "[ART] Concept and asset creation for Album Event (Badges)",
-    "assignee": "Juan",
-    "status": "In Progress"
-  },
-  {
-    "key": "WORD-629",
-    "summary": "Home screen appears cluttered with multiple event icons on the Homescreen",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-619",
-    "summary": "[TA] Trivia Breather Levels – Implementation & Animation",
-    "assignee": "Juan",
-    "status": "Backlog"
-  },
-  {
-    "key": "WORD-485",
-    "summary": "Localisation for Puzzle event",
-    "assignee": "Didara",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-611",
-    "summary": "Localisation for Word Master ",
-    "assignee": "Didara",
-    "status": "Ready for QA"
-  },
-  {
-    "key": "WORD-568",
-    "summary": "[DEV] Create Word Master feature flag",
+    "key": "WORD-605",
+    "summary": "[DEV] Coin icon display logic based on reward amount",
     "assignee": "Víctor",
-    "status": "Backlog"
+    "status": "Ready for QA"
   },
   {
-    "key": "WORD-545",
-    "summary": "Word Master Event",
-    "assignee": "Unassigned",
-    "status": "Backlog"
+    "key": "WORD-597",
+    "summary": "[DEV] Wire the reward collection animation",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-596",
+    "summary": "[DEV] Wire the stage progress animation",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-595",
+    "summary": "[DEV] Wire the 3-step tutorial screen",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-594",
+    "summary": "[DEV] Wire the lobby widget to the logic with its 4 states",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-593",
+    "summary": "[DEV] Wire the event popup to the logic",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-592",
+    "summary": "[DEV] Save and restore the event state between sessions",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
   },
   {
     "key": "WORD-591",
     "summary": "[DEV] Sync the widget timer with the popup timer",
     "assignee": "Víctor",
-    "status": "Backlog"
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-590",
+    "summary": "[DEV] Open the popup when tapping the widget",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-589",
+    "summary": "[DEV] Return to Default state on cycle reset",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-587",
+    "summary": "[DEV] Four visible widget states",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
+  },
+  {
+    "key": "WORD-586",
+    "summary": "[DEV] Show the widget in the lobby during the entire event cycle",
+    "assignee": "Víctor",
+    "status": "Ready for QA"
   }
 ];
