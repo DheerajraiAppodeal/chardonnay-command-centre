@@ -1,6 +1,6 @@
-// AUTO-GENERATED — do not edit manually. Refreshed: 2026-07-07T09:50:20.727Z
-export const LAST_UPDATED     = "Tue, 07 Jul 2026 09:50:20";
-export const LAST_UPDATED_ISO = "2026-07-07T09:50:20.727Z";
+// AUTO-GENERATED — do not edit manually. Refreshed: 2026-07-08T08:35:43.071Z
+export const LAST_UPDATED     = "Wed, 08 Jul 2026 08:35:43";
+export const LAST_UPDATED_ISO = "2026-07-08T08:35:43.071Z";
 export const GAME_STATS = {"wm":{"activeIssues":0,"readyForQA":0},"sol":{"activeIssues":0,"readyForQA":0}};
 export const UNASSIGNED_HIGH_BUGS = [];
 export const SOL_ACTIVE  = [];
